@@ -4,7 +4,7 @@ type Point = { x: number; y: number };
 type Stroke = { points: Point[]; erase: boolean };
 const PAD_KEY = 'step-scratch-pad-v1';
 
-const launch: CSSProperties = { position: 'fixed', right: 24, bottom: 24, zIndex: 20, border: 0, borderRadius: 999, padding: '14px 20px', background: '#69d6ae', color: '#07130f', fontWeight: 700, boxShadow: '0 14px 36px rgba(0,0,0,.38)' };
+const launch: CSSProperties = { position: 'fixed', right: 22, bottom: 18, zIndex: 20, display: 'flex', alignItems: 'center', gap: 11, border: '1px solid rgba(105,214,174,.34)', borderRadius: 999, padding: '13px 18px', background: 'linear-gradient(135deg, #22695f, #2a8276)', color: '#effffb', fontWeight: 650, boxShadow: '0 14px 36px rgba(0,0,0,.42)' };
 const panel: CSSProperties = { position: 'fixed', right: 20, bottom: 20, zIndex: 20, width: 'min(440px, calc(100vw - 32px))', background: '#111826', border: '1px solid #263448', borderRadius: 16, overflow: 'hidden', boxShadow: '0 18px 48px rgba(0,0,0,.48)' };
 const head: CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 15px', borderBottom: '1px solid #263448' };
 const row: CSSProperties = { display: 'flex', gap: 8, padding: '10px 12px', borderBottom: '1px solid #263448' };
@@ -73,7 +73,7 @@ export function ScratchPad() {
     setStrokes((all) => all.map((stroke, index) => index === all.length - 1 ? { ...stroke, points: [...stroke.points, nextPoint] } : stroke));
   }
 
-  if (!open) return <button style={launch} onClick={() => setOpen(true)}>Open scratch pad</button>;
+  if (!open) return <button style={launch} onClick={() => setOpen(true)}><span aria-hidden="true">✎</span> Scratch Pad <span aria-hidden="true">⌃</span></button>;
 
   return (
     <aside style={panel} aria-label="Scratch pad">
