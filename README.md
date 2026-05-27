@@ -4,32 +4,38 @@ A static, procedure-first GED Math study app built to clear one remaining GED mo
 
 ## Product intent
 
-This is not a generic worksheet generator. It teaches repeatable written procedures for the GED-style math families that are hardest when working memory, symbol overload, or procedural recall become barriers.
+This is not a generic worksheet generator. It teaches repeatable written procedures for GED-style math families that become difficult under working-memory load, symbol overload, or missing procedural instruction.
 
 Design rules:
 
 - Use `×` for multiplication and `n` for the unknown while learning.
-- Show the GED version (`x`, `y`) beside the translated learning notation only when useful.
+- Show GED notation (`x`, `y`) beside translated learning notation only when useful.
 - Teach exactly what to write next, not just the final formula.
 - Store progress locally in the browser; no account, backend, or tracking.
 - Begin untimed and move to mixed practice only after procedures are usable.
+- Do not publish private score details in the app or repository.
 
 ## Included modules
 
 1. Start Here: notation translation
-2. Percents & Money: discount, increase, sales tax, reversing an increase
-3. Equations: two-step, both sides, parentheses
-4. Ratios & Proportions: recipes, pack prices, map scale
-5. Rates: speed and flow-style unit rates
-6. Fractions: fraction of a total and rebuilding the whole
-7. Geometry: rectangle, triangle, cylinder
-8. Systems of equations
-9. Slope
-10. Probability
-11. GED tools and calculator workflow
-12. Mixed readiness check
+2. Number Sense: decimals, negatives, squares, roots, scientific notation
+3. Percents & Money: discount, increase, sales tax, reversing an increase
+4. Equations: two-step, both sides, parentheses
+5. Ratios & Proportions: recipes, pack prices, map scale
+6. Rates: speed and flow-style unit rates
+7. Fractions: fraction of a total and rebuilding the whole
+8. Geometry: rectangle, triangle, circles, right triangles, cylinder
+9. Systems of equations
+10. Slope
+11. Data & Averages: mean, median, mode, range
+12. Probability
+13. Inequalities
+14. Functions & Lines
+15. Quadratics
+16. GED tools and calculator workflow
+17. Mixed readiness check
 
-The initial content is based on the learner's own list of difficult GED-style problem patterns. It is not copied from or affiliated with GED Testing Service.
+The first procedure examples are based on the learner's own list of difficult GED-style patterns. Coverage has been expanded against the public GED Mathematical Reasoning assessment categories. This project is not affiliated with GED Testing Service.
 
 ## Run locally
 
@@ -48,8 +54,8 @@ npm run build
 
 ## Deploy to Vercel
 
-Import this GitHub repository into Vercel. Vercel will detect the Vite app; `vercel.json` explicitly sets `npm run build` and the `dist` output folder.
+Import this GitHub repository into Vercel. Vercel detects the Vite build settings from `package.json`; use the generated defaults (`npm run build` and `dist`) if prompted.
 
 ## Privacy
 
-Completion state and confidence markers are kept in `localStorage` on the device running the app. Resetting progress clears only that local browser state.
+Completion state and confidence markers remain in `localStorage` on the device running the app. Resetting progress clears only that local browser state.
