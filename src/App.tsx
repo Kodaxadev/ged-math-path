@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { AudhdSettings } from './components/AudhdSettings';
 import { Dashboard } from './components/Dashboard';
+import { InsightsView } from './components/InsightsView';
 import { LessonView } from './components/LessonView';
 import { ModuleView } from './components/ModuleView';
 import { Nav } from './components/Nav';
@@ -12,13 +13,14 @@ import { modules } from './data/modules';
 import { clearProgress, loadProgress, saveProgress } from './lib/storage';
 import type { Attempt, Lesson, ModuleId, Progress } from './types';
 
-type Page = ModuleId | 'dashboard' | 'cards' | 'lesson';
+type Page = ModuleId | 'dashboard' | 'cards' | 'insights' | 'lesson';
 
 export default function App() {
   const [progress, setProgress] = useState<Progress>(() => loadProgress());
   const [page, setPage] = useState<Page>('dashboard');
   const [activeLessonId, setActiveLessonId] = useState<string | undefined>(progress.currentLessonId);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [sessionId] = useState(() => `session-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
 
   const activeLesson = useMemo(() => lessons.find((lesson) => lesson.id === activeLessonId), [activeLessonId]);
   const activeModule = modules.find((module) => module.id === page);
@@ -52,7 +54,12 @@ export default function App() {
       ...progress,
       attempts: {
         ...progress.attempts,
-        [problemId]: [...existing, { ...attempt, attemptedAt: new Date().toISOString() }],
+        [problemId]: [...existing, {
+          ...attempt,
+          settingsUsed: { ...progress.settings },
+          sessionId,
+          attemptedAt: new Date().toISOString(),
+        }],
       },
     });
   }
@@ -83,7 +90,12 @@ export default function App() {
         onReset={reset}
       />
       <div className="shell-body">
-        <Nav modules={modules} progress={progress} activeModule={page === 'lesson' && activeLesson ? activeLesson.moduleId : page as ModuleId | 'dashboard' | 'cards'} onSelect={(next) => setPage(next)} />
+        <Nav
+          modules={modules}
+          progress={progress}
+          activeModule={page === 'lesson' && activeLesson ? activeLesson.moduleId : page as ModuleId | 'dashboard' | 'cards' | 'insights'}
+          onSelect={(next) => setPage(next)}
+        />
         <main className="content">
           {page !== 'dashboard' && showBreak && (
             <article className="panel take-five lesson-break">
@@ -104,6 +116,7 @@ export default function App() {
               onDismissBreak={dismissBreak}
             />
           )}
+          {page === 'insights' && <InsightsView modules={modules} lessons={lessons} progress={progress} sessionId={sessionId} />}
           {page === 'cards' && <ProcedureCards lessons={lessons} />}
           {activeModule && <ModuleView module={activeModule} lessons={lessons} progress={progress} onOpenLesson={openLesson} />}
           {page === 'lesson' && activeLesson && (
