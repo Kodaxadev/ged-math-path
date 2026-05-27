@@ -7,6 +7,12 @@ export const emptyProgress: Progress = {
   attempts: {},
   confidence: {},
   notationMode: 'learning',
+  settings: {
+    hideTimer: true,
+    largerText: false,
+    colorCodedSteps: true,
+    lowClutterMode: false,
+  },
 };
 
 export function loadProgress(): Progress {
@@ -20,6 +26,7 @@ export function loadProgress(): Progress {
       completedLessons: Array.isArray(value.completedLessons) ? value.completedLessons : [],
       attempts: value.attempts ?? {},
       confidence: value.confidence ?? {},
+      settings: { ...emptyProgress.settings, ...value.settings },
     };
   } catch {
     return emptyProgress;
