@@ -41,7 +41,13 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false }: 
 
   function save(correct: boolean, mistakeType?: MistakeType) {
     if (!confidenceBefore || !confidenceAfter) return;
-    onAttempt(problem.id, { correct, confidenceBefore, confidenceAfter, mistakeType });
+    onAttempt(problem.id, {
+      correct,
+      mode: practice ? 'practice' : 'walkthrough',
+      confidenceBefore,
+      confidenceAfter,
+      mistakeType,
+    });
     setRecorded(true);
     setNeedsMistakeType(false);
   }
@@ -78,7 +84,7 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false }: 
           <ConfidenceButtons value={confidenceAfter} onChange={setConfidenceAfter} />
           {!needsMistakeType && (
             <div className="grade-row">
-              <span>Could you work it out?</span>
+              <span>{practice ? 'Could you work it out?' : 'Did the steps make sense?'}</span>
               <button disabled={!confidenceAfter} onClick={() => setNeedsMistakeType(true)}>Not yet</button>
               <button disabled={!confidenceAfter} className="correct" onClick={() => save(true)}>Yes</button>
             </div>
@@ -91,7 +97,7 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false }: 
           )}
         </div>
       )}
-      {recorded && <p className="recorded">Saved in your mistake journal on this device.</p>}
+      {recorded && <p className="recorded">Saved on this device.</p>}
     </article>
   );
 }
