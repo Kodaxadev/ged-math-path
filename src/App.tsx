@@ -22,6 +22,9 @@ export default function App() {
 
   const activeLesson = useMemo(() => lessons.find((lesson) => lesson.id === activeLessonId), [activeLessonId]);
   const activeModule = modules.find((module) => module.id === page);
+  const showBreak = progress.completedLessons.length > 0
+    && progress.completedLessons.length % 3 === 0
+    && progress.breakDismissedAt !== progress.completedLessons.length;
   const shellClasses = [
     'app-shell',
     progress.settings.largerText ? 'larger-text' : '',
@@ -31,6 +34,10 @@ export default function App() {
   function updateProgress(next: Progress): void {
     setProgress(next);
     saveProgress(next);
+  }
+
+  function dismissBreak(): void {
+    updateProgress({ ...progress, breakDismissedAt: progress.completedLessons.length });
   }
 
   function openLesson(lesson: Lesson): void {
@@ -78,13 +85,23 @@ export default function App() {
       <div className="shell-body">
         <Nav modules={modules} progress={progress} activeModule={page === 'lesson' && activeLesson ? activeLesson.moduleId : page as ModuleId | 'dashboard' | 'cards'} onSelect={(next) => setPage(next)} />
         <main className="content">
+          {page !== 'dashboard' && showBreak && (
+            <article className="panel take-five lesson-break">
+              <div>
+                <p className="eyebrow">PAUSE IS PART OF THE PLAN</p>
+                <h2>Take 5.</h2>
+                <p>You finished three lessons. Stand up, get water, reset your eyes, then return when ready.</p>
+              </div>
+              <button className="secondary" onClick={dismissBreak}>I took a break / keep going</button>
+            </article>
+          )}
           {page === 'dashboard' && (
             <Dashboard
               modules={modules}
               lessons={lessons}
               progress={progress}
               onOpenLesson={openLesson}
-              onDismissBreak={() => updateProgress({ ...progress, breakDismissedAt: progress.completedLessons.length })}
+              onDismissBreak={dismissBreak}
             />
           )}
           {page === 'cards' && <ProcedureCards lessons={lessons} />}
