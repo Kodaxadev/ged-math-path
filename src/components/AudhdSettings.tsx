@@ -33,7 +33,7 @@ export function AudhdSettings({ settings, onChange, onClose }: Props) {
   }
 
   return (
-    <aside className="settings-drawer" role="dialog" aria-modal="true" aria-labelledby="settings-title" aria-describedby="settings-note">
+    <aside className="settings-drawer" role="dialog" aria-labelledby="settings-title" aria-describedby="settings-note">
       <header>
         <div>
           <p className="eyebrow">MAKE STEP FIT YOU</p>
