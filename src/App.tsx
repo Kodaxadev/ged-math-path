@@ -4,6 +4,7 @@ import { LessonView } from './components/LessonView';
 import { ModuleView } from './components/ModuleView';
 import { Nav } from './components/Nav';
 import { ProcedureCards } from './components/ProcedureCards';
+import { ScratchPad } from './components/ScratchPad';
 import { TopBar } from './components/TopBar';
 import { lessons } from './data/lessons';
 import { modules } from './data/modules';
@@ -75,6 +76,7 @@ export default function App() {
           )}
         </main>
       </div>
+      {page === 'lesson' && <ScratchPad />}
       <footer className="site-footer">GED-style practice built for personal preparation. Not affiliated with GED Testing Service.</footer>
     </div>
   );
