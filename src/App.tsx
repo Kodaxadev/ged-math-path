@@ -76,7 +76,7 @@ export default function App() {
           )}
         </main>
       </div>
-      {page === 'lesson' && <ScratchPad />}
+      {(page === 'dashboard' || page === 'lesson') && <ScratchPad />}
       <footer className="site-footer">GED-style practice built for personal preparation. Not affiliated with GED Testing Service.</footer>
     </div>
   );
