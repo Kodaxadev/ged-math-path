@@ -11,12 +11,16 @@
 .take-five { display: flex; align-items: center; justify-content: space-between; gap: 22px; border-color: rgba(233,189,100,.42); background: linear-gradient(120deg, rgba(233,189,100,.12), rgba(17,24,38,.92)); }
 .take-five h2 { margin: 0 0 7px; font-size: 1.55rem; color: var(--warning); }
 .take-five div > p:last-child { margin: 0; color: var(--muted); }
+.lesson-break { margin-bottom: 18px; }
 .side-stack { display: grid; align-content: start; gap: 12px; }
 .mistake-journal { border-color: rgba(134,168,255,.24); }
 .mistake-journal > strong { display: block; font-size: 1.05rem; margin-bottom: 12px; }
-.mistake-journal p:not(.eyebrow):not(.journal-empty) { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); margin: 0; padding: 9px 0; color: var(--muted); font-size: .84rem; }
 .mistake-journal b { color: var(--accent-2); }
 .journal-empty { color: var(--muted); line-height: 1.5; margin: 0; font-size: .86rem; }
+.journal-entry { display: grid; gap: 4px; padding: 10px 0; border-top: 1px solid var(--border); }
+.journal-entry b { font-size: .84rem; }
+.journal-entry small { color: var(--muted); line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.journal-summary { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); margin: 8px 0 0; padding: 10px 0 0; color: var(--muted); font-size: .8rem; }
 .before-start { margin: 18px 0 14px; }
 .pause-note { color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
 .rating-label { font-size: .9rem; color: var(--text); font-weight: 650; margin: 13px 0 9px; }
