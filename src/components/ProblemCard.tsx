@@ -13,6 +13,8 @@ const mistakeOptions: { value: MistakeType; label: string }[] = [
   { value: 'attention-drift', label: 'Attention drift' },
   { value: 'lost-place', label: 'Lost my place' },
   { value: 'forgot-formula', label: 'Forgot the formula' },
+  { value: 'rushed', label: 'I rushed' },
+  { value: 'wording-confusion', label: 'Didn’t understand the wording' },
   { value: 'not-sure', label: 'Not sure yet' },
 ];
 
