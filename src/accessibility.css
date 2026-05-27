@@ -35,7 +35,8 @@ input:focus-visible,
 }
 #main-content:focus { outline: none; }
 .brand-row { display: flex; align-items: center; gap: 10px; }
-.mobile-menu { display: none; }
+.mobile-menu,
+.mobile-nav-heading { display: none; }
 .nav-backdrop { display: none; }
 .nav-card[aria-current="page"] { border-color: rgba(105,214,174,.32); }
 .toolbar > label { margin-right: -8px; }
@@ -100,7 +101,7 @@ input:focus-visible,
     bottom: 0;
     z-index: 60;
     width: min(320px, calc(100vw - 54px));
-    padding: 18px 14px;
+    padding: 14px;
     background: var(--bg);
     border-right: 1px solid var(--border);
     border-bottom: 0;
@@ -112,6 +113,24 @@ input:focus-visible,
   }
   .side-nav.mobile-open { transform: translateX(0); }
   .side-nav .nav-card { min-width: 0; width: 100%; }
+  .mobile-nav-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 12px;
+    padding: 3px 4px 13px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mobile-nav-heading strong { font-size: 1.05rem; }
+  .mobile-nav-close {
+    min-height: 44px;
+    padding: 9px 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text);
+  }
   .nav-group, .more-lessons { display: block; }
   .nav-backdrop {
     display: block;
