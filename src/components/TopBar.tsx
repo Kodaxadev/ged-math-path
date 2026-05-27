@@ -9,15 +9,19 @@ type Props = {
 export function TopBar({ progress, onNotationChange, onReset }: Props) {
   return (
     <header className="topbar">
-      <div className="brand"><span className="gate" /> <strong>GED Math Path</strong><small>procedure-first prep</small></div>
+      <div className="brand">
+        <span className="gate" />
+        <strong>STEP</strong>
+        <small>GED Math, one move at a time</small>
+      </div>
       <div className="toolbar">
-        <label>Notation
+        <label>Symbols:
           <select value={progress.notationMode} onChange={(event) => onNotationChange(event.target.value as 'learning' | 'ged')}>
-            <option value="learning">Learning: n and ×</option>
-            <option value="ged">GED: x / y</option>
+            <option value="learning">Use n for the missing number</option>
+            <option value="ged">Show GED letters: x / y</option>
           </select>
         </label>
-        <button className="quiet" onClick={onReset}>Reset local progress</button>
+        <button className="quiet" onClick={onReset}>Clear my progress</button>
       </div>
     </header>
   );
