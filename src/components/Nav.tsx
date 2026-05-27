@@ -34,18 +34,13 @@ export function Nav({ modules, progress, activeModule, open, onSelect, onClose }
     return () => document.removeEventListener('keydown', escapeMenu);
   }, [open, onClose]);
 
-  function choose(destination: NavDestination) {
-    onSelect(destination);
-    onClose();
-  }
-
   function current(destination: NavDestination) {
     return activeModule === destination ? 'page' as const : undefined;
   }
 
   function item(module: CourseModule) {
     return (
-      <button type="button" key={module.id} aria-current={current(module.id)} className={activeModule === module.id ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => choose(module.id)}>
+      <button type="button" key={module.id} aria-current={current(module.id)} className={activeModule === module.id ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect(module.id)}>
         <span className="nav-icon" aria-hidden="true">{icons[module.id] ?? '·'}</span>
         <span className="nav-title">{module.title}</span>
         <span className="nav-note">{moduleCompletion(module, progress)}% done</span>
@@ -61,7 +56,7 @@ export function Nav({ modules, progress, activeModule, open, onSelect, onClose }
           <strong>Learning path</strong>
           <button ref={closeRef} type="button" className="mobile-nav-close" onClick={onClose}>Close</button>
         </div>
-        <button type="button" aria-current={current('dashboard')} className={activeModule === 'dashboard' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => choose('dashboard')}>
+        <button type="button" aria-current={current('dashboard')} className={activeModule === 'dashboard' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect('dashboard')}>
           <span className="nav-icon" aria-hidden="true">⌂</span>
           <span className="nav-title">Home</span>
           <span className="nav-note">Pick up where I stopped</span>
@@ -75,12 +70,12 @@ export function Nav({ modules, progress, activeModule, open, onSelect, onClose }
           <div className="more-list">{more.map(item)}</div>
         </details>
 
-        <button type="button" aria-current={current('cards')} className={activeModule === 'cards' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => choose('cards')}>
+        <button type="button" aria-current={current('cards')} className={activeModule === 'cards' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect('cards')}>
           <span className="nav-icon" aria-hidden="true">☆</span>
           <span className="nav-title">Cheat Sheets</span>
           <span className="nav-note">What to write down</span>
         </button>
-        <button type="button" aria-current={current('insights')} className={activeModule === 'insights' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => choose('insights')}>
+        <button type="button" aria-current={current('insights')} className={activeModule === 'insights' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect('insights')}>
           <span className="nav-icon" aria-hidden="true">◔</span>
           <span className="nav-title">Insights</span>
           <span className="nav-note">What helps and what jams</span>
