@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { AudhdSettings } from './components/AudhdSettings';
 import { Dashboard } from './components/Dashboard';
 import { InsightsView } from './components/InsightsView';
@@ -14,16 +14,20 @@ import { clearProgress, loadProgress, saveProgress } from './lib/storage';
 import type { Attempt, Lesson, ModuleId, Progress } from './types';
 
 type Page = ModuleId | 'dashboard' | 'cards' | 'insights' | 'lesson';
+type NavigationPage = ModuleId | 'dashboard' | 'cards' | 'insights';
 
 export default function App() {
   const [progress, setProgress] = useState<Progress>(() => loadProgress());
   const [page, setPage] = useState<Page>('dashboard');
   const [activeLessonId, setActiveLessonId] = useState<string | undefined>(progress.currentLessonId);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
   const [sessionId] = useState(() => `session-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
+  const mainRef = useRef<HTMLElement>(null);
 
   const activeLesson = useMemo(() => lessons.find((lesson) => lesson.id === activeLessonId), [activeLessonId]);
   const activeModule = modules.find((module) => module.id === page);
+  const navigationPage: NavigationPage = page === 'lesson' && activeLesson ? activeLesson.moduleId : page as NavigationPage;
   const showBreak = progress.completedLessons.length > 0
     && progress.completedLessons.length % 3 === 0
     && progress.breakDismissedAt !== progress.completedLessons.length;
@@ -32,6 +36,11 @@ export default function App() {
     progress.settings.largerText ? 'larger-text' : '',
     progress.settings.lowClutterMode ? 'low-clutter' : '',
   ].filter(Boolean).join(' ');
+
+  useEffect(() => {
+    setNavOpen(false);
+    mainRef.current?.focus();
+  }, [page, activeLessonId]);
 
   function updateProgress(next: Progress): void {
     setProgress(next);
@@ -83,8 +92,11 @@ export default function App() {
 
   return (
     <div className={shellClasses}>
+      <a className="skip-link" href="#main-content">Skip to lesson content</a>
       <TopBar
         progress={progress}
+        navOpen={navOpen}
+        onToggleNav={() => setNavOpen((value) => !value)}
         onNotationChange={(notationMode) => updateProgress({ ...progress, notationMode })}
         onOpenSettings={() => setSettingsOpen(true)}
         onReset={reset}
@@ -93,12 +105,14 @@ export default function App() {
         <Nav
           modules={modules}
           progress={progress}
-          activeModule={page === 'lesson' && activeLesson ? activeLesson.moduleId : page as ModuleId | 'dashboard' | 'cards' | 'insights'}
+          activeModule={navigationPage}
+          open={navOpen}
           onSelect={(next) => setPage(next)}
+          onClose={() => setNavOpen(false)}
         />
-        <main className="content">
+        <main id="main-content" ref={mainRef} className="content" tabIndex={-1}>
           {page !== 'dashboard' && showBreak && (
-            <article className="panel take-five lesson-break">
+            <article className="panel take-five lesson-break" aria-live="polite">
               <div>
                 <p className="eyebrow">PAUSE IS PART OF THE PLAN</p>
                 <h2>Take 5.</h2>
