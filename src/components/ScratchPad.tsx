@@ -1,9 +1,15 @@
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
-import './ScratchPad.css';
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react';
 
 type Point = { x: number; y: number };
 type Stroke = { points: Point[]; erase: boolean };
 const PAD_KEY = 'step-scratch-pad-v1';
+
+const launch: CSSProperties = { position: 'fixed', right: 24, bottom: 24, zIndex: 20, border: 0, borderRadius: 999, padding: '14px 20px', background: '#69d6ae', color: '#07130f', fontWeight: 700, boxShadow: '0 14px 36px rgba(0,0,0,.38)' };
+const panel: CSSProperties = { position: 'fixed', right: 20, bottom: 20, zIndex: 20, width: 'min(440px, calc(100vw - 32px))', background: '#111826', border: '1px solid #263448', borderRadius: 16, overflow: 'hidden', boxShadow: '0 18px 48px rgba(0,0,0,.48)' };
+const head: CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 15px', borderBottom: '1px solid #263448' };
+const row: CSSProperties = { display: 'flex', gap: 8, padding: '10px 12px', borderBottom: '1px solid #263448' };
+const button: CSSProperties = { border: '1px solid #263448', background: 'transparent', color: '#9aadc5', borderRadius: 8, padding: '7px 11px' };
+const selected: CSSProperties = { ...button, color: '#07130f', background: '#69d6ae', borderColor: '#69d6ae', fontWeight: 700 };
 
 function loadPad(): Stroke[] {
   try {
@@ -45,7 +51,7 @@ export function ScratchPad() {
       ctx.lineWidth = stroke.erase ? 18 : 3;
       ctx.beginPath();
       ctx.moveTo(stroke.points[0].x * width, stroke.points[0].y * height);
-      stroke.points.slice(1).forEach((point) => ctx.lineTo(point.x * width, point.y * height));
+      stroke.points.slice(1).forEach((next) => ctx.lineTo(next.x * width, next.y * height));
       ctx.stroke();
     });
   }, [open, strokes]);
@@ -67,25 +73,18 @@ export function ScratchPad() {
     setStrokes((all) => all.map((stroke, index) => index === all.length - 1 ? { ...stroke, points: [...stroke.points, nextPoint] } : stroke));
   }
 
-  if (!open) return <button className="scratch-launch" onClick={() => setOpen(true)}>Open scratch pad</button>;
+  if (!open) return <button style={launch} onClick={() => setOpen(true)}>Open scratch pad</button>;
 
   return (
-    <aside className="scratch-pad" aria-label="Scratch pad">
-      <header><strong>Scratch Pad</strong><button onClick={() => setOpen(false)}>Minimize</button></header>
-      <div className="scratch-tools">
-        <button className={!erase ? 'active' : ''} onClick={() => setErase(false)}>Write</button>
-        <button className={erase ? 'active' : ''} onClick={() => setErase(true)}>Erase</button>
-        <button onClick={() => setStrokes([])}>Clear</button>
+    <aside style={panel} aria-label="Scratch pad">
+      <header style={head}><strong>Scratch Pad</strong><button style={button} onClick={() => setOpen(false)}>Minimize</button></header>
+      <div style={row}>
+        <button style={!erase ? selected : button} onClick={() => setErase(false)}>Write</button>
+        <button style={erase ? selected : button} onClick={() => setErase(true)}>Erase</button>
+        <button style={button} onClick={() => setStrokes([])}>Clear</button>
       </div>
-      <canvas
-        ref={canvasRef}
-        className="scratch-canvas"
-        onPointerDown={start}
-        onPointerMove={move}
-        onPointerUp={() => setDrawing(false)}
-        onPointerCancel={() => setDrawing(false)}
-      />
-      <p>Your writing stays here when minimized.</p>
+      <canvas ref={canvasRef} style={{ display: 'block', width: '100%', height: 320, background: '#f8f7f2', cursor: 'crosshair', touchAction: 'none' }} onPointerDown={start} onPointerMove={move} onPointerUp={() => setDrawing(false)} onPointerCancel={() => setDrawing(false)} />
+      <p style={{ color: '#9aadc5', fontSize: '.78rem', margin: 0, padding: '10px 13px' }}>Your writing stays here when minimized.</p>
     </aside>
   );
 }
