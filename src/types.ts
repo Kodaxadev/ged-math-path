@@ -49,7 +49,21 @@ export type CourseModule = {
 };
 
 export type ConfidenceScore = 1 | 2 | 3 | 4 | 5;
-export type MistakeType = 'arithmetic-slip' | 'attention-drift' | 'lost-place' | 'forgot-formula' | 'not-sure';
+export type MistakeType =
+  | 'arithmetic-slip'
+  | 'attention-drift'
+  | 'lost-place'
+  | 'forgot-formula'
+  | 'rushed'
+  | 'wording-confusion'
+  | 'not-sure';
+
+export type AudhdSettings = {
+  hideTimer: boolean;
+  largerText: boolean;
+  colorCodedSteps: boolean;
+  lowClutterMode: boolean;
+};
 
 export type Attempt = {
   correct: boolean;
@@ -57,13 +71,8 @@ export type Attempt = {
   confidenceBefore?: ConfidenceScore;
   confidenceAfter?: ConfidenceScore;
   mistakeType?: MistakeType;
-};
-
-export type AudhdSettings = {
-  hideTimer: boolean;
-  largerText: boolean;
-  colorCodedSteps: boolean;
-  lowClutterMode: boolean;
+  settingsUsed?: AudhdSettings;
+  sessionId?: string;
 };
 
 export type Progress = {
