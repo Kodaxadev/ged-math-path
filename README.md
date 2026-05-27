@@ -1,5 +1,7 @@
 # GED Math Path
 
+Live app: **step.kodaxa.dev**
+
 A static, procedure-first GED Math study app built to clear one remaining GED module before a Computer Science associate degree path.
 
 ## Product intent
@@ -52,9 +54,9 @@ npm test
 npm run build
 ```
 
-## Deploy to Vercel
+## Deployment
 
-Import this GitHub repository into Vercel. Vercel detects the Vite build settings from `package.json`; use the generated defaults (`npm run build` and `dist`) if prompted.
+This repository is connected to the live Vercel deployment at `step.kodaxa.dev`. Updates merged or pushed to the production branch should deploy through the existing integration.
 
 ## Privacy
 
