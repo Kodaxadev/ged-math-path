@@ -30,6 +30,10 @@ function rate(attempts: Attempt[]): RateSummary {
   };
 }
 
+function independentPractice(entries: AttemptEntry[]): AttemptEntry[] {
+  return entries.filter((entry) => entry.attempt.mode === 'practice');
+}
+
 export function flattenAttempts(progress: Progress, modules: CourseModule[], lessons: Lesson[]): AttemptEntry[] {
   const moduleTitles = new Map(modules.map((module) => [module.id, module.title]));
   const problemMap: ProblemMapItem[] = lessons.flatMap((lesson) => [lesson.workedExample, ...lesson.practice].map((problem) => ({
@@ -46,8 +50,9 @@ export function flattenAttempts(progress: Progress, modules: CourseModule[], les
 }
 
 export function masteryRows(entries: AttemptEntry[], modules: CourseModule[]): MasteryRow[] {
+  const practice = independentPractice(entries);
   return modules.map((module) => {
-    const moduleAttempts = entries.filter((entry) => entry.moduleId === module.id).map((entry) => entry.attempt);
+    const moduleAttempts = practice.filter((entry) => entry.moduleId === module.id).map((entry) => entry.attempt);
     return { moduleId: module.id, title: module.title, ...rate(moduleAttempts) };
   }).filter((row) => row.total > 0).sort((a, b) => (a.percentage ?? 0) - (b.percentage ?? 0));
 }
@@ -65,7 +70,9 @@ export function mistakeRows(entries: AttemptEntry[]): { type: MistakeType; label
 }
 
 export function currentSession(entries: AttemptEntry[], sessionId: string): RateSummary & { confidenceShift: number | null } {
-  const attempts = entries.filter((entry) => entry.attempt.sessionId === sessionId).map((entry) => entry.attempt);
+  const attempts = independentPractice(entries)
+    .filter((entry) => entry.attempt.sessionId === sessionId)
+    .map((entry) => entry.attempt);
   const shifts = attempts
     .filter((attempt) => attempt.confidenceBefore && attempt.confidenceAfter)
     .map((attempt) => (attempt.confidenceAfter as number) - (attempt.confidenceBefore as number));
@@ -83,7 +90,7 @@ export function settingComparisons(entries: AttemptEntry[]): SettingComparison[]
     lowClutterMode: 'Low clutter mode',
   };
   return (Object.keys(labels) as (keyof AudhdSettings)[]).map((key) => {
-    const recorded = entries.filter((entry) => entry.attempt.settingsUsed);
+    const recorded = independentPractice(entries).filter((entry) => entry.attempt.settingsUsed);
     return {
       key,
       label: labels[key],
