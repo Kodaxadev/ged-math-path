@@ -6,11 +6,11 @@ type PadMode = 'draw' | 'type';
 const PAD_KEY = 'step-scratch-pad-v1';
 const NOTES_KEY = 'step-scratch-notes-v1';
 
-const launch: CSSProperties = { position: 'fixed', right: 22, bottom: 18, zIndex: 20, display: 'flex', alignItems: 'center', gap: 11, border: '1px solid rgba(105,214,174,.34)', borderRadius: 999, padding: '13px 18px', background: 'linear-gradient(135deg, #22695f, #2a8276)', color: '#effffb', fontWeight: 650, boxShadow: '0 14px 36px rgba(0,0,0,.42)' };
-const panel: CSSProperties = { position: 'fixed', right: 20, bottom: 20, zIndex: 20, width: 'min(440px, calc(100vw - 32px))', background: '#111826', border: '1px solid #263448', borderRadius: 16, overflow: 'hidden', boxShadow: '0 18px 48px rgba(0,0,0,.48)' };
+const launch: CSSProperties = { position: 'fixed', right: 22, bottom: 18, zIndex: 20, display: 'flex', alignItems: 'center', gap: 11, border: '1px solid rgba(105,214,174,.34)', borderRadius: 999, padding: '13px 18px', minHeight: 48, background: 'linear-gradient(135deg, #22695f, #2a8276)', color: '#effffb', fontWeight: 650, boxShadow: '0 14px 36px rgba(0,0,0,.42)' };
+const panel: CSSProperties = { position: 'fixed', right: 12, bottom: 12, zIndex: 20, width: 'min(440px, calc(100vw - 24px))', maxHeight: 'calc(100dvh - 24px)', overflowY: 'auto', background: '#111826', border: '1px solid #263448', borderRadius: 16, boxShadow: '0 18px 48px rgba(0,0,0,.48)' };
 const head: CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 15px', borderBottom: '1px solid #263448' };
 const row: CSSProperties = { display: 'flex', gap: 8, padding: '10px 12px', borderBottom: '1px solid #263448', flexWrap: 'wrap' };
-const button: CSSProperties = { border: '1px solid #263448', background: 'transparent', color: '#c0cede', borderRadius: 8, padding: '9px 12px', minHeight: 42 };
+const button: CSSProperties = { border: '1px solid #263448', background: 'transparent', color: '#c0cede', borderRadius: 8, padding: '9px 12px', minHeight: 44 };
 const selected: CSSProperties = { ...button, color: '#07130f', background: '#69d6ae', borderColor: '#69d6ae', fontWeight: 700 };
 
 function loadPad(): Stroke[] {
@@ -39,10 +39,25 @@ export function ScratchPad() {
   const [drawing, setDrawing] = useState(false);
   const [strokes, setStrokes] = useState<Stroke[]>(loadPad);
   const [notes, setNotes] = useState(loadNotes);
+  const launchRef = useRef<HTMLButtonElement>(null);
+  const minimizeRef = useRef<HTMLButtonElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => localStorage.setItem(PAD_KEY, JSON.stringify(strokes)), [strokes]);
   useEffect(() => localStorage.setItem(NOTES_KEY, notes), [notes]);
+
+  useEffect(() => {
+    if (!open) return;
+    minimizeRef.current?.focus();
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        window.requestAnimationFrame(() => launchRef.current?.focus());
+      }
+    }
+    document.addEventListener('keydown', closeOnEscape);
+    return () => document.removeEventListener('keydown', closeOnEscape);
+  }, [open]);
 
   useEffect(() => {
     if (!open || mode !== 'draw') return;
@@ -93,11 +108,16 @@ export function ScratchPad() {
     else setNotes('');
   }
 
-  if (!open) return <button type="button" style={launch} onClick={() => setOpen(true)} aria-haspopup="dialog" aria-label="Open scratch pad"><span aria-hidden="true">✎</span> Scratch Pad <span aria-hidden="true">⌃</span></button>;
+  function minimize() {
+    setOpen(false);
+    window.requestAnimationFrame(() => launchRef.current?.focus());
+  }
+
+  if (!open) return <button ref={launchRef} type="button" style={launch} onClick={() => setOpen(true)} aria-haspopup="dialog" aria-label="Open scratch pad"><span aria-hidden="true">✎</span> Scratch Pad <span aria-hidden="true">⌃</span></button>;
 
   return (
     <aside style={panel} role="dialog" aria-labelledby={titleId}>
-      <header style={head}><strong id={titleId}>Scratch Pad</strong><button type="button" style={button} onClick={() => setOpen(false)}>Minimize</button></header>
+      <header style={head}><strong id={titleId}>Scratch Pad</strong><button ref={minimizeRef} type="button" style={button} onClick={minimize}>Minimize</button></header>
       <div style={row} role="group" aria-label="Choose scratch pad mode">
         <button type="button" aria-pressed={mode === 'draw'} style={mode === 'draw' ? selected : button} onClick={() => setMode('draw')}>Draw</button>
         <button type="button" aria-pressed={mode === 'type'} style={mode === 'type' ? selected : button} onClick={() => setMode('type')}>Type work</button>
@@ -115,7 +135,7 @@ export function ScratchPad() {
             role="img"
             aria-label="Drawn scratch work area"
             aria-describedby={canvasDescriptionId}
-            style={{ display: 'block', width: '100%', height: 320, background: '#f8f7f2', cursor: 'crosshair', touchAction: 'none' }}
+            style={{ display: 'block', width: '100%', height: 300, background: '#f8f7f2', cursor: 'crosshair', touchAction: 'none' }}
             onPointerDown={start}
             onPointerMove={move}
             onPointerUp={() => setDrawing(false)}
