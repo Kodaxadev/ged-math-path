@@ -4,6 +4,7 @@ import App from './App';
 import './styles.css';
 import './concept.css';
 import './features.css';
+import './accessibility.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
