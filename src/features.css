@@ -1,0 +1,54 @@
+.manifesto {
+  max-width: 860px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 12px 12px 0;
+  background: rgba(105, 214, 174, .06);
+  margin-bottom: 4px;
+}
+.manifesto strong { display: block; color: var(--accent); font-size: .98rem; margin-bottom: 5px; }
+.manifesto p { color: var(--muted); line-height: 1.52; margin: 0; font-size: .92rem; }
+.take-five { display: flex; align-items: center; justify-content: space-between; gap: 22px; border-color: rgba(233,189,100,.42); background: linear-gradient(120deg, rgba(233,189,100,.12), rgba(17,24,38,.92)); }
+.take-five h2 { margin: 0 0 7px; font-size: 1.55rem; color: var(--warning); }
+.take-five div > p:last-child { margin: 0; color: var(--muted); }
+.side-stack { display: grid; align-content: start; gap: 12px; }
+.mistake-journal { border-color: rgba(134,168,255,.24); }
+.mistake-journal > strong { display: block; font-size: 1.05rem; margin-bottom: 12px; }
+.mistake-journal p:not(.eyebrow):not(.journal-empty) { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); margin: 0; padding: 9px 0; color: var(--muted); font-size: .84rem; }
+.mistake-journal b { color: var(--accent-2); }
+.journal-empty { color: var(--muted); line-height: 1.5; margin: 0; font-size: .86rem; }
+.before-start { margin: 18px 0 14px; }
+.pause-note { color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+.rating-label { font-size: .9rem; color: var(--text); font-weight: 650; margin: 13px 0 9px; }
+.confidence-scale { display: flex; gap: 8px; margin-bottom: 14px; }
+.confidence-scale button { width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-weight: 700; }
+.confidence-scale button:hover, .confidence-scale button.selected { border-color: var(--accent); background: rgba(105,214,174,.15); color: var(--accent); }
+.next-step-button:disabled, .grade-row button:disabled { opacity: .48; cursor: not-allowed; }
+.reflection { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 16px; }
+.mistake-prompt { margin-top: 16px; padding: 14px; background: rgba(134,168,255,.06); border: 1px solid var(--border); border-radius: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.mistake-prompt p { width: 100%; margin: 0 0 4px; font-weight: 650; }
+.mistake-prompt button { border: 1px solid var(--border); color: var(--text); background: var(--surface-2); border-radius: 9px; padding: 9px 12px; }
+.mistake-prompt button:hover { border-color: var(--accent-2); color: var(--accent-2); }
+.color-steps li:nth-child(4n+1)::marker { color: var(--accent); font-weight: 700; }
+.color-steps li:nth-child(4n+2)::marker { color: var(--accent-2); font-weight: 700; }
+.color-steps li:nth-child(4n+3)::marker { color: var(--warning); font-weight: 700; }
+.color-steps li:nth-child(4n+4)::marker { color: #d98dff; font-weight: 700; }
+.settings-drawer { position: fixed; top: 86px; right: 22px; z-index: 40; width: min(390px, calc(100vw - 30px)); background: #111826; border: 1px solid var(--border); border-radius: 18px; padding: 19px; box-shadow: 0 22px 58px rgba(0,0,0,.52); }
+.settings-drawer header { display: flex; justify-content: space-between; align-items: start; gap: 12px; margin-bottom: 13px; }
+.settings-drawer h2 { margin: 0; }
+.setting-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 13px 0; border-top: 1px solid var(--border); cursor: pointer; }
+.setting-row strong { display: block; margin-bottom: 4px; }
+.setting-row small { color: var(--muted); line-height: 1.36; display: block; }
+.setting-row input { width: 20px; height: 20px; accent-color: var(--accent); flex: none; }
+.settings-note { color: var(--muted); font-size: .79rem; margin: 14px 0 0; }
+.larger-text { font-size: 112%; }
+.larger-text .nav-note, .larger-text .eyebrow { font-size: .84rem; }
+.low-clutter .upcoming, .low-clutter .quick-sheet, .low-clutter .preview-rail, .low-clutter .pep-talk { display: none; }
+.low-clutter .home-top-grid { grid-template-columns: minmax(360px,2.35fr) minmax(190px,1fr); }
+.low-clutter .home-bottom-grid { grid-template-columns: 1fr; }
+.low-clutter .preview { grid-template-columns: 1fr; }
+@media (max-width: 760px) {
+  .take-five { flex-direction: column; align-items: start; }
+  .settings-drawer { top: 118px; right: 10px; }
+  .low-clutter .home-top-grid { grid-template-columns: 1fr; }
+}
