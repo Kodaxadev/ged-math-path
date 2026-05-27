@@ -51,8 +51,35 @@
 .low-clutter .home-top-grid { grid-template-columns: minmax(360px,2.35fr) minmax(190px,1fr); }
 .low-clutter .home-bottom-grid { grid-template-columns: 1fr; }
 .low-clutter .preview { grid-template-columns: 1fr; }
+.insights { display: grid; gap: 14px; }
+.insights-header { margin-bottom: 0; }
+.insights-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.insight-stat { display: grid; gap: 7px; min-height: 140px; }
+.insight-stat strong { font-size: 2.35rem; color: var(--accent); line-height: 1; }
+.insight-stat span { color: var(--muted); font-size: .88rem; }
+.insights-grid { display: grid; grid-template-columns: 1.7fr 1fr; gap: 12px; }
+.mastery-panel h2, .pattern-panel h2, .accommodation-panel h2 { margin-bottom: 17px; }
+.insights-empty, .analytics-caution { color: var(--muted); line-height: 1.52; font-size: .9rem; }
+.mastery-row { display: grid; grid-template-columns: minmax(155px, 1fr) 1.25fr; align-items: center; gap: 18px; padding: 10px 0; border-top: 1px solid var(--border); }
+.mastery-row strong { display: block; font-size: .9rem; margin-bottom: 4px; }
+.mastery-row small { color: var(--muted); }
+.mastery-bar { height: 9px; overflow: hidden; background: var(--surface-2); border-radius: 999px; }
+.mastery-bar span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent-2), var(--accent)); }
+.pattern-row { display: flex; justify-content: space-between; padding: 12px 0; color: var(--muted); border-top: 1px solid var(--border); }
+.pattern-row strong { color: var(--accent-2); }
+.comparison-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 17px; }
+.comparison-card { border: 1px solid var(--border); background: rgba(22,33,51,.5); border-radius: 12px; padding: 13px; display: grid; gap: 10px; }
+.comparison-card > strong { font-size: .9rem; }
+.comparison-card div { display: flex; flex-direction: column; gap: 3px; border-top: 1px solid var(--border); padding-top: 8px; }
+.comparison-card span { color: var(--muted); font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; }
+.comparison-card b { font-size: .83rem; font-weight: 550; }
+@media (max-width: 1000px) {
+  .insights-grid, .comparison-grid { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 760px) {
   .take-five { flex-direction: column; align-items: start; }
   .settings-drawer { top: 118px; right: 10px; }
   .low-clutter .home-top-grid { grid-template-columns: 1fr; }
+  .insights-summary, .insights-grid, .comparison-grid { grid-template-columns: 1fr; }
+  .mastery-row { grid-template-columns: 1fr; gap: 8px; }
 }
