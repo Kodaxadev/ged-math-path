@@ -17,11 +17,11 @@ export function Dashboard({ modules, lessons, progress, onOpenLesson }: Props) {
         <p className="eyebrow">GED MATH PATH</p>
         <h1>Clear the last gate.</h1>
         <p className="hero-copy">Three GED modules passed. Math is the remaining gate between you and the Clovis Computer Science path. This course teaches the written procedures, one repeatable move at a time.</p>
-        <div className="score-row" aria-label="Completed GED scores">
-          <div><strong>160</strong><span>Science</span></div>
-          <div><strong>166</strong><span>Social Studies</span></div>
-          <div><strong>160</strong><span>Language Arts</span></div>
-          <div className="pending"><strong>—</strong><span>Math next</span></div>
+        <div className="score-row" aria-label="GED completion path">
+          <div><strong>✓</strong><span>Science passed</span></div>
+          <div><strong>✓</strong><span>Social Studies passed</span></div>
+          <div><strong>✓</strong><span>Language Arts passed</span></div>
+          <div className="pending"><strong>→</strong><span>Math next</span></div>
         </div>
       </div>
       <div className="panel continue">
