@@ -28,9 +28,14 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
     ? next?.workedExample.learningNotation
     : next?.workedExample.gedNotation;
   const ringStyle = { '--step-percent': `${percentage}%` } as CSSProperties;
-  const wrongAttempts = Object.values(progress.attempts).flat().filter((attempt) => !attempt.correct && attempt.mistakeType);
-  const mistakeCounts = wrongAttempts.reduce<Partial<Record<MistakeType, number>>>((counts, attempt) => {
-    const type = attempt.mistakeType as MistakeType;
+  const problemLabels = new Map(lessons.flatMap((lesson) => [lesson.workedExample, ...lesson.practice]).map((problem) => [problem.id, problem.prompt]));
+  const recentMistakes = Object.entries(progress.attempts)
+    .flatMap(([problemId, attempts]) => attempts.map((attempt) => ({ problemId, attempt })))
+    .filter(({ attempt }) => !attempt.correct && attempt.mistakeType)
+    .sort((a, b) => b.attempt.attemptedAt.localeCompare(a.attempt.attemptedAt))
+    .slice(0, 3);
+  const mistakeCounts = recentMistakes.reduce<Partial<Record<MistakeType, number>>>((counts, entry) => {
+    const type = entry.attempt.mistakeType as MistakeType;
     counts[type] = (counts[type] ?? 0) + 1;
     return counts;
   }, {});
@@ -81,9 +86,7 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
 
         <article className="panel home-progress">
           <p className="eyebrow">YOUR PROGRESS</p>
-          <div className="progress-ring" style={ringStyle}>
-            <strong>{percentage}%</strong>
-          </div>
+          <div className="progress-ring" style={ringStyle}><strong>{percentage}%</strong></div>
           <p>Math path progress</p>
           <hr />
           <strong className="lesson-count">{progress.completedLessons.length} of {lessons.length}</strong>
@@ -113,10 +116,7 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
             </aside>
             <div className="preview-work">
               <div className="preview-title"><div><h2>When you see this</h2><p>Try to name the first move before you reveal it.</p></div><span>Step-by-step reveal</span></div>
-              <div className="preview-question">
-                <p>{next.workedExample.prompt}</p>
-                {previewNotation && <pre>{previewNotation}</pre>}
-              </div>
+              <div className="preview-question"><p>{next.workedExample.prompt}</p>{previewNotation && <pre>{previewNotation}</pre>}</div>
               <p className="preview-tip">Your lesson will wait while you work it out on the scratch pad.</p>
               <button className="preview-action" onClick={() => onOpenLesson(next)}>Open lesson and show the first step <span>→</span></button>
             </div>
@@ -131,10 +131,16 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
             </article>
             <article className="panel mistake-journal">
               <p className="eyebrow">MISTAKE JOURNAL</p>
-              {wrongAttempts.length === 0 ? <p className="journal-empty">When a problem trips you up, STEP will track what got in the way.</p> : (
+              {recentMistakes.length === 0 ? <p className="journal-empty">When a problem trips you up, STEP will track what got in the way.</p> : (
                 <>
-                  <strong>{wrongAttempts.length} learning note{wrongAttempts.length === 1 ? '' : 's'}</strong>
-                  {Object.entries(mistakeCounts).map(([type, count]) => <p key={type}><span>{mistakeLabels[type as MistakeType]}</span><b>{count}</b></p>)}
+                  <strong>Recent notes</strong>
+                  {recentMistakes.map(({ problemId, attempt }) => (
+                    <div className="journal-entry" key={`${problemId}-${attempt.attemptedAt}`}>
+                      <b>{mistakeLabels[attempt.mistakeType as MistakeType]}</b>
+                      <small>{problemLabels.get(problemId) ?? 'Practice problem'}</small>
+                    </div>
+                  ))}
+                  <p className="journal-summary"><span>Most recent types logged</span><b>{Object.keys(mistakeCounts).length}</b></p>
                 </>
               )}
             </article>
