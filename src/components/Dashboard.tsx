@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { CourseModule, Lesson, Progress } from '../types';
 import { completionPercent, nextLesson } from '../lib/course';
 
@@ -17,6 +18,7 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson }
   const previewNotation = progress.notationMode === 'learning'
     ? next?.workedExample.learningNotation
     : next?.workedExample.gedNotation;
+  const ringStyle = { '--step-percent': `${percentage}%` } as CSSProperties;
 
   return (
     <section className="step-home" aria-label="Start here">
@@ -45,7 +47,7 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson }
 
         <article className="panel home-progress">
           <p className="eyebrow">YOUR PROGRESS</p>
-          <div className="progress-ring" style={{ '--step-percent': `${percentage}%` } as React.CSSProperties}>
+          <div className="progress-ring" style={ringStyle}>
             <strong>{percentage}%</strong>
           </div>
           <p>Math path progress</p>
