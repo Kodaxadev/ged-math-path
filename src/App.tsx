@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AudhdSettings } from './components/AudhdSettings';
 import { Dashboard } from './components/Dashboard';
 import { InsightsView } from './components/InsightsView';
@@ -24,6 +24,7 @@ export default function App() {
   const [navOpen, setNavOpen] = useState(false);
   const [sessionId] = useState(() => `session-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`);
   const mainRef = useRef<HTMLElement>(null);
+  const mountedRef = useRef(false);
 
   const activeLesson = useMemo(() => lessons.find((lesson) => lesson.id === activeLessonId), [activeLessonId]);
   const activeModule = modules.find((module) => module.id === page);
@@ -38,6 +39,10 @@ export default function App() {
   ].filter(Boolean).join(' ');
 
   useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true;
+      return;
+    }
     setNavOpen(false);
     mainRef.current?.focus();
   }, [page, activeLessonId]);
@@ -45,6 +50,21 @@ export default function App() {
   function updateProgress(next: Progress): void {
     setProgress(next);
     saveProgress(next);
+  }
+
+  const dismissNav = useCallback(() => {
+    setNavOpen(false);
+    window.requestAnimationFrame(() => document.getElementById('mobile-menu-button')?.focus());
+  }, []);
+
+  const closeSettings = useCallback(() => {
+    setSettingsOpen(false);
+    window.requestAnimationFrame(() => document.getElementById('settings-button')?.focus());
+  }, []);
+
+  function chooseNavigation(next: NavigationPage): void {
+    setNavOpen(false);
+    setPage(next);
   }
 
   function dismissBreak(): void {
@@ -96,7 +116,7 @@ export default function App() {
       <TopBar
         progress={progress}
         navOpen={navOpen}
-        onToggleNav={() => setNavOpen((value) => !value)}
+        onToggleNav={() => navOpen ? dismissNav() : setNavOpen(true)}
         onNotationChange={(notationMode) => updateProgress({ ...progress, notationMode })}
         onOpenSettings={() => setSettingsOpen(true)}
         onReset={reset}
@@ -107,18 +127,18 @@ export default function App() {
           progress={progress}
           activeModule={navigationPage}
           open={navOpen}
-          onSelect={(next) => setPage(next)}
-          onClose={() => setNavOpen(false)}
+          onSelect={chooseNavigation}
+          onClose={dismissNav}
         />
         <main id="main-content" ref={mainRef} className="content" tabIndex={-1}>
           {page !== 'dashboard' && showBreak && (
-            <article className="panel take-five lesson-break" aria-live="polite">
+            <article className="panel take-five lesson-break" role="status">
               <div>
                 <p className="eyebrow">PAUSE IS PART OF THE PLAN</p>
                 <h2>Take 5.</h2>
                 <p>You finished three lessons. Stand up, get water, reset your eyes, then return when ready.</p>
               </div>
-              <button className="secondary" onClick={dismissBreak}>I took a break / keep going</button>
+              <button type="button" className="secondary" onClick={dismissBreak}>I took a break / keep going</button>
             </article>
           )}
           {page === 'dashboard' && (
@@ -149,7 +169,7 @@ export default function App() {
         <AudhdSettings
           settings={progress.settings}
           onChange={(settings) => updateProgress({ ...progress, settings })}
-          onClose={() => setSettingsOpen(false)}
+          onClose={closeSettings}
         />
       )}
       <footer className="site-footer">GED-style practice built for personal preparation. Not affiliated with GED Testing Service.</footer>
