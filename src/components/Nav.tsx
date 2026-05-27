@@ -1,11 +1,13 @@
 import type { CourseModule, ModuleId, Progress } from '../types';
 import { moduleCompletion } from '../lib/course';
 
+type NavDestination = ModuleId | 'dashboard' | 'cards' | 'insights';
+
 type Props = {
   modules: CourseModule[];
   progress: Progress;
-  activeModule: ModuleId | 'dashboard' | 'cards';
-  onSelect: (module: ModuleId | 'dashboard' | 'cards') => void;
+  activeModule: NavDestination;
+  onSelect: (module: NavDestination) => void;
 };
 
 const mainPath: ModuleId[] = ['orientation', 'percent', 'equations', 'ratios', 'fractions', 'geometry', 'calculator', 'readiness'];
@@ -48,6 +50,11 @@ export function Nav({ modules, progress, activeModule, onSelect }: Props) {
         <span className="nav-icon" aria-hidden="true">☆</span>
         <span className="nav-title">Cheat Sheets</span>
         <span className="nav-note">What to write down</span>
+      </button>
+      <button className={activeModule === 'insights' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect('insights')}>
+        <span className="nav-icon" aria-hidden="true">◔</span>
+        <span className="nav-title">Insights</span>
+        <span className="nav-note">What helps and what jams</span>
       </button>
 
       <aside className="pep-talk">
