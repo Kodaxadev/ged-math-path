@@ -46,26 +46,26 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
     && progress.breakDismissedAt !== progress.completedLessons.length;
 
   return (
-    <section className="step-home" aria-label="Start here">
+    <section className="step-home" aria-labelledby="home-title">
       <header className="home-hero">
         <p className="eyebrow">GED MATH, BUILT AROUND YOU</p>
-        <h1>Pass GED Math.<span className="hero-spark">✦</span></h1>
+        <h1 id="home-title">Pass GED Math.<span className="hero-spark" aria-hidden="true">✦</span></h1>
         <p>No guessing. Learn what to write, one step at a time.</p>
       </header>
 
-      <article className="manifesto">
+      <article className="manifesto" aria-label="STEP promise">
         <strong>You are not bad at math.</strong>
         <p>If a step is missing, the lesson failed. STEP shows where every number comes from, gives you room to work, and moves only when you are ready.</p>
       </article>
 
       {showBreak && (
-        <article className="panel take-five">
+        <article className="panel take-five" role="status" aria-label="Break reminder">
           <div>
             <p className="eyebrow">PAUSE IS PART OF THE PLAN</p>
             <h2>Take 5.</h2>
             <p>You finished three lessons. Stand up, get water, reset your eyes, then return when ready.</p>
           </div>
-          <button className="secondary" onClick={onDismissBreak}>I took a break / keep going</button>
+          <button type="button" className="secondary" onClick={onDismissBreak}>I took a break / keep going</button>
         </article>
       )}
 
@@ -75,31 +75,33 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
           {next && (
             <>
               <div className="lesson-callout">
-                <span className="play-ring">▶</span>
+                <span className="play-ring" aria-hidden="true">▶</span>
                 <div>
                   <h2>{next.title}</h2>
                   <p>{next.objective}</p>
                 </div>
               </div>
-              <button className="primary start-button" onClick={() => onOpenLesson(next)}>Start this lesson <span>→</span></button>
+              <button type="button" className="primary start-button" onClick={() => onOpenLesson(next)}>Start this lesson <span aria-hidden="true">→</span></button>
             </>
           )}
         </article>
 
         <article className="panel home-progress">
           <p className="eyebrow">YOUR PROGRESS</p>
-          <div className="progress-ring" style={ringStyle}><strong>{percentage}%</strong></div>
+          <div className="progress-ring" style={ringStyle} role="progressbar" aria-label="Course progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentage}>
+            <strong>{percentage}%</strong>
+          </div>
           <p>Math path progress</p>
           <hr />
           <strong className="lesson-count">{progress.completedLessons.length} of {lessons.length}</strong>
           <span>lessons done</span>
         </article>
 
-        <article className="panel upcoming">
+        <article className="panel upcoming" aria-label="Coming up next">
           <p className="eyebrow">COMING UP NEXT</p>
           {upcoming.map((lesson, index) => (
-            <button key={lesson.id} onClick={() => onOpenLesson(lesson)}>
-              <span>{index + 1}</span>
+            <button type="button" key={lesson.id} onClick={() => onOpenLesson(lesson)}>
+              <span aria-hidden="true">{index + 1}</span>
               <div><strong>Lesson {index + 2}</strong><small>{lesson.title}</small></div>
             </button>
           ))}
@@ -109,7 +111,7 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
       {next && (
         <div className="home-bottom-grid">
           <article className="panel preview">
-            <aside className="preview-rail">
+            <aside className="preview-rail" aria-label="Lesson flow preview">
               <p className="eyebrow">LESSON PREVIEW</p>
               <div className="rail-step active"><span>1</span><strong>When you see this</strong><small>This is the problem.</small></div>
               <div className="rail-step"><span>2</span><strong>Write this down</strong><small>One move at a time.</small></div>
@@ -118,9 +120,9 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
             </aside>
             <div className="preview-work">
               <div className="preview-title"><div><h2>When you see this</h2><p>Try to name the first move before you reveal it.</p></div><span>Step-by-step reveal</span></div>
-              <div className="preview-question"><p>{next.workedExample.prompt}</p>{previewNotation && <pre>{previewNotation}</pre>}</div>
+              <div className="preview-question"><p>{next.workedExample.prompt}</p>{previewNotation && <pre aria-label="Translated math notation">{previewNotation}</pre>}</div>
               <p className="preview-tip">Your lesson will wait while you work it out on the scratch pad.</p>
-              <button className="preview-action" onClick={() => onOpenLesson(next)}>Open lesson and show the first step <span>→</span></button>
+              <button type="button" className="preview-action" onClick={() => onOpenLesson(next)}>Open lesson and show the first step <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
@@ -129,9 +131,9 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
               <p className="eyebrow">CHEAT SHEET</p>
               <h2>{next.title}</h2>
               {next.procedureCard.map((line) => <p key={line}>{line}</p>)}
-              <button onClick={() => onOpenLesson(next)}>Practice this lesson →</button>
+              <button type="button" onClick={() => onOpenLesson(next)}>Practice this lesson →</button>
             </article>
-            <article className="panel mistake-journal">
+            <article className="panel mistake-journal" aria-label="Mistake journal">
               <p className="eyebrow">MISTAKE JOURNAL</p>
               {recentMistakes.length === 0 ? <p className="journal-empty">When a problem trips you up, STEP will track what got in the way.</p> : (
                 <>
