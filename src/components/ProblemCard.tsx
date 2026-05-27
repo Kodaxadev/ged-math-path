@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import type { Attempt, ConfidenceScore, MistakeType, Problem, Progress } from '../types';
 
 type Props = {
@@ -18,17 +18,29 @@ const mistakeOptions: { value: MistakeType; label: string }[] = [
   { value: 'not-sure', label: 'Not sure yet' },
 ];
 
-function ConfidenceButtons({ value, onChange }: { value?: ConfidenceScore; onChange: (score: ConfidenceScore) => void }) {
+function ConfidenceButtons({ label, value, onChange }: { label: string; value?: ConfidenceScore; onChange: (score: ConfidenceScore) => void }) {
   return (
-    <div className="confidence-scale" aria-label="Confidence rating">
-      {([1, 2, 3, 4, 5] as ConfidenceScore[]).map((score) => (
-        <button key={score} className={value === score ? 'selected' : ''} onClick={() => onChange(score)} aria-pressed={value === score}>{score}</button>
-      ))}
-    </div>
+    <fieldset className="confidence-fieldset">
+      <legend className="rating-label">{label}</legend>
+      <div className="confidence-scale">
+        {([1, 2, 3, 4, 5] as ConfidenceScore[]).map((score) => (
+          <button
+            type="button"
+            key={score}
+            className={value === score ? 'selected' : ''}
+            onClick={() => onChange(score)}
+            aria-pressed={value === score}
+            aria-label={`${score} out of 5 confidence`}
+          >{score}</button>
+        ))}
+      </div>
+    </fieldset>
   );
 }
 
 export function ProblemCard({ problem, progress, onAttempt, practice = false }: Props) {
+  const headingId = useId();
+  const stepsId = useId();
   const [shownSteps, setShownSteps] = useState(0);
   const [recorded, setRecorded] = useState(false);
   const [confidenceBefore, setConfidenceBefore] = useState<ConfidenceScore>();
@@ -53,15 +65,14 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false }: 
   }
 
   return (
-    <article className={practice ? 'problem-card practice' : 'problem-card'}>
+    <article className={practice ? 'problem-card practice' : 'problem-card'} aria-labelledby={headingId}>
       <p className="problem-label">{practice ? 'TRY IT' : 'WORK ALONG WITH ME'}</p>
-      <h3>{problem.prompt}</h3>
-      {notation && <pre className="notation">{notation}</pre>}
+      <h3 id={headingId}>{problem.prompt}</h3>
+      {notation && <pre className="notation" aria-label="Translated math notation">{notation}</pre>}
       {!started && (
         <div className="before-start">
           <p className="pause-note">{practice ? 'Work this on your scratch pad first. Uncover one step only when you need it.' : 'Try the first move yourself. Then uncover one step to compare.'}</p>
-          <p className="rating-label">Before you start: how confident do you feel?</p>
-          <ConfidenceButtons value={confidenceBefore} onChange={setConfidenceBefore} />
+          <ConfidenceButtons label="Before you start: how confident do you feel?" value={confidenceBefore} onChange={setConfidenceBefore} />
         </div>
       )}
       {problem.hint && !started && practice && (
@@ -70,34 +81,33 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false }: 
       {started && (
         <div className="solution">
           <p className="procedure"><strong>The move:</strong> {problem.procedure}</p>
-          <div className="step-counter">Showing {shownSteps} of {problem.steps.length} steps</div>
-          <ol className={progress.settings.colorCodedSteps ? 'color-steps' : ''}>{problem.steps.slice(0, shownSteps).map((step) => <li key={step}>{step}</li>)}</ol>
-          {finished && <p className="answer">Answer: {problem.answer}</p>}
+          <div className="step-counter" aria-live="polite">Showing {shownSteps} of {problem.steps.length} steps</div>
+          <ol id={stepsId} className={progress.settings.colorCodedSteps ? 'color-steps' : ''}>{problem.steps.slice(0, shownSteps).map((step) => <li key={step}>{step}</li>)}</ol>
+          {finished && <p className="answer" aria-live="polite">Answer: {problem.answer}</p>}
         </div>
       )}
       {!finished && (
-        <button className="secondary next-step-button" disabled={!confidenceBefore} onClick={() => setShownSteps((count) => count + 1)}>{confidenceBefore ? nextLabel : 'Rate confidence first'}</button>
+        <button type="button" className="secondary next-step-button" aria-controls={stepsId} disabled={!confidenceBefore} onClick={() => setShownSteps((count) => count + 1)}>{confidenceBefore ? nextLabel : 'Rate confidence first'}</button>
       )}
       {finished && !recorded && (
         <div className="reflection">
-          <p className="rating-label">After this problem: how confident do you feel now?</p>
-          <ConfidenceButtons value={confidenceAfter} onChange={setConfidenceAfter} />
+          <ConfidenceButtons label="After this problem: how confident do you feel now?" value={confidenceAfter} onChange={setConfidenceAfter} />
           {!needsMistakeType && (
             <div className="grade-row">
               <span>{practice ? 'Could you work it out?' : 'Did the steps make sense?'}</span>
-              <button disabled={!confidenceAfter} onClick={() => setNeedsMistakeType(true)}>Not yet</button>
-              <button disabled={!confidenceAfter} className="correct" onClick={() => save(true)}>Yes</button>
+              <button type="button" disabled={!confidenceAfter} onClick={() => setNeedsMistakeType(true)}>Not yet</button>
+              <button type="button" disabled={!confidenceAfter} className="correct" onClick={() => save(true)}>Yes</button>
             </div>
           )}
           {needsMistakeType && (
-            <div className="mistake-prompt">
-              <p>What got in the way?</p>
-              {mistakeOptions.map((option) => <button key={option.value} onClick={() => save(false, option.value)}>{option.label}</button>)}
-            </div>
+            <fieldset className="mistake-prompt">
+              <legend>What got in the way?</legend>
+              {mistakeOptions.map((option) => <button type="button" key={option.value} onClick={() => save(false, option.value)}>{option.label}</button>)}
+            </fieldset>
           )}
         </div>
       )}
-      {recorded && <p className="recorded">Saved on this device.</p>}
+      {recorded && <p className="recorded" role="status">Saved on this device.</p>}
     </article>
   );
 }
