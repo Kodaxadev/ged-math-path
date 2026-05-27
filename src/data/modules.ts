@@ -3,7 +3,7 @@ import type { CourseModule } from '../types';
 export const modules: CourseModule[] = [
   { id: 'orientation', title: 'Start Here', subtitle: 'Math translated into your notation', purpose: 'Remove symbol confusion and set up the method you will use throughout the course.', lessonIds: ['notation-map'], phase: 'Start' },
   { id: 'number-sense', title: 'Number Sense', subtitle: 'Decimals, negative numbers, powers and roots', purpose: 'Cover non-calculator foundations and compact number procedures.', lessonIds: ['order-rational', 'powers-roots'], phase: 'Core' },
-  { id: 'percent', title: 'Percents & Money', subtitle: 'Discounts, tax, increases, original amount', purpose: 'Handle four high-frequency real-world GED setups.', lessonIds: ['percent-change', 'tax-original'], phase: 'Core' },
+  { id: 'percent', title: 'Percents & Money', subtitle: 'Discounts, tax, increases, original amount', purpose: 'Handle one money or percent move at a time.', lessonIds: ['percent-change', 'sales-tax', 'reverse-increase'], phase: 'Core' },
   { id: 'equations', title: 'Equations', subtitle: 'Undo steps without fighting the letter x', purpose: 'Translate GED algebra into n notation and solve in written moves.', lessonIds: ['two-step-equations', 'variables-both-sides'], phase: 'Core' },
   { id: 'ratios', title: 'Ratios & Proportions', subtitle: 'Recipes, packs, map scales', purpose: 'Find a one-unit amount, then scale it up.', lessonIds: ['unit-ratios'], phase: 'Core' },
   { id: 'rates', title: 'Rates', subtitle: 'Speed and flow-style thinking', purpose: 'Use distance, time, and unit-rate procedures.', lessonIds: ['rates-speed'], phase: 'Core' },
