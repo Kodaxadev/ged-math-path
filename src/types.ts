@@ -1,5 +1,6 @@
 export type ModuleId =
   | 'orientation'
+  | 'number-sense'
   | 'percent'
   | 'equations'
   | 'ratios'
@@ -9,6 +10,10 @@ export type ModuleId =
   | 'systems'
   | 'slope'
   | 'probability'
+  | 'data'
+  | 'inequalities'
+  | 'functions'
+  | 'quadratics'
   | 'calculator'
   | 'readiness';
 
