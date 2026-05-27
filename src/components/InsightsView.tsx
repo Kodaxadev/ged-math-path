@@ -20,10 +20,10 @@ export function InsightsView({ modules, lessons, progress, sessionId }: Props) {
   const comparisons = settingComparisons(entries);
 
   return (
-    <section className="insights" aria-label="Learning insights">
+    <section className="insights" aria-labelledby="insights-title">
       <header className="panel lesson-header insights-header">
         <p className="eyebrow">WHAT YOUR PRACTICE IS SHOWING</p>
-        <h1>Insights</h1>
+        <h1 id="insights-title">Insights</h1>
         <p>This does not grade you. It shows where STEP needs to support you better and which settings may be worth keeping on.</p>
       </header>
 
@@ -31,7 +31,7 @@ export function InsightsView({ modules, lessons, progress, sessionId }: Props) {
         <article className="panel insight-stat">
           <p className="eyebrow">THIS SESSION</p>
           <strong>{session.percentage === null ? '—' : `${session.percentage}%`}</strong>
-          <span>{session.total} problem{session.total === 1 ? '' : 's'} logged</span>
+          <span>{session.total} practice problem{session.total === 1 ? '' : 's'} logged</span>
         </article>
         <article className="panel insight-stat">
           <p className="eyebrow">CONFIDENCE SHIFT</p>
@@ -49,10 +49,20 @@ export function InsightsView({ modules, lessons, progress, sessionId }: Props) {
         <article className="panel mastery-panel">
           <p className="eyebrow">TOPIC MASTERY</p>
           <h2>Accuracy by topic</h2>
-          {mastery.length === 0 ? <p className="insights-empty">Finish a problem to start seeing topic accuracy.</p> : mastery.map((row) => (
+          {mastery.length === 0 ? <p className="insights-empty">Finish a practice problem to start seeing topic accuracy.</p> : mastery.map((row) => (
             <div className="mastery-row" key={row.moduleId}>
               <div><strong>{row.title}</strong><small>{scoreText(row.percentage, row.total)}</small></div>
-              <div className="mastery-bar"><span style={{ width: `${row.percentage ?? 0}%` }} /></div>
+              <div
+                className="mastery-bar"
+                role="progressbar"
+                aria-label={`${row.title} accuracy`}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={row.percentage ?? 0}
+                aria-valuetext={scoreText(row.percentage, row.total)}
+              >
+                <span style={{ width: `${row.percentage ?? 0}%` }} />
+              </div>
             </div>
           ))}
         </article>
