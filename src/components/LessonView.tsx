@@ -1,10 +1,10 @@
-import type { Lesson, Progress } from '../types';
+import type { Attempt, Lesson, Progress } from '../types';
 import { ProblemCard } from './ProblemCard';
 
 type Props = {
   lesson: Lesson;
   progress: Progress;
-  onAttempt: (problemId: string, correct: boolean) => void;
+  onAttempt: (problemId: string, attempt: Omit<Attempt, 'attemptedAt'>) => void;
   onComplete: (lessonId: string) => void;
   onConfidence: (lessonId: string, value: 'repeat' | 'steady' | 'ready') => void;
 };
@@ -15,17 +15,17 @@ export function LessonView({ lesson, progress, onAttempt, onComplete, onConfiden
   return (
     <section className="lesson">
       <header className="panel lesson-header">
-        <p className="eyebrow">PROCEDURE LESSON</p>
+        <p className="eyebrow">ONE SKILL</p>
         <h1>{lesson.title}</h1>
         <p>{lesson.objective}</p>
       </header>
       <div className="two-col">
         <article className="panel">
-          <h2>How to recognize it</h2>
+          <h2>When you see this</h2>
           <ul className="recognition">{lesson.recognition.map((line) => <li key={line}>{line}</li>)}</ul>
         </article>
         <article className="panel procedure-card">
-          <h2>Scratch-board card</h2>
+          <h2>Write this down</h2>
           <ol>{lesson.procedureCard.map((line) => <li key={line}>{line}</li>)}</ol>
         </article>
       </div>
@@ -34,14 +34,14 @@ export function LessonView({ lesson, progress, onAttempt, onComplete, onConfiden
         {lesson.practice.map((problem) => <ProblemCard key={problem.id} problem={problem} progress={progress} onAttempt={onAttempt} practice />)}
       </div>
       <footer className="panel lesson-complete">
-        <h2>Close the loop</h2>
-        <p>Mark where this procedure is today. You can return and change this at any time.</p>
+        <h2>How did this skill feel?</h2>
+        <p>Pick one. It helps you decide what to repeat.</p>
         <div className="confidence-row">
-          <button className={confidence === 'repeat' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'repeat')}>Repeat this</button>
-          <button className={confidence === 'steady' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'steady')}>Getting steady</button>
-          <button className={confidence === 'ready' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'ready')}>Ready in mixed practice</button>
+          <button className={confidence === 'repeat' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'repeat')}>Still confusing</button>
+          <button className={confidence === 'steady' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'steady')}>I followed it</button>
+          <button className={confidence === 'ready' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'ready')}>Ready for mixed questions</button>
         </div>
-        <button className="primary" onClick={() => onComplete(lesson.id)}>{completed ? 'Lesson completed ✓' : 'Mark lesson complete'}</button>
+        <button className="primary" onClick={() => onComplete(lesson.id)}>{completed ? 'Saved as done ✓' : 'Save lesson as done'}</button>
       </footer>
     </section>
   );
