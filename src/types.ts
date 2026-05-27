@@ -57,6 +57,7 @@ export type MistakeType =
   | 'rushed'
   | 'wording-confusion'
   | 'not-sure';
+export type AttemptMode = 'walkthrough' | 'practice';
 
 export type AudhdSettings = {
   hideTimer: boolean;
@@ -68,6 +69,7 @@ export type AudhdSettings = {
 export type Attempt = {
   correct: boolean;
   attemptedAt: string;
+  mode?: AttemptMode;
   confidenceBefore?: ConfidenceScore;
   confidenceAfter?: ConfidenceScore;
   mistakeType?: MistakeType;
