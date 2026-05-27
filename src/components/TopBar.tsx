@@ -14,6 +14,7 @@ export function TopBar({ progress, navOpen, onToggleNav, onNotationChange, onOpe
     <header className="topbar">
       <div className="brand-row">
         <button
+          id="mobile-menu-button"
           className="mobile-menu"
           type="button"
           aria-controls="lesson-navigation"
@@ -35,7 +36,7 @@ export function TopBar({ progress, navOpen, onToggleNav, onNotationChange, onOpe
           <option value="learning">Use n for the missing number</option>
           <option value="ged">Show GED letters: x / y</option>
         </select>
-        <button className="quiet" type="button" onClick={onOpenSettings} aria-haspopup="dialog">AuDHD Settings</button>
+        <button id="settings-button" className="quiet" type="button" onClick={onOpenSettings} aria-haspopup="dialog">AuDHD Settings</button>
         <button className="quiet" type="button" onClick={onReset}>Clear progress</button>
       </div>
     </header>
