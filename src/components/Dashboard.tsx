@@ -15,6 +15,8 @@ const mistakeLabels: Record<MistakeType, string> = {
   'attention-drift': 'Attention drift',
   'lost-place': 'Lost my place',
   'forgot-formula': 'Forgot formula',
+  rushed: 'Rushed',
+  'wording-confusion': 'Didn’t understand wording',
   'not-sure': 'Not sure yet',
 };
 
