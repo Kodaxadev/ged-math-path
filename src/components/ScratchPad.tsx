@@ -93,18 +93,18 @@ export function ScratchPad() {
     else setNotes('');
   }
 
-  if (!open) return <button type="button" style={launch} onClick={() => setOpen(true)} aria-haspopup="dialog"><span aria-hidden="true">✎</span> Scratch Pad <span aria-hidden="true">⌃</span></button>;
+  if (!open) return <button type="button" style={launch} onClick={() => setOpen(true)} aria-haspopup="dialog" aria-label="Open scratch pad"><span aria-hidden="true">✎</span> Scratch Pad <span aria-hidden="true">⌃</span></button>;
 
   return (
-    <aside style={panel} role="dialog" aria-label="Scratch pad" aria-labelledby={titleId}>
+    <aside style={panel} role="dialog" aria-labelledby={titleId}>
       <header style={head}><strong id={titleId}>Scratch Pad</strong><button type="button" style={button} onClick={() => setOpen(false)}>Minimize</button></header>
-      <div style={row} role="tablist" aria-label="Scratch pad mode">
-        <button type="button" role="tab" aria-selected={mode === 'draw'} style={mode === 'draw' ? selected : button} onClick={() => setMode('draw')}>Draw</button>
-        <button type="button" role="tab" aria-selected={mode === 'type'} style={mode === 'type' ? selected : button} onClick={() => setMode('type')}>Type work</button>
+      <div style={row} role="group" aria-label="Choose scratch pad mode">
+        <button type="button" aria-pressed={mode === 'draw'} style={mode === 'draw' ? selected : button} onClick={() => setMode('draw')}>Draw</button>
+        <button type="button" aria-pressed={mode === 'type'} style={mode === 'type' ? selected : button} onClick={() => setMode('type')}>Type work</button>
       </div>
       {mode === 'draw' ? (
         <>
-          <div style={row} aria-label="Drawing tools">
+          <div style={row} role="group" aria-label="Drawing tools">
             <button type="button" aria-pressed={!erase} style={!erase ? selected : button} onClick={() => setErase(false)}>Write</button>
             <button type="button" aria-pressed={erase} style={erase ? selected : button} onClick={() => setErase(true)}>Erase</button>
             <button type="button" style={button} onClick={clearCurrent}>Clear drawing</button>
@@ -113,6 +113,7 @@ export function ScratchPad() {
           <canvas
             ref={canvasRef}
             role="img"
+            aria-label="Drawn scratch work area"
             aria-describedby={canvasDescriptionId}
             style={{ display: 'block', width: '100%', height: 320, background: '#f8f7f2', cursor: 'crosshair', touchAction: 'none' }}
             onPointerDown={start}
