@@ -13,20 +13,26 @@ export type GedTopic = {
 
 export const coverageSourceNote = 'Topic inventory and tool groupings were mapped from the Get Sum Math GED Math study-guide page. STEP creates its own procedures and practice problems.';
 
-export const fastWinLessonIds = ['data-averages', 'rates-speed', 'function-lines', 'percent-change'];
+export const fastWinLessonIds = ['number-line-distance', 'powers-roots', 'function-table-rule', 'rates-speed'];
 
 export const gedTopics: GedTopic[] = [
-  { title: 'Mean, median, mode', path: 'confidence-win', state: 'ready', lessonIds: ['data-averages'] },
+  { title: 'Number-line distance', path: 'confidence-win', state: 'ready', lessonIds: ['number-line-distance'], note: 'Built directly from a practice-test miss: location versus distance.' },
+  { title: 'Squares and roots', path: 'confidence-win', state: 'ready', lessonIds: ['powers-roots'], note: 'Built directly from the raised-2 practice-test miss.' },
+  { title: 'Function tables', path: 'confidence-win', state: 'ready', lessonIds: ['function-table-rule'], note: 'Built from the question answered correctly without a known rule.' },
   { title: 'Compare rates', path: 'confidence-win', state: 'ready', lessonIds: ['rates-speed'] },
-  { title: 'Determine functions', path: 'confidence-win', state: 'ready', lessonIds: ['function-lines'] },
+  { title: 'Mean, median, mode', path: 'confidence-win', state: 'ready', lessonIds: ['data-averages'] },
   { title: 'Line plots / histograms', path: 'confidence-win', state: 'partial', lessonIds: ['data-averages'], note: 'Numbers are covered; visual graph items still need expansion.' },
   { title: 'Plotting points', path: 'confidence-win', state: 'planned', note: 'Add coordinate-grid interaction practice.' },
 
+  { title: 'Basic calculator entry', path: 'calculator', state: 'ready', note: 'Calculator Lab teaches write first, press keys, read display, copy answer.' },
+  { title: 'Decimals and money entry', path: 'calculator', state: 'ready', note: 'Calculator Lab includes decimal tax entry.' },
+  { title: 'Fractions using division', path: 'calculator', state: 'ready', note: 'Calculator Lab teaches fractions without depending on a special fraction key.' },
+  { title: 'Powers, roots and π buttons', path: 'calculator', state: 'ready', note: 'Calculator Lab begins function sequences; physical button locations will be added with the device.' },
   { title: 'Percents', path: 'calculator', state: 'ready', lessonIds: ['percent-change', 'sales-tax', 'reverse-increase', 'calculator-entries'] },
   { title: 'Probability', path: 'calculator', state: 'ready', lessonIds: ['probability-total'] },
   { title: 'Functions / substitutions', path: 'calculator', state: 'partial', lessonIds: ['function-lines', 'calculator-entries'], note: 'Evaluation covered; add more authentic GED tables.' },
   { title: 'Equations of lines', path: 'calculator', state: 'partial', lessonIds: ['slope-points', 'function-lines'] },
-  { title: 'Solve equations by checking choices', path: 'calculator', state: 'planned', lessonIds: ['calculator-entries'] },
+  { title: 'Solve equations by checking choices', path: 'calculator', state: 'planned' },
   { title: 'Quadratics with answer choices', path: 'calculator', state: 'partial', lessonIds: ['quadratic-basics'] },
   { title: 'Simple interest', path: 'calculator', state: 'planned' },
   { title: 'Weighted average', path: 'calculator', state: 'planned' },
@@ -43,7 +49,7 @@ export const gedTopics: GedTopic[] = [
   { title: 'Order of operations', path: 'no-calculator', state: 'partial', lessonIds: ['order-rational', 'no-calculator-route'] },
   { title: 'Exponents and roots', path: 'no-calculator', state: 'ready', lessonIds: ['powers-roots'] },
   { title: 'Solve equations with steps', path: 'no-calculator', state: 'ready', lessonIds: ['two-step-equations', 'variables-both-sides'] },
-  { title: 'Number line', path: 'no-calculator', state: 'planned' },
+  { title: 'Number line distance', path: 'no-calculator', state: 'ready', lessonIds: ['number-line-distance'] },
   { title: 'Undefined expressions', path: 'no-calculator', state: 'planned' },
   { title: 'Rational exponents', path: 'no-calculator', state: 'planned' },
   { title: 'Polynomials', path: 'no-calculator', state: 'planned' },
@@ -66,8 +72,8 @@ export function lessonForTopic(topic: GedTopic, lessons: Lesson[]): Lesson | und
 }
 
 export const pathLabels: Record<ToolPath, { title: string; note: string }> = {
-  'confidence-win': { title: 'Fast confidence wins', note: 'Start here when you need an easier on-ramp.' },
-  calculator: { title: 'Calculator helps here', note: 'Know the setup, then use the TI-30XS to do the heavy arithmetic.' },
+  'confidence-win': { title: 'Start from what happened today', note: 'Short lessons based on real practice-test blocks and usable wins.' },
+  calculator: { title: 'Calculator helps here', note: 'Calculator Lab starts from zero; GED Tools connects those buttons to problem methods.' },
   'formula-sheet': { title: 'Formula sheet route', note: 'Find the formula, insert numbers, then calculate.' },
   'no-calculator': { title: 'No-calculator foundation', note: 'Short procedures that must work on paper.' },
   mixed: { title: 'Mixed GED skills', note: 'Learn the family first, then practice identifying it.' },
