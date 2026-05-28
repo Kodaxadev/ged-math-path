@@ -84,10 +84,10 @@ export function currentSession(entries: AttemptEntry[], sessionId: string): Rate
 
 export function settingComparisons(entries: AttemptEntry[]): SettingComparison[] {
   const labels: Record<keyof AudhdSettings, string> = {
-    hideTimer: 'Timers hidden',
-    largerText: 'Larger text',
-    colorCodedSteps: 'Color-coded steps',
-    lowClutterMode: 'Low clutter mode',
+    hideTimer: 'No timers',
+    largerText: 'Bigger reading size',
+    colorCodedSteps: 'Step markers',
+    lowClutterMode: 'Focus mode',
   };
   return (Object.keys(labels) as (keyof AudhdSettings)[]).map((key) => {
     const recorded = independentPractice(entries).filter((entry) => entry.attempt.settingsUsed);
