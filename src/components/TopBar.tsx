@@ -24,10 +24,12 @@ export function TopBar({ progress, navOpen, onToggleNav, onNotationChange, onOpe
         >
           <span aria-hidden="true">☰</span>
         </button>
-        <div className="brand">
-          <img className="brand-wordmark" src="/brand/step-wordmark.svg" alt="STEP" />
-          <span className="brand-rule" aria-hidden="true" />
-          <small>Math that meets your brain</small>
+        <div className="brand" aria-label="STEP — Math that meets your brain">
+          <img className="brand-mark" src="/brand/step-mark.svg" alt="" aria-hidden="true" />
+          <div className="brand-text">
+            <strong>STEP</strong>
+            <small>Math that meets <em>your</em> brain</small>
+          </div>
         </div>
       </div>
       <div className="toolbar">
