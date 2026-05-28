@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import type { CalculatorDrill } from '../data/calculatorLab';
 import { keypadRows, navigationKeys, topControlKeys, type CalculatorKey, type CalcKeyId } from '../data/ti30xsLayout';
 import { emptyCalculator, pressCalculatorKey, type CalculatorState } from '../lib/calculatorEngine';
+import '../device-theme.css';
 
 type Props = {
   drill?: CalculatorDrill;
