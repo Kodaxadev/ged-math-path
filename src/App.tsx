@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AudhdSettings } from './components/AudhdSettings';
+import { CalculatorLabView } from './components/CalculatorLabView';
 import { Dashboard } from './components/Dashboard';
 import { GedMapView } from './components/GedMapView';
 import { InsightsView } from './components/InsightsView';
@@ -14,8 +15,8 @@ import { modules } from './data/modules';
 import { clearProgress, loadProgress, saveProgress } from './lib/storage';
 import type { Attempt, Lesson, ModuleId, Progress } from './types';
 
-type Page = ModuleId | 'dashboard' | 'cards' | 'insights' | 'map' | 'lesson';
-type NavigationPage = ModuleId | 'dashboard' | 'cards' | 'insights' | 'map';
+type Page = ModuleId | 'dashboard' | 'cards' | 'insights' | 'map' | 'calculator-lab' | 'lesson';
+type NavigationPage = ModuleId | 'dashboard' | 'cards' | 'insights' | 'map' | 'calculator-lab';
 
 export default function App() {
   const [progress, setProgress] = useState<Progress>(() => loadProgress());
@@ -152,6 +153,7 @@ export default function App() {
               onDismissBreak={dismissBreak}
             />
           )}
+          {page === 'calculator-lab' && <CalculatorLabView />}
           {page === 'map' && <GedMapView lessons={lessons} onOpenLesson={openLesson} />}
           {page === 'insights' && <InsightsView modules={modules} lessons={lessons} progress={progress} sessionId={sessionId} />}
           {page === 'cards' && <ProcedureCards lessons={lessons} />}
