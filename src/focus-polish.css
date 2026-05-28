@@ -1,0 +1,45 @@
+.low-clutter .lesson-help,
+.low-clutter .lesson-complete {
+  opacity: .62;
+  transition: opacity .16s ease;
+}
+.low-clutter .lesson-help:hover,
+.low-clutter .lesson-help:focus-within,
+.low-clutter .lesson-complete:hover,
+.low-clutter .lesson-complete:focus-within {
+  opacity: 1;
+}
+.low-clutter .branded-lesson-header {
+  padding-bottom: 18px;
+}
+.low-clutter .problem-card {
+  border-color: rgba(32, 213, 205, .3);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, .28), 0 0 0 1px rgba(32, 213, 205, .06);
+}
+.low-clutter .practice-stack .problem-card:not(:first-child) {
+  margin-top: 20px;
+}
+.site-footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+  font-size: .78rem;
+}
+.site-footer::before {
+  content: "STEP";
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+.site-footer::after {
+  content: "· Math that meets your brain";
+  color: #899bb7;
+}
+@media (max-width: 760px) {
+  .low-clutter .lesson-help,
+  .low-clutter .lesson-complete { opacity: 1; }
+  .site-footer::after { display: none; }
+}
