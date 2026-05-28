@@ -153,8 +153,7 @@ export function pressCalculatorKey(state: CalculatorState, key: CalcKeyId): Calc
   if (/^[0-9]$/.test(key)) return append(state, key);
   switch (key) {
     case 'second': return { ...state, second: !state.second, error: '' };
-    case 'clear':
-    case 'on': return { ...emptyCalculator, lastAnswer: state.lastAnswer };
+    case 'clear': return { ...emptyCalculator, lastAnswer: state.lastAnswer };
     case 'delete': return { ...state, expression: state.expression.slice(0, -1), error: '' };
     case 'decimal': return append(state, '.');
     case 'add': return append(state, '+');
@@ -172,12 +171,9 @@ export function pressCalculatorKey(state: CalculatorState, key: CalcKeyId): Calc
     case 'percent': return append(state, '÷100');
     case 'ans': return append(state, formatResult(state.lastAnswer));
     case 'reciprocal': return state.expression ? { ...state, expression: `1÷(${state.expression})`, error: '' } : append(state, '1÷(');
-    case 'fractionToggle': return state;
     case 'mode': return { ...state, error: 'Mode menus are not needed for these GED drills yet.' };
     case 'left':
-    case 'right':
-    case 'up':
-    case 'down': return state;
+    case 'right': return state;
     case 'enter': {
       if (!state.expression) return state;
       try {
