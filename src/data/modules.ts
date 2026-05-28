@@ -16,6 +16,6 @@ export const modules: CourseModule[] = [
   { id: 'inequalities', title: 'Inequalities', subtitle: 'More than, less than, number lines', purpose: 'Solve inequality statements while handling direction correctly.', lessonIds: ['inequality-basics'], phase: 'Core' },
   { id: 'functions', title: 'Functions & Lines', subtitle: 'y = mn + b, tables and intercepts', purpose: 'Connect graph language to repeatable calculation.', lessonIds: ['function-lines'], phase: 'Core' },
   { id: 'quadratics', title: 'Quadratics', subtitle: 'Factoring and formula recognition', purpose: 'Cover GED squared-variable question types without overloading the path.', lessonIds: ['quadratic-basics'], phase: 'Core' },
-  { id: 'calculator', title: 'GED Tools', subtitle: 'Calculator and scratch-board workflow', purpose: 'Prepare for the actual in-person setup.', lessonIds: ['test-tools'], phase: 'GED Tools' },
+  { id: 'calculator', title: 'GED Tools', subtitle: 'Calculator, formula sheet and scratch-board workflow', purpose: 'Practice the actual tools and first moves used during the test.', lessonIds: ['calculator-entries', 'formula-sheet-route', 'no-calculator-route', 'test-tools'], phase: 'GED Tools' },
   { id: 'readiness', title: 'Readiness Check', subtitle: 'Mixed practice from your hard list', purpose: 'Find the last weak procedure families before GED Ready.', lessonIds: ['mixed-check'], phase: 'Final Gate' },
 ];
