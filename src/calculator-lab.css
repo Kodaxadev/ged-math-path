@@ -1,0 +1,193 @@
+.calculator-lab {
+  display: grid;
+  gap: 15px;
+}
+.calc-lab-header {
+  display: grid;
+  gap: 12px;
+  border-color: rgba(32, 213, 205, .24);
+}
+.calc-lab-header h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 4vw, 3.3rem);
+}
+.calc-lab-header > p:not(.eyebrow) {
+  max-width: 780px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+.calc-reassure {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+  padding: 14px 16px;
+  border-radius: 15px;
+  border: 1px solid rgba(32, 213, 205, .18);
+  background: rgba(32, 213, 205, .065);
+}
+.calc-reassure img {
+  width: 43px;
+  height: 43px;
+  flex: none;
+}
+.calc-reassure div {
+  display: grid;
+  gap: 4px;
+}
+.calc-reassure strong { color: #e4fffb; }
+.calc-reassure span { color: var(--muted); font-size: .9rem; }
+.calc-key-families {
+  border-color: rgba(37, 166, 255, .17);
+}
+.calc-family-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0 14px;
+}
+.calc-family-grid > div {
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid rgba(123, 160, 207, .13);
+  background: rgba(7, 16, 30, .52);
+}
+.calc-family-grid h2 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+.calc-family-grid p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: .82rem;
+  line-height: 1.45;
+}
+.calc-device-note {
+  color: #a7b9d3;
+  font-size: .84rem;
+  line-height: 1.5;
+  border-top: 1px solid rgba(123, 160, 207, .12);
+  margin: 0;
+  padding-top: 13px;
+}
+.calc-drill-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.calc-drill {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 286px;
+  border-color: rgba(123, 160, 207, .16);
+}
+.calc-drill h2 {
+  margin: 5px 0 0;
+  font-size: 1.25rem;
+}
+.calc-prompt {
+  margin: 0;
+  color: #d7e3f4;
+  line-height: 1.48;
+}
+.calc-reveal {
+  display: grid;
+  gap: 9px;
+  padding: 12px 13px;
+  border: 1px solid rgba(123, 160, 207, .13);
+  border-radius: 12px;
+  background: rgba(5, 13, 25, .45);
+}
+.calc-reveal small,
+.calc-result small {
+  color: var(--accent);
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+}
+.calc-reveal > strong {
+  font-size: 1.18rem;
+  letter-spacing: .015em;
+  color: #eff7ff;
+}
+.calc-key-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.calc-key-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #7487a6;
+}
+.calc-key-wrap kbd {
+  display: grid;
+  place-items: center;
+  min-height: 37px;
+  min-width: 37px;
+  padding: 6px 9px;
+  border: 1px solid rgba(123, 160, 207, .28);
+  border-bottom-width: 3px;
+  border-radius: 9px;
+  background: #13233b;
+  color: #ecf4ff;
+  font: 600 .9rem/1 "Outfit", sans-serif;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+}
+.calc-result {
+  display: grid;
+  gap: 12px;
+  padding: 13px;
+  border-radius: 13px;
+  border: 1px solid rgba(32, 213, 205, .2);
+  background: rgba(32, 213, 205, .065);
+}
+.calc-result div {
+  display: grid;
+  gap: 6px;
+}
+.calc-result output {
+  font-family: "Consolas", monospace;
+  font-size: 1.3rem;
+  color: #e5fffb;
+}
+.calc-result strong { color: #e8f2ff; }
+.calc-result p {
+  margin: 0;
+  color: #adbed8;
+  font-size: .84rem;
+  line-height: 1.45;
+}
+.calc-next {
+  width: 100%;
+  min-height: 50px;
+  margin-top: auto;
+  border-color: rgba(32, 213, 205, .27);
+  background: rgba(32, 213, 205, .08);
+  color: #dffdfa;
+  font-weight: 600;
+}
+.calc-reset {
+  margin-top: auto;
+  align-self: start;
+}
+.tool-priority {
+  border-color: rgba(32, 213, 205, .2);
+  background: rgba(32, 213, 205, .035);
+}
+@media (max-width: 1060px) {
+  .calc-family-grid,
+  .calc-drill-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .calc-lab-header > p:not(.eyebrow) { font-size: .94rem; }
+  .calc-reassure { align-items: start; padding: 12px; }
+  .calc-key-families { padding: 16px; }
+  .calc-drill { min-height: 0; padding: 18px; }
+  .calc-key-wrap kbd { min-height: 43px; min-width: 43px; }
+}
