@@ -2,7 +2,49 @@ import type { Lesson } from '../../types';
 
 export const toolReadinessLessons: Lesson[] = [
   {
-    id: 'test-tools', moduleId: 'calculator', title: 'In-person test workflow',
+    id: 'calculator-entries', moduleId: 'calculator', title: 'Calculator helps: write it, then type it',
+    objective: 'Know what calculation belongs in the TI-30XS before pressing buttons.',
+    recognition: ['The arithmetic is awkward but the first move is still understandable.', 'You will use this for percents, probability, formulas, and harder decimals.'],
+    procedureCard: ['1. Name what the answer means.', '2. Write the calculation on the pad.', '3. Type exactly that calculation.', '4. Copy the result back with units.'],
+    workedExample: {
+      id: 'calculator-percent-entry', prompt: 'A jacket costs $48 and is discounted by 25%. How many dollars come off the price?', answer: '$12', procedure: 'Discount money = starting price × percent decimal.',
+      steps: ['Name the answer: dollars taken off.', 'Change 25% to a decimal: 0.25.', 'Write before typing: 48 × 0.25.', 'Type 48 × 0.25 into the calculator. Result: 12.', 'Answer: $12 comes off the price.'],
+    },
+    practice: [{
+      id: 'calculator-probability-entry', prompt: 'A bag has 40 marbles. The probability of red is 1/5. How many red marbles are there?', answer: '8 red marbles', procedure: 'Red marbles = total marbles × red fraction.',
+      steps: ['Name the answer: number of red marbles.', 'Write before typing: 40 × (1 ÷ 5).', 'Type 40 × (1 ÷ 5). Result: 8.', 'Answer: 8 red marbles.'],
+    }],
+  },
+  {
+    id: 'formula-sheet-route', moduleId: 'calculator', title: 'Formula sheet: find, fill, calculate',
+    objective: 'Use the provided GED formula sheet without needing to memorize every formula.',
+    recognition: ['You see area, perimeter, circumference, volume, or a right triangle.', 'The formula sheet supplies the shape formula; your task is inserting the numbers.'],
+    procedureCard: ['1. Find the shape name on the formula sheet.', '2. Copy the matching formula.', '3. Replace letters with given numbers.', '4. Calculate and label the unit.'],
+    workedExample: {
+      id: 'formula-rectangle-width', prompt: 'A rectangle has area 72 square inches and length 9 inches. What is the width?', answer: '8 inches', procedure: 'Use A = length × width, then undo multiplication.',
+      steps: ['Find rectangle area on the formula sheet: A = l × w.', 'Put in the numbers you know: 72 = 9 × w.', 'Undo × 9: 72 ÷ 9 = 8.', 'Answer: width = 8 inches.'],
+    },
+    practice: [{
+      id: 'formula-cylinder-route', prompt: 'A cylinder has radius 3 and height 10. What is its volume?', answer: 'approximately 282.7 cubic units', procedure: 'Use V = π × r² × h and enter the substituted formula.',
+      steps: ['Find cylinder volume: V = π × r² × h.', 'Replace r with 3 and h with 10: V = π × 3² × 10.', 'Type π × 3² × 10. Result is about 282.7.', 'Answer: approximately 282.7 cubic units.'],
+    }],
+  },
+  {
+    id: 'no-calculator-route', moduleId: 'calculator', title: 'No-calculator start: short moves only',
+    objective: 'Handle the first few GED questions with compact written moves instead of mental overload.',
+    recognition: ['The beginning of the test may not allow calculator use.', 'These are usually short number, fraction, exponent, or equation moves.'],
+    procedureCard: ['1. Write only the first operation.', '2. Complete one short calculation.', '3. Stop and check the sign or fraction.', '4. Continue only after the line is clear.'],
+    workedExample: {
+      id: 'no-calc-fraction-of-total', prompt: 'A class has 18 students. Two-thirds of them passed. How many passed?', answer: '12 students', procedure: 'Divide by the bottom number, then multiply by the top number.',
+      steps: ['Write: 18 ÷ 3 = 6.', 'Write: 6 × 2 = 12.', 'Answer: 12 students passed.'],
+    },
+    practice: [{
+      id: 'no-calc-square-root', prompt: 'What is √81?', answer: '9', procedure: 'Ask which number times itself equals 81.',
+      steps: ['Write: ___ × ___ = 81.', '9 × 9 = 81.', 'Answer: √81 = 9.'],
+    }],
+  },
+  {
+    id: 'test-tools', moduleId: 'calculator', title: 'Test-day workflow',
     objective: 'Use scratch boards and the TI-30XS workflow without turning computation into a paper crisis.',
     recognition: ['This lesson is about execution, not a single math topic.', 'Use it after you learn the core procedures.'],
     procedureCard: ['Write the setup before touching the calculator.', 'Keep units beside the answer.', 'Use calculator-permitted questions efficiently.', 'Practice with a dry-erase board before test day.'],
