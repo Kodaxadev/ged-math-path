@@ -61,7 +61,7 @@ export function GedMapView({ lessons, onOpenLesson }: Props) {
               </header>
               <div className="topic-list">
                 {items.map((topic) => {
-                  const lesson = lessonForTopic(topic, lessons);
+                  const lesson = topic.state === 'planned' ? undefined : lessonForTopic(topic, lessons);
                   return (
                     <div className="topic-row" key={topic.title}>
                       <div>
@@ -79,7 +79,7 @@ export function GedMapView({ lessons, onOpenLesson }: Props) {
         })}
       </div>
 
-      <p className="coverage-source">Coverage mapping uses the public Get Sum Math GED Math topic inventory as an external checklist. STEP lessons and practice are independently written for this learning flow.</p>
+      <p className="coverage-source">External checklist mapping only. STEP lessons and practice use STEP's own teaching flow.</p>
     </section>
   );
 }
