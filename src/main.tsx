@@ -8,6 +8,7 @@ import './accessibility.css';
 import './brand.css';
 import './focus-polish.css';
 import './ged-map.css';
+import './calculator-lab.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
