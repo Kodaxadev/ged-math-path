@@ -10,10 +10,10 @@ type Props = {
 type SettingKey = keyof AudhdSettings;
 
 const options: { key: SettingKey; title: string; note: string }[] = [
-  { key: 'hideTimer', title: 'Hide timers', note: 'No countdowns or pressure clocks.' },
-  { key: 'largerText', title: 'Larger text', note: 'Make lesson words and math easier to scan.' },
-  { key: 'colorCodedSteps', title: 'Color-coded steps', note: 'Give each revealed move a visual marker.' },
-  { key: 'lowClutterMode', title: 'Low clutter mode', note: 'Hide extra dashboard panels while studying.' },
+  { key: 'hideTimer', title: 'No timers', note: 'Keep practice free of countdown pressure.' },
+  { key: 'largerText', title: 'Bigger reading size', note: 'Make each instruction easier to scan.' },
+  { key: 'colorCodedSteps', title: 'Step markers', note: 'Give revealed moves their own visual anchor.' },
+  { key: 'lowClutterMode', title: 'Focus mode', note: 'Hide side content and keep the next move centered.' },
 ];
 
 export function AudhdSettings({ settings, onChange, onClose }: Props) {
@@ -37,7 +37,7 @@ export function AudhdSettings({ settings, onChange, onClose }: Props) {
       <header>
         <div>
           <p className="eyebrow">MAKE STEP FIT YOU</p>
-          <h2 id="settings-title">AuDHD Settings</h2>
+          <h2 id="settings-title">Focus settings</h2>
         </div>
         <button ref={closeRef} className="quiet" type="button" onClick={onClose}>Close</button>
       </header>
