@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" fill="none">
+  <defs>
+    <linearGradient id="stepPath" x1="18" y1="96" x2="92" y2="20" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#21D9CF"/>
+      <stop offset="1" stop-color="#16BBB8"/>
+    </linearGradient>
+    <linearGradient id="blueDot" x1="30" y1="62" x2="50" y2="42" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1CB8FF"/>
+      <stop offset="1" stop-color="#2794FF"/>
+    </linearGradient>
+    <linearGradient id="purpleDot" x1="57" y1="37" x2="76" y2="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#BA77FF"/>
+      <stop offset="1" stop-color="#8E55EB"/>
+    </linearGradient>
+    <linearGradient id="goldDot" x1="78" y1="15" x2="97" y2="-4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD377"/>
+      <stop offset="1" stop-color="#F5AE43"/>
+    </linearGradient>
+  </defs>
+  <path d="M18 94H34C38.418 94 42 90.418 42 86V71H57C61.418 71 65 67.418 65 63V48H80C84.418 48 88 44.418 88 40V25" stroke="url(#stepPath)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="26" cy="69" r="9" fill="#20D4CB"/>
+  <circle cx="49" cy="46" r="9" fill="url(#blueDot)"/>
+  <circle cx="72" cy="23" r="9" fill="url(#purpleDot)"/>
+  <circle cx="94" cy="6" r="9" fill="url(#goldDot)"/>
+</svg>
