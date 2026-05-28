@@ -7,6 +7,7 @@ type Props = {
   lessons: Lesson[];
   progress: Progress;
   onOpenLesson: (lesson: Lesson) => void;
+  onOpenCalculatorLab: () => void;
   onDismissBreak: () => void;
 };
 
@@ -20,7 +21,7 @@ const mistakeLabels: Record<MistakeType, string> = {
   'not-sure': 'Not sure yet',
 };
 
-export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, onDismissBreak }: Props) {
+export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, onOpenCalculatorLab, onDismissBreak }: Props) {
   const percentage = completionPercent(lessons, progress);
   const next = nextLesson(lessons, progress);
   const upcoming = lessons
@@ -56,6 +57,15 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
       <article className="manifesto" aria-label="STEP promise">
         <strong>You are not bad at math.</strong>
         <p>If a step is missing, the lesson failed. STEP shows where every number comes from, gives you room to work, and moves only when you are ready.</p>
+      </article>
+
+      <article className="panel calculator-blocker" aria-label="Calculator support">
+        <div className="calculator-blocker-copy">
+          <p className="eyebrow">BIGGEST BLOCKER FOUND TODAY</p>
+          <h2>The calculator is its own skill.</h2>
+          <p>You do not need more pressure. You need button practice from zero: write it, press it, read it, copy it back.</p>
+        </div>
+        <button type="button" className="primary calculator-lab-cta" onClick={onOpenCalculatorLab}>Open Calculator Lab <span aria-hidden="true">→</span></button>
       </article>
 
       {showBreak && (
