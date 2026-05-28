@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 104" fill="none">
+  <defs>
+    <linearGradient id="path" x1="10" y1="94" x2="86" y2="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#21D9CF"/><stop offset="1" stop-color="#16BBB8"/>
+    </linearGradient>
+    <linearGradient id="word" x1="115" y1="18" x2="408" y2="88" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#24D8D0"/><stop offset="1" stop-color="#12BDBA"/>
+    </linearGradient>
+  </defs>
+  <path d="M12 92H27C31.418 92 35 88.418 35 84V70H49C53.418 70 57 66.418 57 62V48H71C75.418 48 79 44.418 79 40V25" stroke="url(#path)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="20" cy="68" r="7.5" fill="#20D4CB"/>
+  <circle cx="43" cy="45" r="7.5" fill="#24A8FF"/>
+  <circle cx="66" cy="22" r="7.5" fill="#A967F4"/>
+  <circle cx="87" cy="5" r="7.5" fill="#FFC55A"/>
+  <text x="111" y="78" font-family="Outfit, Arial, sans-serif" font-size="75" font-weight="700" letter-spacing="2" fill="url(#word)">STEP</text>
+</svg>
