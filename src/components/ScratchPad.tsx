@@ -9,12 +9,12 @@ const MAX_STROKES = 160;
 const MAX_POINTS_PER_STROKE = 900;
 const MIN_POINT_DISTANCE = 0.0025;
 
-const launch: CSSProperties = { position: 'fixed', right: 22, bottom: 18, zIndex: 20, display: 'flex', alignItems: 'center', gap: 11, border: '1px solid rgba(105,214,174,.34)', borderRadius: 999, padding: '13px 18px', minHeight: 48, background: 'linear-gradient(135deg, #22695f, #2a8276)', color: '#effffb', fontWeight: 650, boxShadow: '0 14px 36px rgba(0,0,0,.42)' };
-const panel: CSSProperties = { position: 'fixed', right: 12, bottom: 12, zIndex: 20, width: 'min(440px, calc(100vw - 24px))', maxHeight: 'calc(100dvh - 24px)', overflowY: 'auto', background: '#111826', border: '1px solid #263448', borderRadius: 16, boxShadow: '0 18px 48px rgba(0,0,0,.48)' };
-const head: CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 15px', borderBottom: '1px solid #263448' };
-const row: CSSProperties = { display: 'flex', gap: 8, padding: '10px 12px', borderBottom: '1px solid #263448', flexWrap: 'wrap' };
-const button: CSSProperties = { border: '1px solid #263448', background: 'transparent', color: '#c0cede', borderRadius: 8, padding: '9px 12px', minHeight: 44 };
-const selected: CSSProperties = { ...button, color: '#07130f', background: '#69d6ae', borderColor: '#69d6ae', fontWeight: 700 };
+const launch: CSSProperties = { position: 'fixed', right: 22, bottom: 18, zIndex: 20, display: 'flex', alignItems: 'center', gap: 10, border: '1px solid rgba(32,213,205,.32)', borderRadius: 999, padding: '13px 18px', minHeight: 50, background: 'linear-gradient(120deg, #11b7b2, #138f9f)', color: '#f2fffd', fontWeight: 600, boxShadow: '0 17px 42px rgba(0,0,0,.45), 0 0 22px rgba(32,213,205,.12)' };
+const panel: CSSProperties = { position: 'fixed', right: 12, bottom: 12, zIndex: 20, width: 'min(450px, calc(100vw - 24px))', maxHeight: 'calc(100dvh - 24px)', overflowY: 'auto', background: 'linear-gradient(150deg, #101d31, #081321)', border: '1px solid rgba(32,213,205,.2)', borderRadius: 20, boxShadow: '0 25px 68px rgba(0,0,0,.52)' };
+const head: CSSProperties = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 15px', borderBottom: '1px solid rgba(123,160,207,.14)' };
+const row: CSSProperties = { display: 'flex', gap: 8, padding: '10px 12px', borderBottom: '1px solid rgba(123,160,207,.12)', flexWrap: 'wrap' };
+const button: CSSProperties = { border: '1px solid rgba(123,160,207,.21)', background: 'rgba(19,34,57,.72)', color: '#c4d2e5', borderRadius: 11, padding: '9px 12px', minHeight: 44 };
+const selected: CSSProperties = { ...button, color: '#061720', background: '#20d5cd', borderColor: '#20d5cd', fontWeight: 600 };
 
 function saveLocal(key: string, value: string): boolean {
   try {
@@ -97,8 +97,8 @@ export function ScratchPad() {
   }
 
   function setPen(ctx: CanvasRenderingContext2D, isErase: boolean) {
-    ctx.strokeStyle = isErase ? '#f8f7f2' : '#152136';
-    ctx.fillStyle = isErase ? '#f8f7f2' : '#152136';
+    ctx.strokeStyle = isErase ? '#fbfaf5' : '#12233b';
+    ctx.fillStyle = isErase ? '#fbfaf5' : '#12233b';
     ctx.lineWidth = isErase ? 18 : 3;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
@@ -128,7 +128,7 @@ export function ScratchPad() {
     canvas.width = Math.max(1, Math.round(width * ratio));
     canvas.height = Math.max(1, Math.round(height * ratio));
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    ctx.fillStyle = '#f8f7f2';
+    ctx.fillStyle = '#fbfaf5';
     ctx.fillRect(0, 0, width, height);
     strokesRef.current.forEach((stroke) => drawStroke(ctx, width, height, stroke));
   }
@@ -199,12 +199,15 @@ export function ScratchPad() {
     window.requestAnimationFrame(() => launchRef.current?.focus());
   }
 
-  if (!open) return <button ref={launchRef} type="button" style={launch} onClick={() => setOpen(true)} aria-haspopup="dialog" aria-label="Open scratch pad"><span aria-hidden="true">✎</span> Scratch Pad <span aria-hidden="true">⌃</span></button>;
+  if (!open) return <button ref={launchRef} type="button" style={launch} onClick={() => setOpen(true)} aria-haspopup="dialog" aria-label="Open work pad"><span aria-hidden="true">✎</span> Work Pad <span aria-hidden="true">⌃</span></button>;
 
   return (
     <aside style={panel} role="dialog" aria-labelledby={titleId}>
-      <header style={head}><strong id={titleId}>Scratch Pad</strong><button ref={minimizeRef} type="button" style={button} onClick={minimize}>Minimize</button></header>
-      <div style={row} role="group" aria-label="Choose scratch pad mode">
+      <header style={head}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}><img src="/brand/step-mark.svg" alt="" aria-hidden="true" style={{ width: 31, height: 31 }} /><strong id={titleId}>Work Pad</strong></div>
+        <button ref={minimizeRef} type="button" style={button} onClick={minimize}>Minimize</button>
+      </header>
+      <div style={row} role="group" aria-label="Choose work pad mode">
         <button type="button" aria-pressed={mode === 'draw'} style={mode === 'draw' ? selected : button} onClick={() => setMode('draw')}>Draw</button>
         <button type="button" aria-pressed={mode === 'type'} style={mode === 'type' ? selected : button} onClick={() => setMode('type')}>Type work</button>
       </div>
@@ -219,9 +222,9 @@ export function ScratchPad() {
           <canvas
             ref={canvasRef}
             role="img"
-            aria-label="Drawn scratch work area"
+            aria-label="Drawn work area"
             aria-describedby={canvasDescriptionId}
-            style={{ display: 'block', width: '100%', height: 300, background: '#f8f7f2', cursor: 'crosshair', touchAction: 'none' }}
+            style={{ display: 'block', width: '100%', height: 300, background: '#fbfaf5', cursor: 'crosshair', touchAction: 'none' }}
             onPointerDown={start}
             onPointerMove={move}
             onPointerUp={finishStroke}
@@ -230,13 +233,13 @@ export function ScratchPad() {
         </>
       ) : (
         <div className="typed-pad">
-          <label htmlFor="typed-work">Type your scratch work</label>
+          <label htmlFor="typed-work">Type your work</label>
           <textarea id="typed-work" value={notes} onChange={(event) => setNotes(event.target.value)} placeholder="Example: 48 - 36 = 12" rows={10} />
           <button type="button" style={button} onClick={clearCurrent}>Clear typed work</button>
         </div>
       )}
-      {storageWarning && <p role="status" style={{ color: '#e9bd64', fontSize: '.82rem', margin: 0, padding: '10px 13px' }}>Storage is full or unavailable. Clear the pad before saving more work.</p>}
-      <p style={{ color: '#b2c3d8', fontSize: '.78rem', margin: 0, padding: '10px 13px' }}>Your work stays here when minimized. It is saved only in this browser.</p>
+      {storageWarning && <p role="status" style={{ color: '#f7c25a', fontSize: '.82rem', margin: 0, padding: '10px 13px' }}>Storage is full or unavailable. Clear the pad before saving more work.</p>}
+      <p style={{ color: '#a9bad4', fontSize: '.78rem', margin: 0, padding: '10px 13px' }}>Your work stays here when minimized. Saved only in this browser.</p>
     </aside>
   );
 }
