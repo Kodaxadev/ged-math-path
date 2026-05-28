@@ -13,35 +13,46 @@ export function LessonView({ lesson, progress, onAttempt, onComplete, onConfiden
   const completed = progress.completedLessons.includes(lesson.id);
   const confidence = progress.confidence[lesson.id];
   return (
-    <section className="lesson">
-      <header className="panel lesson-header">
-        <p className="eyebrow">ONE SKILL</p>
-        <h1>{lesson.title}</h1>
+    <section className="lesson" aria-labelledby="lesson-title">
+      <header className="panel lesson-header branded-lesson-header">
+        <p className="eyebrow">ONE SKILL · ONE NEXT MOVE</p>
+        <h1 id="lesson-title">{lesson.title}</h1>
         <p>{lesson.objective}</p>
+        <div className="lesson-anchor" role="note">
+          <img src="/brand/step-mark.svg" alt="" aria-hidden="true" />
+          <div><strong>Your job:</strong> try the first line yourself. Reveal help only when you need it.</div>
+        </div>
       </header>
-      <div className="two-col">
-        <article className="panel">
-          <h2>When you see this</h2>
-          <ul className="recognition">{lesson.recognition.map((line) => <li key={line}>{line}</li>)}</ul>
-        </article>
-        <article className="panel procedure-card">
-          <h2>Write this down</h2>
-          <ol>{lesson.procedureCard.map((line) => <li key={line}>{line}</li>)}</ol>
-        </article>
-      </div>
+
+      <details className="panel lesson-help">
+        <summary>Need quick help before you start?</summary>
+        <div className="lesson-help-grid">
+          <article>
+            <h2>When you see this</h2>
+            <ul className="recognition">{lesson.recognition.map((line) => <li key={line}>{line}</li>)}</ul>
+          </article>
+          <article className="procedure-card">
+            <h2>What to write</h2>
+            <ol>{lesson.procedureCard.map((line) => <li key={line}>{line}</li>)}</ol>
+          </article>
+        </div>
+      </details>
+
       <ProblemCard problem={lesson.workedExample} progress={progress} onAttempt={onAttempt} />
       <div className="practice-stack">
         {lesson.practice.map((problem) => <ProblemCard key={problem.id} problem={problem} progress={progress} onAttempt={onAttempt} practice />)}
       </div>
+
       <footer className="panel lesson-complete">
+        <p className="eyebrow">SAVE YOUR PLACE</p>
         <h2>How did this skill feel?</h2>
-        <p>Pick one. It helps you decide what to repeat.</p>
-        <div className="confidence-row">
-          <button className={confidence === 'repeat' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'repeat')}>Still confusing</button>
-          <button className={confidence === 'steady' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'steady')}>I followed it</button>
-          <button className={confidence === 'ready' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'ready')}>Ready for mixed questions</button>
+        <p>Pick the closest answer. This decides what STEP should bring back later.</p>
+        <div className="confidence-row" role="group" aria-label="How this skill felt">
+          <button type="button" aria-pressed={confidence === 'repeat'} className={confidence === 'repeat' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'repeat')}>Still confusing</button>
+          <button type="button" aria-pressed={confidence === 'steady'} className={confidence === 'steady' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'steady')}>I followed it</button>
+          <button type="button" aria-pressed={confidence === 'ready'} className={confidence === 'ready' ? 'selected' : ''} onClick={() => onConfidence(lesson.id, 'ready')}>Ready to mix it in</button>
         </div>
-        <button className="primary" onClick={() => onComplete(lesson.id)}>{completed ? 'Saved as done ✓' : 'Save lesson as done'}</button>
+        <button type="button" className="primary save-lesson" onClick={() => onComplete(lesson.id)}>{completed ? 'Lesson saved as complete ✓' : 'Save lesson as complete'}</button>
       </footer>
     </section>
   );
