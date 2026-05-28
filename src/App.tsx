@@ -150,6 +150,7 @@ export default function App() {
               lessons={lessons}
               progress={progress}
               onOpenLesson={openLesson}
+              onOpenCalculatorLab={() => setPage('calculator-lab')}
               onDismissBreak={dismissBreak}
             />
           )}
