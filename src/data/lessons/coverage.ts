@@ -26,6 +26,26 @@ export const coverageLessons: Lesson[] = [
     practice: [{ id: 'inequality-negative', prompt: 'Solve: -2n < 10.', answer: 'n > -5', procedure: 'Divide by -2 and flip the inequality sign.', steps: ['Divide both sides by -2.', 'When dividing by a negative, flip < to >.', 'n > -5.'] }],
   },
   {
+    id: 'function-table-rule', moduleId: 'functions', title: 'Function tables: scan only x first',
+    objective: 'Identify a function table without needing to guess what looks right.',
+    recognition: ['You see answer choices made of x and y tables.', 'The question asks which table represents a function.'],
+    procedureCard: ['Cover or ignore the y column first.', 'Scan the x column for repeats.', 'If the same x points to different y answers, it is not a function.', 'No repeated x means it passes this table check.'],
+    workedExample: {
+      id: 'function-table-choice',
+      prompt: 'Which table represents a function: A repeats x = 5 with different y values; B repeats x = 0 with different y values; C has x values -2, 0, 7, 12; D repeats x = 2 with different y values?',
+      answer: 'Table C',
+      procedure: 'Look for an x that is assigned more than one different y answer.',
+      steps: ['A: x = 5 goes to both 3 and 6. Not a function.', 'B: x = 0 goes to both 4 and -3. Not a function.', 'C: every x appears once. It passes the function check.', 'D: x = 2 goes to several different y values. Not a function.', 'Answer: Table C.'],
+    },
+    practice: [{
+      id: 'function-table-repeat',
+      prompt: 'Does this table represent a function? x: 1, 4, 4, 7 and y: 2, 6, 9, 10.',
+      answer: 'No, it is not a function',
+      procedure: 'Find repeated x values, then compare their y answers.',
+      steps: ['Scan only x: 1, 4, 4, 7.', 'The input 4 repeats.', 'For x = 4, the y answers are 6 and 9.', 'Same x with different y means not a function.'],
+    }],
+  },
+  {
     id: 'function-lines', moduleId: 'functions', title: 'Functions, tables and line equations',
     objective: 'Treat a line equation as a machine: input n, output y.',
     recognition: ['You see y = mn + b, f(n), a table, or a line graph.', 'Slope is the repeated change; intercept is the starting value.'],
