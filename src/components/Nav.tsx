@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import type { CourseModule, ModuleId, Progress } from '../types';
 import { moduleCompletion } from '../lib/course';
 
-type NavDestination = ModuleId | 'dashboard' | 'cards' | 'insights' | 'map';
+type NavDestination = ModuleId | 'dashboard' | 'cards' | 'insights' | 'map' | 'calculator-lab';
 
 type Props = {
   modules: CourseModule[];
@@ -72,6 +72,11 @@ export function Nav({ modules, progress, activeModule, open, onSelect, onClose }
         </details>
 
         <p className="nav-group nav-tools-label">TOOLS &amp; PLAN</p>
+        <button type="button" aria-current={current('calculator-lab')} className={activeModule === 'calculator-lab' ? 'nav-card active nav-with-icon tool-priority' : 'nav-card nav-with-icon tool-priority'} onClick={() => onSelect('calculator-lab')}>
+          <span className="nav-icon" aria-hidden="true">▣</span>
+          <span className="nav-title">Calculator Lab</span>
+          <span className="nav-note">Learn the buttons from zero</span>
+        </button>
         <button type="button" aria-current={current('map')} className={activeModule === 'map' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect('map')}>
           <span className="nav-icon" aria-hidden="true">▦</span>
           <span className="nav-title">GED Map</span>
