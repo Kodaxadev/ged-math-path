@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { calculatorButtonFamilies, calculatorDrills } from '../data/calculatorLab';
+import { ScratchPad } from './ScratchPad';
 import { Ti30xsEmulator } from './Ti30xsEmulator';
 
 export function CalculatorLabView() {
@@ -62,6 +63,7 @@ export function CalculatorLabView() {
 
         <Ti30xsEmulator drill={selected} guided={guided} />
       </div>
+      <ScratchPad />
     </section>
   );
 }
