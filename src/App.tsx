@@ -155,7 +155,7 @@ export default function App() {
             />
           )}
           {page === 'calculator-lab' && <CalculatorLabView />}
-          {page === 'map' && <GedMapView lessons={lessons} onOpenLesson={openLesson} />}
+          {page === 'map' && <GedMapView lessons={lessons} onOpenLesson={openLesson} onOpenCalculatorLab={() => setPage('calculator-lab')} />}
           {page === 'insights' && <InsightsView modules={modules} lessons={lessons} progress={progress} sessionId={sessionId} />}
           {page === 'cards' && <ProcedureCards lessons={lessons} />}
           {activeModule && <ModuleView module={activeModule} lessons={lessons} progress={progress} onOpenLesson={openLesson} />}
