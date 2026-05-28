@@ -15,7 +15,7 @@ type Props = {
 
 const mainPath: ModuleId[] = ['orientation', 'percent', 'equations', 'ratios', 'fractions', 'geometry', 'calculator', 'readiness'];
 const icons: Partial<Record<ModuleId, string>> = {
-  orientation: '▷', percent: '%', equations: 'n', ratios: '∶', fractions: '⅔', geometry: '△', calculator: '▣', readiness: '✓',
+  orientation: '→', percent: '%', equations: 'n', ratios: '∶', fractions: '⅔', geometry: '△', calculator: '▣', readiness: '✓',
 };
 
 export function Nav({ modules, progress, activeModule, open, onSelect, onClose }: Props) {
@@ -43,7 +43,7 @@ export function Nav({ modules, progress, activeModule, open, onSelect, onClose }
       <button type="button" key={module.id} aria-current={current(module.id)} className={activeModule === module.id ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect(module.id)}>
         <span className="nav-icon" aria-hidden="true">{icons[module.id] ?? '·'}</span>
         <span className="nav-title">{module.title}</span>
-        <span className="nav-note">{moduleCompletion(module, progress)}% done</span>
+        <span className="nav-note">{moduleCompletion(module, progress)}% complete</span>
       </button>
     );
   }
@@ -53,16 +53,17 @@ export function Nav({ modules, progress, activeModule, open, onSelect, onClose }
       {open && <button className="nav-backdrop" type="button" aria-label="Close learning path menu" onClick={onClose} />}
       <nav id="lesson-navigation" className={open ? 'side-nav mobile-open' : 'side-nav'} aria-label="Learning path">
         <div className="mobile-nav-heading">
+          <img src="/brand/step-mark.svg" alt="" aria-hidden="true" />
           <strong>Learning path</strong>
           <button ref={closeRef} type="button" className="mobile-nav-close" onClick={onClose}>Close</button>
         </div>
         <button type="button" aria-current={current('dashboard')} className={activeModule === 'dashboard' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect('dashboard')}>
           <span className="nav-icon" aria-hidden="true">⌂</span>
           <span className="nav-title">Home</span>
-          <span className="nav-note">Pick up where I stopped</span>
+          <span className="nav-note">Continue where I left off</span>
         </button>
 
-        <p className="nav-group">START WITH THESE</p>
+        <p className="nav-group">LEARN THESE FIRST</p>
         {shown.map(item)}
 
         <details className="more-lessons" open={moreIsActive || undefined}>
@@ -71,8 +72,8 @@ export function Nav({ modules, progress, activeModule, open, onSelect, onClose }
         </details>
 
         <button type="button" aria-current={current('cards')} className={activeModule === 'cards' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect('cards')}>
-          <span className="nav-icon" aria-hidden="true">☆</span>
-          <span className="nav-title">Cheat Sheets</span>
+          <span className="nav-icon" aria-hidden="true">≡</span>
+          <span className="nav-title">Quick Help</span>
           <span className="nav-note">What to write down</span>
         </button>
         <button type="button" aria-current={current('insights')} className={activeModule === 'insights' ? 'nav-card active nav-with-icon' : 'nav-card nav-with-icon'} onClick={() => onSelect('insights')}>
@@ -81,9 +82,10 @@ export function Nav({ modules, progress, activeModule, open, onSelect, onClose }
           <span className="nav-note">What helps and what jams</span>
         </button>
 
-        <aside className="pep-talk" aria-label="Encouragement">
-          <strong>☆ You’ve got this.</strong>
-          <p>Math is the last gate.<br />You’re closer than you think.</p>
+        <aside className="pep-talk" aria-label="STEP reminder">
+          <img src="/brand/step-mark.svg" alt="" aria-hidden="true" />
+          <strong>One move at a time.</strong>
+          <p>No speed test here. Stop, work it out, and reveal only what you need.</p>
         </aside>
       </nav>
     </>
