@@ -94,10 +94,9 @@ export function Ti30xsEmulator({ drill, guided }: Props) {
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      const active = document.activeElement;
-      if (active instanceof HTMLInputElement || active instanceof HTMLTextAreaElement || (active as HTMLElement | null)?.isContentEditable) {
-        return;
-      }
+      const active = document.activeElement as HTMLElement | null;
+      const interactive = active?.closest('button, a, input, textarea, select, summary, [contenteditable="true"], [role="button"]');
+      if (interactive) return;
       const id = keyFromEvent(event);
       if (!id) return;
       event.preventDefault();
