@@ -20,26 +20,12 @@
   margin-top: 20px;
 }
 .site-footer {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  align-items: center;
-  flex-wrap: wrap;
   padding: 20px;
-  font-size: .78rem;
-}
-.site-footer::before {
-  content: "STEP";
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: .16em;
-}
-.site-footer::after {
-  content: "· Math that meets your brain";
-  color: #899bb7;
+  border-top-color: rgba(123, 160, 207, .1);
+  color: #7f91ae;
+  background: rgba(4, 9, 21, .38);
 }
 @media (max-width: 760px) {
   .low-clutter .lesson-help,
   .low-clutter .lesson-complete { opacity: 1; }
-  .site-footer::after { display: none; }
 }
