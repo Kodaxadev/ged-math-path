@@ -48,9 +48,9 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
   return (
     <section className="step-home" aria-labelledby="home-title">
       <header className="home-hero">
-        <p className="eyebrow">GED MATH, BUILT AROUND YOU</p>
-        <h1 id="home-title">Pass GED Math.<span className="hero-spark" aria-hidden="true">✦</span></h1>
-        <p>No guessing. Learn what to write, one step at a time.</p>
+        <p className="eyebrow">GED MATH · BUILT AROUND HOW YOU LEARN</p>
+        <h1 id="home-title">Math that explains itself.</h1>
+        <p>See one move. Try one move. Repeat only what helps.</p>
       </header>
 
       <article className="manifesto" aria-label="STEP promise">
@@ -61,17 +61,17 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
       {showBreak && (
         <article className="panel take-five" role="status" aria-label="Break reminder">
           <div>
-            <p className="eyebrow">PAUSE IS PART OF THE PLAN</p>
+            <p className="eyebrow">PAUSE IS PART OF LEARNING</p>
             <h2>Take 5.</h2>
-            <p>You finished three lessons. Stand up, get water, reset your eyes, then return when ready.</p>
+            <p>You completed three lessons. Get water, reset your eyes, and come back when ready.</p>
           </div>
-          <button type="button" className="secondary" onClick={onDismissBreak}>I took a break / keep going</button>
+          <button type="button" className="secondary" onClick={onDismissBreak}>Done resting / keep going</button>
         </article>
       )}
 
       <div className="home-top-grid">
         <article className="panel do-next">
-          <p className="eyebrow">DO THIS NEXT</p>
+          <p className="eyebrow">CONTINUE HERE</p>
           {next && (
             <>
               <div className="lesson-callout">
@@ -81,7 +81,7 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
                   <p>{next.objective}</p>
                 </div>
               </div>
-              <button type="button" className="primary start-button" onClick={() => onOpenLesson(next)}>Start this lesson <span aria-hidden="true">→</span></button>
+              <button type="button" className="primary start-button" onClick={() => onOpenLesson(next)}>Start lesson <span aria-hidden="true">→</span></button>
             </>
           )}
         </article>
@@ -91,18 +91,18 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
           <div className="progress-ring" style={ringStyle} role="progressbar" aria-label="Course progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={percentage}>
             <strong>{percentage}%</strong>
           </div>
-          <p>Math path progress</p>
+          <p>Learning path</p>
           <hr />
           <strong className="lesson-count">{progress.completedLessons.length} of {lessons.length}</strong>
-          <span>lessons done</span>
+          <span>lessons complete</span>
         </article>
 
         <article className="panel upcoming" aria-label="Coming up next">
-          <p className="eyebrow">COMING UP NEXT</p>
+          <p className="eyebrow">AFTER THAT</p>
           {upcoming.map((lesson, index) => (
             <button type="button" key={lesson.id} onClick={() => onOpenLesson(lesson)}>
               <span aria-hidden="true">{index + 1}</span>
-              <div><strong>Lesson {index + 2}</strong><small>{lesson.title}</small></div>
+              <div><strong>Next skill</strong><small>{lesson.title}</small></div>
             </button>
           ))}
         </article>
@@ -112,30 +112,30 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
         <div className="home-bottom-grid">
           <article className="panel preview">
             <aside className="preview-rail" aria-label="Lesson flow preview">
-              <p className="eyebrow">LESSON PREVIEW</p>
-              <div className="rail-step active"><span>1</span><strong>When you see this</strong><small>This is the problem.</small></div>
-              <div className="rail-step"><span>2</span><strong>Write this down</strong><small>One move at a time.</small></div>
-              <div className="rail-step"><span>3</span><strong>Work along</strong><small>Reveal a step only if needed.</small></div>
-              <div className="rail-step"><span>4</span><strong>Check your answer</strong><small>No surprise numbers.</small></div>
+              <p className="eyebrow">HOW IT WORKS</p>
+              <div className="rail-step active"><span>1</span><strong>See the problem</strong><small>No answer shown yet.</small></div>
+              <div className="rail-step"><span>2</span><strong>Try your move</strong><small>Use the scratch pad.</small></div>
+              <div className="rail-step"><span>3</span><strong>Reveal one step</strong><small>Only when ready.</small></div>
+              <div className="rail-step"><span>4</span><strong>Log what happened</strong><small>Learn what helps.</small></div>
             </aside>
             <div className="preview-work">
-              <div className="preview-title"><div><h2>When you see this</h2><p>Try to name the first move before you reveal it.</p></div><span>Step-by-step reveal</span></div>
+              <div className="preview-title"><div><h2>Try the first move</h2><p>Nothing changes until you choose to reveal a step.</p></div><span>One step at a time</span></div>
               <div className="preview-question"><p>{next.workedExample.prompt}</p>{previewNotation && <pre aria-label="Translated math notation">{previewNotation}</pre>}</div>
-              <p className="preview-tip">Your lesson will wait while you work it out on the scratch pad.</p>
-              <button type="button" className="preview-action" onClick={() => onOpenLesson(next)}>Open lesson and show the first step <span aria-hidden="true">→</span></button>
+              <p className="preview-tip">Open the scratch pad, write what you think comes first, then compare.</p>
+              <button type="button" className="preview-action" onClick={() => onOpenLesson(next)}>Open this lesson <span aria-hidden="true">→</span></button>
             </div>
           </article>
 
           <div className="side-stack">
             <article className="panel quick-sheet">
-              <p className="eyebrow">CHEAT SHEET</p>
+              <p className="eyebrow">QUICK HELP</p>
               <h2>{next.title}</h2>
               {next.procedureCard.map((line) => <p key={line}>{line}</p>)}
-              <button type="button" onClick={() => onOpenLesson(next)}>Practice this lesson →</button>
+              <button type="button" onClick={() => onOpenLesson(next)}>Practice this skill →</button>
             </article>
             <article className="panel mistake-journal" aria-label="Mistake journal">
-              <p className="eyebrow">MISTAKE JOURNAL</p>
-              {recentMistakes.length === 0 ? <p className="journal-empty">When a problem trips you up, STEP will track what got in the way.</p> : (
+              <p className="eyebrow">WHAT JAMMED ME UP</p>
+              {recentMistakes.length === 0 ? <p className="journal-empty">When a problem stalls you, STEP will save what got in the way.</p> : (
                 <>
                   <strong>Recent notes</strong>
                   {recentMistakes.map(({ problemId, attempt }) => (
@@ -144,7 +144,7 @@ export function Dashboard({ modules: _modules, lessons, progress, onOpenLesson, 
                       <small>{problemLabels.get(problemId) ?? 'Practice problem'}</small>
                     </div>
                   ))}
-                  <p className="journal-summary"><span>Most recent types logged</span><b>{Object.keys(mistakeCounts).length}</b></p>
+                  <p className="journal-summary"><span>Recent types logged</span><b>{Object.keys(mistakeCounts).length}</b></p>
                 </>
               )}
             </article>
