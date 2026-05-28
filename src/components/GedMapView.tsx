@@ -4,6 +4,7 @@ import { fastWinLessonIds, gedTopics, lessonForTopic, pathLabels, type CoverageS
 type Props = {
   lessons: Lesson[];
   onOpenLesson: (lesson: Lesson) => void;
+  onOpenCalculatorLab: () => void;
 };
 
 const order: ToolPath[] = ['confidence-win', 'calculator', 'formula-sheet', 'no-calculator', 'mixed', 'later'];
@@ -13,7 +14,7 @@ const statusText: Record<CoverageState, string> = {
   planned: 'To build',
 };
 
-export function GedMapView({ lessons, onOpenLesson }: Props) {
+export function GedMapView({ lessons, onOpenLesson, onOpenCalculatorLab }: Props) {
   const totals = gedTopics.reduce<Record<CoverageState, number>>((count, topic) => {
     count[topic.state] += 1;
     return count;
@@ -62,6 +63,7 @@ export function GedMapView({ lessons, onOpenLesson }: Props) {
               <div className="topic-list">
                 {items.map((topic) => {
                   const lesson = topic.state === 'planned' ? undefined : lessonForTopic(topic, lessons);
+                  const labRoute = topic.path === 'calculator' && topic.state === 'ready' && !lesson;
                   return (
                     <div className="topic-row" key={topic.title}>
                       <div>
@@ -69,7 +71,7 @@ export function GedMapView({ lessons, onOpenLesson }: Props) {
                         {topic.note && <small>{topic.note}</small>}
                       </div>
                       <span className={`coverage-pill ${topic.state}`}>{statusText[topic.state]}</span>
-                      {lesson ? <button type="button" onClick={() => onOpenLesson(lesson)}>Open</button> : <span className="map-placeholder">—</span>}
+                      {lesson ? <button type="button" onClick={() => onOpenLesson(lesson)}>Open</button> : labRoute ? <button type="button" onClick={onOpenCalculatorLab}>Lab</button> : <span className="map-placeholder">—</span>}
                     </div>
                   );
                 })}
