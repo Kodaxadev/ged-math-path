@@ -181,7 +181,19 @@
   font-family: "Consolas", "Courier New", monospace;
 }
 .screen-indicators { display: flex; justify-content: space-between; min-height: 11px; font-size: .62rem; font-weight: 700; }
-.screen-expression { min-height: 23px; font-size: 1rem; overflow: hidden; white-space: nowrap; text-align: left; }
+.screen-expression { display: flex; align-items: center; min-height: 23px; font-size: 1rem; overflow-x: auto; overflow-y: hidden; white-space: nowrap; text-align: left; scrollbar-width: none; }
+.screen-expression::-webkit-scrollbar { display: none; }
+.screen-expression > span:first-child,
+.screen-expression > span:last-child { white-space: pre; }
+.screen-caret {
+  flex: none;
+  width: 2px;
+  height: 1.05em;
+  margin: 0 1px;
+  background: #16211a;
+  animation: caretBlink 1.05s step-end infinite;
+}
+@keyframes caretBlink { 50% { opacity: 0; } }
 .screen-result { display: block; text-align: right; font-size: 1.34rem; font-weight: 700; }
 .screen-result.error { font-size: .76rem; }
 .ti-controls { position: relative; min-height: 76px; margin-bottom: 11px; }
@@ -209,6 +221,22 @@
   color: #e6eef9;
   background: linear-gradient(180deg, #374556, #202c39);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.11);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .06s ease, filter .12s ease, box-shadow .12s ease, border-bottom-width .06s ease;
+}
+.em-key:hover { filter: brightness(1.12); }
+.em-key:focus-visible {
+  outline: none;
+  border-color: #ffd267;
+  box-shadow: 0 0 0 3px rgba(247,194,90,.45);
+}
+.em-key:active,
+.em-key.pressed {
+  transform: translateY(2px);
+  border-bottom-width: 1px;
+  filter: brightness(1.18);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.35);
 }
 .em-key small {
   position: absolute;
@@ -251,8 +279,26 @@
 .em-feedback p { flex: 1 1 100%; margin: 0; color: #d4e0ef; }
 .em-feedback.wrong { border-color: rgba(247,194,90,.34); }
 .em-feedback.complete { border-color: rgba(32,213,205,.33); background: rgba(32,213,205,.07); }
+.em-feedback.info { border-color: rgba(37,166,255,.3); background: rgba(37,166,255,.06); }
 .em-sequence { color: var(--muted); font-size: .82rem; }
 .em-sequence strong { color: var(--accent); }
+.em-keyboard-hint {
+  width: min(430px, 100%);
+  margin: 0;
+  color: #9eafc9;
+  font-size: .8rem;
+  line-height: 1.55;
+  text-align: center;
+}
+.em-keyboard-hint kbd {
+  padding: 1px 6px;
+  border: 1px solid rgba(123,160,207,.28);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: #13233b;
+  color: #ecf4ff;
+  font: 600 .78rem/1.4 "Consolas", monospace;
+}
 .tool-priority { border-color: rgba(32, 213, 205, .2); background: rgba(32, 213, 205, .035); }
 .work-pad-only { padding: 14px; }
 .work-pad-hint { margin: -3px 0 3px; color: #9eafc9; font-size: .83rem; }
@@ -272,4 +318,9 @@
   .em-keypad { gap: 6px; }
   .em-key { min-height: 48px; }
 }
-@media (prefers-reduced-motion: reduce) { .em-key.expected-key { animation: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .em-key.expected-key { animation: none; }
+  .em-key { transition: filter .12s ease; }
+  .em-key:active, .em-key.pressed { transform: none; }
+  .screen-caret { animation: none; }
+}
