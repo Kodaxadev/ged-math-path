@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AudhdSettings } from './components/AudhdSettings';
 import { Dashboard } from './components/Dashboard';
+import { GedMapView } from './components/GedMapView';
 import { InsightsView } from './components/InsightsView';
 import { LessonView } from './components/LessonView';
 import { ModuleView } from './components/ModuleView';
@@ -13,8 +14,8 @@ import { modules } from './data/modules';
 import { clearProgress, loadProgress, saveProgress } from './lib/storage';
 import type { Attempt, Lesson, ModuleId, Progress } from './types';
 
-type Page = ModuleId | 'dashboard' | 'cards' | 'insights' | 'lesson';
-type NavigationPage = ModuleId | 'dashboard' | 'cards' | 'insights';
+type Page = ModuleId | 'dashboard' | 'cards' | 'insights' | 'map' | 'lesson';
+type NavigationPage = ModuleId | 'dashboard' | 'cards' | 'insights' | 'map';
 
 export default function App() {
   const [progress, setProgress] = useState<Progress>(() => loadProgress());
@@ -34,6 +35,7 @@ export default function App() {
     && progress.breakDismissedAt !== progress.completedLessons.length;
   const shellClasses = [
     'app-shell',
+    `page-${page}`,
     progress.settings.largerText ? 'larger-text' : '',
     progress.settings.lowClutterMode ? 'low-clutter' : '',
   ].filter(Boolean).join(' ');
@@ -134,11 +136,11 @@ export default function App() {
           {page !== 'dashboard' && showBreak && (
             <article className="panel take-five lesson-break" role="status">
               <div>
-                <p className="eyebrow">PAUSE IS PART OF THE PLAN</p>
+                <p className="eyebrow">PAUSE IS PART OF LEARNING</p>
                 <h2>Take 5.</h2>
-                <p>You finished three lessons. Stand up, get water, reset your eyes, then return when ready.</p>
+                <p>You completed three lessons. Get water, reset your eyes, and come back when ready.</p>
               </div>
-              <button type="button" className="secondary" onClick={dismissBreak}>I took a break / keep going</button>
+              <button type="button" className="secondary" onClick={dismissBreak}>Done resting / keep going</button>
             </article>
           )}
           {page === 'dashboard' && (
@@ -150,6 +152,7 @@ export default function App() {
               onDismissBreak={dismissBreak}
             />
           )}
+          {page === 'map' && <GedMapView lessons={lessons} onOpenLesson={openLesson} />}
           {page === 'insights' && <InsightsView modules={modules} lessons={lessons} progress={progress} sessionId={sessionId} />}
           {page === 'cards' && <ProcedureCards lessons={lessons} />}
           {activeModule && <ModuleView module={activeModule} lessons={lessons} progress={progress} onOpenLesson={openLesson} />}
