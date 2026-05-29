@@ -1,0 +1,77 @@
+/* ============================================================
+   STEP — Home / Dashboard polish
+   Spends the tokens on the first screen of every session.
+   Goal: a calm landing with ONE clear focal point (Continue here),
+   even rhythm on the 8px scale, and the same anchor language used
+   on the Lesson view so the app feels like one system.
+   Imported LAST so it composes over the foundational layers.
+   ============================================================ */
+
+/* ---- Breathing room between major sections -------------- */
+.step-home { gap: var(--space-5); }
+.home-top-grid, .home-bottom-grid { gap: var(--space-3); }
+
+/* ---- Hero: confident, readable lead --------------------- */
+.home-hero { padding: var(--space-2) 0 0; }
+.home-hero > p:last-child { color: var(--text-soft); max-width: 52ch; }
+.manifesto p { color: var(--text-soft); max-width: 60ch; line-height: var(--leading-normal); }
+
+/* ---- Focal point: "Continue here" is THE next action ----
+   Same quiet-anchor treatment as the worked example card:
+   an accent top edge + lift so the eye lands here first. */
+.do-next {
+  border-top: 2px solid var(--accent);
+  box-shadow: var(--shadow-panel);
+}
+.lesson-callout { margin: var(--space-3) 0 var(--space-5); }
+.lesson-callout p { color: var(--text-soft); }
+
+/* ---- Secondary cards sit calmer than the focal one ------ */
+.home-progress, .upcoming { box-shadow: none; }
+.home-progress p:not(.eyebrow), .home-progress span { color: var(--muted); }
+
+/* ---- "After that" list: data-blue badges, tappable rows - */
+.upcoming button {
+  padding: var(--space-2) var(--space-2);
+  margin-inline: calc(var(--space-2) * -1);
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.upcoming button:hover { background: var(--surface-2); }
+.upcoming button > span {
+  background: rgba(37, 166, 255, 0.14);
+  color: var(--accent-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Preview block: tokenized radius + a clear CTA lift -- */
+.preview-question, .preview-tip { border-radius: var(--radius-sm); }
+.preview-question pre {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.preview-action, .calculator-lab-cta, .start-button {
+  transition: background var(--dur-base) var(--ease-out),
+    filter var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.preview-action:hover, .calculator-lab-cta:hover { transform: translateY(-1px); }
+
+/* ---- Quick-help sheet: calm list + interactive link ----- */
+.quick-sheet button {
+  border-radius: var(--radius-sm);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.quick-sheet button:hover { color: var(--accent-strong); }
+
+/* ---- Mistake journal: gentle, never punitive ------------ */
+.journal-entry { padding: var(--space-2) 0; }
+.journal-entry small { color: var(--muted); }
+.journal-empty { color: var(--text-soft); line-height: var(--leading-normal); }
+
+/* ---- Take-five break card: amber = attention ------------ */
+.take-five { border-radius: var(--radius); }
+
+@media (max-width: 760px) {
+  .step-home { gap: var(--space-4); }
+}
