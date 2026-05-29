@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+<defs><linearGradient id="bg" x2="1600" y2="900"><stop stop-color="#07111F"/><stop offset="1" stop-color="#040912"/></linearGradient><linearGradient id="panel"><stop stop-color="#102034"/><stop offset="1" stop-color="#091322"/></linearGradient><linearGradient id="teal"><stop stop-color="#27DFD6"/><stop offset="1" stop-color="#1BAFC0"/></linearGradient><filter id="shadow"><feDropShadow dy="20" stdDeviation="30" flood-opacity=".32"/></filter></defs>
+<rect width="1600" height="900" rx="32" fill="url(#bg)"/>
+<text x="74" y="77" fill="#20D5CD" font-family="Arial" font-size="15" font-weight="700" letter-spacing="4">STRUCTURED WORK PAD • DESIGN TARGET</text>
+<text x="74" y="137" fill="#F0F6FF" font-family="Arial" font-size="48" font-weight="700">Write math like math.</text>
+<text x="74" y="176" fill="#9EB2CD" font-family="Arial" font-size="18">A calm MathLive notebook with deliberate, learner-controlled checking.</text>
+<g filter="url(#shadow)"><rect x="74" y="228" width="1450" height="602" rx="24" fill="url(#panel)" stroke="#182E48"/>
+<!-- top strip -->
+<rect x="74" y="228" width="1450" height="70" rx="24" fill="#0C1627"/><path d="M74 298H1524" stroke="#193149"/>
+<text x="104" y="268" fill="#20D5CD" font-family="Arial" font-size="23" font-weight="700" letter-spacing="3">WORK PAD</text><text x="288" y="267" fill="#869AB7" font-family="Arial" font-size="13">Structured math entry • Saved locally • Check only when ready</text>
+<rect x="1286" y="247" width="101" height="34" rx="10" fill="#102136" stroke="#223A55"/><text x="1314" y="268" fill="#A9BDD7" font-family="Arial" font-size="12">Clear</text><rect x="1397" y="247" width="101" height="34" rx="10" fill="#102136" stroke="#223A55"/><text x="1417" y="268" fill="#A9BDD7" font-family="Arial" font-size="12">Minimize</text>
+<!-- left context -->
+<rect x="101" y="328" width="338" height="458" rx="18" fill="#081424" stroke="#193148"/>
+<text x="126" y="365" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">CURRENT PROBLEM</text><text x="126" y="407" fill="#F1F6FF" font-family="Arial" font-size="24" font-weight="700">Percent discount</text><text x="126" y="449" fill="#B4C6DC" font-family="Arial" font-size="16">A jacket is marked down</text><text x="126" y="476" fill="#B4C6DC" font-family="Arial" font-size="16">from $48 to $36.</text><text x="126" y="503" fill="#B4C6DC" font-family="Arial" font-size="16">What is the percent discount?</text>
+<rect x="126" y="548" width="286" height="72" rx="12" fill="#102236" stroke="#20D5CD" stroke-opacity=".18"/><text x="146" y="576" fill="#20D5CD" font-family="Arial" font-size="9" font-weight="700" letter-spacing="2">YOUR FIRST MOVE</text><text x="146" y="604" fill="#E9F4FF" font-family="Arial" font-size="15">Find how much came off.</text>
+<text x="126" y="671" fill="#F7C25A" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">REMINDER</text><text x="126" y="705" fill="#9EB2CD" font-family="Arial" font-size="14">The pad does not reveal a</text><text x="126" y="729" fill="#9EB2CD" font-family="Arial" font-size="14">result unless you request it.</text>
+<!-- notebook -->
+<rect x="467" y="328" width="1029" height="458" rx="18" fill="#0B1728" stroke="#1B344E"/>
+<text x="494" y="364" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">TYPE EACH LINE YOU WORK OUT</text><text x="1257" y="364" fill="#7389A7" font-family="Arial" font-size="12">Saved in this browser</text>
+<!-- row 1 -->
+<rect x="494" y="391" width="973" height="82" rx="13" fill="#101F33" stroke="#20D5CD" stroke-opacity=".28"/><circle cx="524" cy="432" r="14" fill="#183447"/><text x="524" y="437" text-anchor="middle" fill="#20D5CD" font-family="Arial" font-size="12" font-weight="700">1</text><text x="558" y="442" fill="#F2F7FF" font-family="Georgia" font-size="28">48 − 36 = 12</text><rect x="1290" y="411" width="147" height="42" rx="10" fill="#14273B" stroke="#20D5CD" stroke-opacity=".3"/><text x="1320" y="437" fill="#C8FBF6" font-family="Arial" font-size="12" font-weight="700">Check this line</text>
+<!-- row 2 -->
+<rect x="494" y="488" width="973" height="82" rx="13" fill="#101F33" stroke="#20374F"/><circle cx="524" cy="529" r="14" fill="#183447"/><text x="524" y="534" text-anchor="middle" fill="#20D5CD" font-family="Arial" font-size="12" font-weight="700">2</text><text x="558" y="539" fill="#F2F7FF" font-family="Georgia" font-size="28">12 ÷ 48 = 0.25</text><rect x="1290" y="508" width="147" height="42" rx="10" fill="#14273B" stroke="#20374F"/><text x="1320" y="534" fill="#AFC2D9" font-family="Arial" font-size="12" font-weight="700">Check this line</text>
+<!-- row 3 active -->
+<rect x="494" y="585" width="973" height="82" rx="13" fill="#111F34" stroke="#20D5CD"/><circle cx="524" cy="626" r="14" fill="#20D5CD"/><text x="524" y="631" text-anchor="middle" fill="#071721" font-family="Arial" font-size="12" font-weight="700">3</text><text x="558" y="636" fill="#F2F7FF" font-family="Georgia" font-size="28">0.25 = 25%</text><path d="M772 643H773" stroke="#20D5CD" stroke-width="2"/>
+<rect x="494" y="694" width="338" height="51" rx="11" fill="url(#teal)"/><text x="588" y="725" fill="#061721" font-family="Arial" font-size="14" font-weight="700">Add a new line  +</text><rect x="847" y="694" width="231" height="51" rx="11" fill="#102238" stroke="#233E58"/><text x="902" y="725" fill="#B2C5DC" font-family="Arial" font-size="14" font-weight="700">Send to calculator</text>
+</g>
+<text x="74" y="868" fill="#667B98" font-family="Arial" font-size="12" letter-spacing="2">DESIGN NORTH STAR • MATHLIVE WORK PAD TARGET • NOT A CURRENT SCREENSHOT</text>
+</svg>
