@@ -12,6 +12,7 @@ export const foundationLessons: Lesson[] = [
       { id: 'compare-negatives', prompt: 'Which is greater: -5 or -2?', answer: '-2 is greater', procedure: 'On the number line, the number farther right is greater.', steps: ['-2 sits to the right of -5 on the number line.', 'Farther right means greater.', 'Answer: -2 is greater.'] },
       { id: 'order-mixed', prompt: 'Order from smallest to largest: 0.3, 1/4, 0.08.', answer: '0.08, 1/4, 0.3', procedure: 'Turn the fraction into a decimal, then compare.', steps: ['1/4 = 0.25.', 'Compare: 0.08, 0.25, 0.30.', 'Return to original forms: 0.08, 1/4, 0.3.'] },
       { id: 'abs-value-2', prompt: 'What is |-12|?', answer: '12', procedure: 'Absolute value is distance from zero, always positive.', steps: ['-12 is 12 spaces from zero.', 'Distance is positive.', 'Answer: |-12| = 12.'] },
+      { id: 'decimal-compare', prompt: 'Which is larger: 0.7 or 0.65?', answer: '0.7', procedure: 'Line up the decimal places, then compare digit by digit.', steps: ['Write 0.7 as 0.70 so both have two places.', 'Compare: 0.70 vs 0.65.', '70 hundredths is more than 65 hundredths.', 'Answer: 0.7 is larger.'] },
     ],
   },
   {
@@ -117,6 +118,23 @@ export const foundationLessons: Lesson[] = [
       { id: 'undefined-plus2', prompt: 'For what value of x is 7/(x + 2) undefined?', answer: 'x = -2', procedure: 'Set the bottom equal to zero and solve.', steps: ['Set the bottom to zero: x + 2 = 0.', 'Subtract 2: x = -2.', 'Answer: x = -2.'] },
       { id: 'undefined-minus5', prompt: 'For what value of x is 10/(x - 5) undefined?', answer: 'x = 5', procedure: 'Set the bottom equal to zero and solve.', steps: ['Set the bottom to zero: x - 5 = 0.', 'Add 5: x = 5.', 'Answer: x = 5.'] },
       { id: 'undefined-2x', prompt: 'For what value of x is 3/(2x) undefined?', answer: 'x = 0', procedure: 'Set the bottom equal to zero and solve.', steps: ['Set the bottom to zero: 2x = 0.', 'Divide by 2: x = 0.', 'Answer: x = 0.'] },
+    ],
+  },
+  {
+    id: 'order-of-operations', moduleId: 'number-sense', title: 'Order of operations: do moves in the right order',
+    objective: 'Work an expression in a fixed order instead of left to right.',
+    recognition: ['An expression mixes +, −, ×, ÷, parentheses, or a raised power.', 'There is no equals sign to solve — just one value to find.'],
+    procedureCard: ['1. Parentheses first.', '2. Powers (raised numbers) next.', '3. Multiply and divide, left to right.', '4. Add and subtract, left to right.'],
+    workedExample: {
+      id: 'oo-worked', prompt: 'Simplify: 2 + 3 × 4.', answer: '14', procedure: 'Multiply before you add — not left to right.',
+      steps: ['No parentheses or powers, so look for × and ÷ first.', 'Multiply: 3 × 4 = 12.', 'Now add: 2 + 12 = 14.', 'Answer: 14. (Adding first would wrongly give 20.)'],
+    },
+    practice: [
+      { id: 'oo-subtract-times', prompt: 'Simplify: 10 − 2 × 3.', answer: '4', procedure: 'Multiply first, then subtract.', steps: ['Multiply: 2 × 3 = 6.', 'Subtract: 10 − 6 = 4.', 'Answer: 4.'] },
+      { id: 'oo-parens', prompt: 'Simplify: (2 + 3) × 4.', answer: '20', procedure: 'Parentheses first, then multiply.', steps: ['Parentheses: 2 + 3 = 5.', 'Multiply: 5 × 4 = 20.', 'Answer: 20.'] },
+      { id: 'oo-divide-add', prompt: 'Simplify: 12 ÷ 3 + 5.', answer: '9', procedure: 'Divide before adding.', steps: ['Divide: 12 ÷ 3 = 4.', 'Add: 4 + 5 = 9.', 'Answer: 9.'] },
+      { id: 'oo-power', prompt: 'Simplify: 2 + 3².', answer: '11', procedure: 'Powers come before adding.', steps: ['Power: 3² = 9.', 'Add: 2 + 9 = 11.', 'Answer: 11.'] },
+      { id: 'oo-mixed', prompt: 'Simplify: 4 × (1 + 2)².', answer: '36', procedure: 'Parentheses, then the power, then multiply.', steps: ['Parentheses: 1 + 2 = 3.', 'Power: 3² = 9.', 'Multiply: 4 × 9 = 36.', 'Answer: 36.'] },
     ],
   },
 ];

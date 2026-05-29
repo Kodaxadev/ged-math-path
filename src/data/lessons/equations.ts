@@ -106,4 +106,20 @@ export const equationLessons: Lesson[] = [
       },
     ],
   },
+  {
+    id: 'translate-expressions', moduleId: 'equations', title: 'Turn words into algebra',
+    objective: 'Translate a sentence into an expression or equation before solving.',
+    recognition: ['A problem is written in words with no symbols yet.', 'Words like sum, more than, less than, twice, product, of, per, is.'],
+    procedureCard: ['sum / more than → +', 'less than / difference → − (watch the order)', 'twice / product / of → ×', 'quotient / per → ÷', '“is” → =', 'Let n be the unknown number.'],
+    workedExample: {
+      id: 'tr-worked', prompt: 'Write an equation: “Five more than twice a number is 17.”', answer: '2n + 5 = 17 (x = 6)', procedure: 'Translate each phrase, then solve.', gedNotation: '2x + 5 = 17', learningNotation: '2 × n + 5 = 17',
+      steps: ['“twice a number” → 2 × n.', '“five more than” → + 5.', '“is 17” → = 17, giving 2 × n + 5 = 17.', 'Subtract 5: 2 × n = 12.', 'Divide by 2: n = 6.', 'GED answer: x = 6.'],
+    },
+    practice: [
+      { id: 'tr-more-than', prompt: 'Write an expression: “three more than a number.”', answer: 'n + 3', procedure: '“more than” means add.', gedNotation: 'x + 3', learningNotation: 'n + 3', steps: ['Let the number be n.', '“three more than” → + 3.', 'Answer: n + 3.'] },
+      { id: 'tr-less-than', prompt: 'Write an expression: “seven less than a number.”', answer: 'n − 7', procedure: '“less than” flips the order: the number comes first.', gedNotation: 'x − 7', learningNotation: 'n − 7', steps: ['Let the number be n.', '“seven less than a number” means start with n and take away 7.', 'Answer: n − 7 (not 7 − n).'] },
+      { id: 'tr-twice-minus', prompt: 'Write an expression: “twice a number, decreased by 4.”', answer: '2n − 4', procedure: '“twice” → ×2; “decreased by” → −.', gedNotation: '2x − 4', learningNotation: '2 × n − 4', steps: ['“twice a number” → 2 × n.', '“decreased by 4” → − 4.', 'Answer: 2n − 4.'] },
+      { id: 'tr-sum-is', prompt: 'Write and solve: “The sum of a number and 5 is 12.”', answer: 'n + 5 = 12 (x = 7)', procedure: '“sum … is” → + and =.', gedNotation: 'x + 5 = 12', learningNotation: 'n + 5 = 12', steps: ['“sum of a number and 5” → n + 5.', '“is 12” → = 12.', 'Solve: n = 12 − 5 = 7.', 'GED answer: x = 7.'] },
+    ],
+  },
 ];

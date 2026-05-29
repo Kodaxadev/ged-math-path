@@ -12,6 +12,8 @@ export const coverageLessons: Lesson[] = [
       { id: 'circle-circumference', prompt: 'A circle has radius 5. What is its circumference in terms of π?', answer: '10π units', procedure: 'C = 2 × π × r.', steps: ['Insert radius: C = 2 × π × 5.', '2 × 5 = 10.', 'Answer: 10π units.'] },
       { id: 'circle-diameter-circ', prompt: 'A circle has a diameter of 10. What is its circumference in terms of π?', answer: '10π units', procedure: 'C = π × diameter.', steps: ['Insert the diameter: C = π × 10.', 'Answer: 10π units.'] },
       { id: 'pythagorean-2', prompt: 'A right triangle has legs 9 and 12. What is the longest side?', answer: '15', procedure: 'Use a² + b² = c².', steps: ['Insert values: 9² + 12² = c².', '81 + 144 = 225, so c² = 225.', 'Take the square root: c = √225 = 15.', 'Answer: 15.'] },
+      { id: 'triangle-perimeter', prompt: 'A triangle has sides 9, 12, and 15. What is its perimeter?', answer: '36', procedure: 'Perimeter is the distance around: add every side.', steps: ['Perimeter = add all the sides.', '9 + 12 + 15 = 36.', 'Answer: 36.'] },
+      { id: 'rectangle-perimeter', prompt: 'A rectangle is 8 long and 5 wide. What is its perimeter?', answer: '26', procedure: 'Perimeter = 2 × length + 2 × width.', steps: ['Two lengths: 2 × 8 = 16.', 'Two widths: 2 × 5 = 10.', 'Add: 16 + 10 = 26.', 'Answer: 26.'] },
     ],
   },
   {
@@ -124,6 +126,7 @@ export const coverageLessons: Lesson[] = [
       { id: 'line-evaluate-neg', prompt: 'For y = 4n + 1, what is y when n = -2?', answer: '-7', procedure: 'Replace n with -2; a positive times a negative is negative.', steps: ['Write: y = 4 × (-2) + 1.', 'Multiply first: 4 × (-2) = -8.', 'Add 1: y = -7.'] },
       { id: 'line-slope-table', prompt: 'A table shows n: 2, 4, 6 and y: 7, 13, 19. What is the slope?', answer: '3', procedure: 'Slope = output change ÷ input change.', steps: ['y goes up by 6 each time (7 to 13 to 19).', 'n goes up by 2 each time (2 to 4 to 6).', 'Slope = 6 ÷ 2 = 3.'] },
       { id: 'line-intercept', prompt: 'In y = 5n + 2, what is the starting value (y-intercept)?', answer: '2', procedure: 'In y = m × n + b, b is the starting value, found when n = 0.', steps: ['The number added on its own is b.', 'Here b = 2.', 'Check: when n = 0, y = 5 × 0 + 2 = 2.', 'Answer: starting value = 2.'] },
+      { id: 'line-write-equation', prompt: 'A line has slope 3 and y-intercept 2. Write its equation.', answer: 'y = 3n + 2 (GED: y = 3x + 2)', procedure: 'Drop the slope in for m and the intercept in for b in y = m × n + b.', gedNotation: 'y = 3x + 2', learningNotation: 'y = 3 × n + 2', steps: ['Start with the line shape: y = m × n + b.', 'Slope is m = 3, so the n-term is 3 × n.', 'Starting value is b = 2, added on the end.', 'Equation: y = 3n + 2. GED form: y = 3x + 2.'] },
     ],
   },
   {
