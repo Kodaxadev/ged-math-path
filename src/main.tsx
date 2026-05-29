@@ -16,6 +16,7 @@ import './controls-polish.css';
 import './views-polish.css';
 import './workpad.css';
 import './support-cards.css';
+import './dashboard.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

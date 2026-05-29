@@ -152,6 +152,7 @@ export default function App() {
               onOpenLesson={openLesson}
               onOpenCalculatorLab={() => setPage('calculator-lab')}
               onDismissBreak={dismissBreak}
+              onSetMood={(todayMood) => updateProgress({ ...progress, todayMood })}
             />
           )}
           {page === 'calculator-lab' && <CalculatorLabView />}

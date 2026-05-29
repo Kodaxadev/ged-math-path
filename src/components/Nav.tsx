@@ -63,7 +63,7 @@ export function Nav({ modules, progress, activeModule, open, onSelect, onClose }
           <span className="nav-note">Continue where I left off</span>
         </button>
 
-        <p className="nav-group">LEARN THESE FIRST</p>
+        <p className="nav-group">LEARN</p>
         {shown.map(item)}
 
         <details className="more-lessons" open={moreIsActive || undefined}>

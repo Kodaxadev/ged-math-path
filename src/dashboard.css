@@ -1,0 +1,98 @@
+/* ============================================================
+   STEP — Dashboard (north-star convergence, Phase 1)
+   Six-card command center per docs/readme-assets/dashboard-design-goal.svg.
+   Continue Lesson + Calculator Lab are the strongest actions; everything
+   else reads calmly. Real data only — no invented analytics.
+   ============================================================ */
+
+.home-hero-sub { margin: 0; color: var(--muted); font-size: var(--text-lg); line-height: var(--leading-snug); }
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.dash-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  min-height: 156px;
+}
+.dash-card-title { margin: 0; font-family: var(--font-display); font-size: var(--text-lg); line-height: var(--leading-snug); color: var(--text); }
+.dash-card-sub { margin: 0; color: var(--text-soft); font-size: var(--text-sm); line-height: var(--leading-normal); }
+
+/* Column spans (12-col), mirroring the board proportions. */
+.dash-continue { grid-column: span 5; min-height: 186px; }
+.dash-progress { grid-column: span 3; min-height: 186px; }
+.dash-confidence { grid-column: span 4; min-height: 186px; }
+.dash-calc { grid-column: span 4; }
+.dash-jam { grid-column: span 4; }
+.dash-take5, .dash-reassure { grid-column: span 4; }
+
+/* Continue Lesson is the focal action: accent edge + lift + larger title. */
+.dash-continue { border-top: 2px solid var(--accent); box-shadow: var(--shadow-panel); }
+.dash-continue .dash-card-title { font-size: var(--text-2xl); }
+.dash-cta {
+  margin-top: auto;
+  align-self: flex-start;
+  background: linear-gradient(120deg, var(--cta-from), var(--cta-to));
+  color: #061721;
+}
+
+/* Calm tertiary link buttons (Calculator Lab, Take 5). */
+.dash-link {
+  margin-top: auto;
+  align-self: flex-start;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-weight: 600;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.dash-link:hover { color: var(--accent-strong); }
+
+/* Progress ring re-themed to the navy palette. */
+.dash-progress { align-items: center; text-align: center; }
+.dash-progress .eyebrow { align-self: flex-start; }
+.dash-progress .progress-ring {
+  margin: var(--space-2) auto;
+  background:
+    radial-gradient(circle, var(--surface-2) 58%, transparent 60%),
+    conic-gradient(var(--accent) var(--step-percent), #233d52 var(--step-percent));
+}
+.dash-progress-note { margin: 0; color: var(--muted); font-size: var(--text-sm); }
+
+/* Confidence Check-In mood selector (local-only). */
+.mood-row { display: flex; gap: var(--space-2); margin-top: auto; }
+.mood-row button {
+  flex: 1;
+  min-height: 42px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text-soft);
+  font-weight: 600;
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.mood-row button:hover { border-color: var(--border-strong); }
+.mood-row button.selected { border-color: var(--accent); color: var(--accent); background: rgba(32, 213, 205, 0.12); }
+
+/* Semantic eyebrow accents (one hue per card per the board). */
+.eyebrow.purple { color: var(--accent-3); }
+.eyebrow.blue { color: var(--accent-2); }
+.eyebrow.gold { color: var(--warning); }
+
+@media (max-width: 1100px) {
+  .dash-grid { grid-template-columns: 1fr 1fr; }
+  .dash-progress, .dash-confidence, .dash-calc, .dash-jam, .dash-take5, .dash-reassure { grid-column: span 1; }
+  .dash-continue { grid-column: 1 / -1; }
+}
+@media (max-width: 680px) {
+  .dash-grid { grid-template-columns: 1fr; }
+  .dash-continue, .dash-progress, .dash-confidence, .dash-calc, .dash-jam, .dash-take5, .dash-reassure { grid-column: 1 / -1; }
+}

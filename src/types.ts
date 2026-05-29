@@ -96,6 +96,8 @@ export type Attempt = {
   sessionId?: string;
 };
 
+export type TodayMood = 'stuck' | 'steady' | 'ready';
+
 export type Progress = {
   completedLessons: string[];
   attempts: Record<string, Attempt[]>;
@@ -104,4 +106,6 @@ export type Progress = {
   notationMode: 'learning' | 'ged';
   breakDismissedAt?: number;
   settings: AudhdSettings;
+  /** Local-only mood check from the dashboard; tunes encouragement copy. */
+  todayMood?: TodayMood;
 };
