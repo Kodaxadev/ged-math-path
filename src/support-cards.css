@@ -1,0 +1,84 @@
+/* ============================================================
+   STEP — CBT-informed support UI (learning aid, not therapy)
+   "I'm stuck" names the block and returns one coping action.
+   "Retry the exact trap" makes a miss immediately repairable.
+   Copy stays factual + process-focused; tone stays calm.
+   Imported LAST so it composes over the foundational layers.
+   ============================================================ */
+
+/* ---- "I'm stuck": quiet, inviting, never alarming -------- */
+.stuck-zone { margin-top: var(--space-3); }
+.stuck-trigger {
+  padding: 8px 14px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.stuck-trigger:hover { color: var(--accent); border-color: var(--accent); }
+
+.stuck-prompt {
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.stuck-prompt legend { width: 100%; margin-bottom: var(--space-1); color: var(--text); font-weight: 600; }
+.stuck-prompt legend span { display: block; margin-top: 2px; color: var(--muted); font-size: 0.82rem; font-weight: 400; }
+.stuck-prompt button {
+  flex: 1 1 auto;
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.stuck-prompt button:hover { color: var(--accent); border-color: var(--accent); }
+.stuck-prompt .stuck-dismiss { flex-basis: 100%; color: var(--muted); border-style: dashed; text-align: center; }
+
+.stuck-cope {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid rgba(37, 166, 255, 0.28);
+  border-radius: var(--radius-sm);
+  background: rgba(37, 166, 255, 0.07);
+}
+.stuck-cope p { margin: 0; color: var(--text); line-height: var(--leading-normal); }
+.stuck-cope .stuck-dismiss {
+  justify-self: start;
+  min-height: 40px;
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-soft);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.stuck-cope .stuck-dismiss:hover { border-color: var(--border-strong); }
+
+/* ---- Retry the exact trap: supportive, action-first ----- */
+.retry-trap {
+  margin-top: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: rgba(32, 213, 205, 0.06);
+}
+.retry-fix { margin: 0; color: var(--text); line-height: var(--leading-normal); }
+.retry-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+
+/* ---- A fixed trap is process-praise, not generic "Correct" */
+.recorded.fixed { color: var(--success); font-weight: 600; }

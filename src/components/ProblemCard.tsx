@@ -22,6 +22,27 @@ const mistakeOptions: { value: MistakeType; label: string }[] = [
   { value: 'not-sure', label: 'Not sure yet' },
 ];
 
+// "I'm stuck" identifies the BLOCK and returns one coping action — never the answer.
+const stuckBlocks: { id: string; label: string; cope: string }[] = [
+  { id: 'begin', label: 'I don’t know where to begin', cope: 'Circle what the question is asking for. Don’t solve yet — just name the goal.' },
+  { id: 'symbol', label: 'The symbol is confusing', cope: 'Use the notation toggle at the top to read it your way (n and ×).' },
+  { id: 'place', label: 'I lost my place', cope: 'Find the last line you still trust. Start again from just that line.' },
+  { id: 'wording', label: 'The wording tripped me', cope: 'Hunt for the target word: distance, total, discount, area, how many…' },
+  { id: 'calculator', label: 'The calculator is blocking me', cope: 'This is a calculator skill, not a math gap. Practice the buttons in Calculator Lab.' },
+  { id: 'froze', label: 'My brain just froze', cope: 'Pause. Write only what is given. That already counts as starting.' },
+];
+
+// After a miss: fix only the part that broke, then retry the same problem.
+const trapFix: Record<MistakeType, string> = {
+  'arithmetic-slip': 'Redo just the arithmetic, one operation at a time.',
+  'attention-drift': 'Read the question once more, slowly. Name what it asks for.',
+  'lost-place': 'Start from the last line you trust and take one step.',
+  'forgot-formula': 'Check the “What to write” card above for the formula, then plug in.',
+  rushed: 'Slow down. Do one move, then stop and check it before the next.',
+  'wording-confusion': 'Find the target word: distance, total, discount, area…',
+  'not-sure': 'Reveal one step to see where it split off, then try again.',
+};
+
 function ConfidenceButtons({ label, value, onChange }: { label: string; value?: ConfidenceScore; onChange: (score: ConfidenceScore) => void }) {
   return (
     <fieldset className="confidence-fieldset">
@@ -50,23 +71,43 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false, in
   const [confidenceBefore, setConfidenceBefore] = useState<ConfidenceScore>();
   const [confidenceAfter, setConfidenceAfter] = useState<ConfidenceScore>();
   const [needsMistakeType, setNeedsMistakeType] = useState(false);
+  const [missedTrap, setMissedTrap] = useState<MistakeType | null>(null);
+  const [retrying, setRetrying] = useState(false);
+  const [fixedTrap, setFixedTrap] = useState(false);
+  const [stuckOpen, setStuckOpen] = useState(false);
+  const [stuckPick, setStuckPick] = useState<string | null>(null);
+
   const notation = progress.notationMode === 'learning' ? problem.learningNotation : problem.gedNotation;
   const finished = shownSteps >= problem.steps.length;
   const started = shownSteps > 0;
   const nextLabel = started ? 'Show the next step' : 'Show the first step';
 
-  function save(correct: boolean, mistakeType?: MistakeType) {
+  function recordCorrect() {
     if (!confidenceBefore || !confidenceAfter) return;
-    onAttempt(problem.id, {
-      correct,
-      mode: practice ? 'practice' : 'walkthrough',
-      confidenceBefore,
-      confidenceAfter,
-      mistakeType,
-    });
+    onAttempt(problem.id, { correct: true, mode: practice ? 'practice' : 'walkthrough', confidenceBefore, confidenceAfter });
+    if (retrying) setFixedTrap(true);
     setRecorded(true);
     setNeedsMistakeType(false);
   }
+
+  function recordMiss(mistakeType: MistakeType) {
+    if (!confidenceBefore || !confidenceAfter) return;
+    onAttempt(problem.id, { correct: false, mode: practice ? 'practice' : 'walkthrough', confidenceBefore, confidenceAfter, mistakeType });
+    setMissedTrap(mistakeType);
+    setNeedsMistakeType(false);
+  }
+
+  function startRetry() {
+    // Re-work the SAME problem so the fix is provable. Keep the before-rating.
+    setMissedTrap(null);
+    setRetrying(true);
+    setShownSteps(0);
+    setConfidenceAfter(undefined);
+    setStuckOpen(false);
+    setStuckPick(null);
+  }
+
+  const copeText = stuckPick ? stuckBlocks.find((b) => b.id === stuckPick)?.cope : null;
 
   return (
     <article className={practice ? 'problem-card practice' : 'problem-card'} aria-labelledby={headingId}>
@@ -95,25 +136,63 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false, in
       {!finished && (
         <button type="button" className="secondary next-step-button" aria-controls={stepsId} disabled={!confidenceBefore} onClick={() => setShownSteps((count) => count + 1)}>{confidenceBefore ? nextLabel : 'Rate confidence first'}</button>
       )}
-      {finished && !recorded && (
+
+      {/* "I'm stuck": name the block, get one way back in — never the answer. */}
+      {!finished && (
+        <div className="stuck-zone">
+          {!stuckOpen && !copeText && (
+            <button type="button" className="stuck-trigger" onClick={() => setStuckOpen(true)}>I’m stuck</button>
+          )}
+          {stuckOpen && !copeText && (
+            <fieldset className="stuck-prompt">
+              <legend>What stopped you? <span>No answers here — just a way back in.</span></legend>
+              {stuckBlocks.map((block) => (
+                <button type="button" key={block.id} onClick={() => { setStuckPick(block.id); setStuckOpen(false); }}>{block.label}</button>
+              ))}
+              <button type="button" className="stuck-dismiss" onClick={() => setStuckOpen(false)}>Never mind</button>
+            </fieldset>
+          )}
+          {copeText && (
+            <div className="stuck-cope" role="status">
+              <p><strong>One small move:</strong> {copeText}</p>
+              <button type="button" className="stuck-dismiss" onClick={() => setStuckPick(null)}>Got it</button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {finished && !recorded && !missedTrap && (
         <div className="reflection">
           <ConfidenceButtons label="After this problem: how confident do you feel now?" value={confidenceAfter} onChange={setConfidenceAfter} />
           {!needsMistakeType && (
             <div className="grade-row">
               <span>{practice ? 'Could you work it out?' : 'Did the steps make sense?'}</span>
               <button type="button" disabled={!confidenceAfter} onClick={() => setNeedsMistakeType(true)}>Not yet</button>
-              <button type="button" disabled={!confidenceAfter} className="correct" onClick={() => save(true)}>Yes</button>
+              <button type="button" disabled={!confidenceAfter} className="correct" onClick={recordCorrect}>Yes</button>
             </div>
           )}
           {needsMistakeType && (
             <fieldset className="mistake-prompt">
               <legend>What got in the way?</legend>
-              {mistakeOptions.map((option) => <button type="button" key={option.value} onClick={() => save(false, option.value)}>{option.label}</button>)}
+              {mistakeOptions.map((option) => <button type="button" key={option.value} onClick={() => recordMiss(option.value)}>{option.label}</button>)}
             </fieldset>
           )}
         </div>
       )}
-      {recorded && <p className="recorded" role="status">Saved on this device.</p>}
+
+      {/* Retry the exact trap: fix only that part, then re-work the same problem. */}
+      {missedTrap && !recorded && (
+        <div className="retry-trap" role="status">
+          <p className="retry-fix"><strong>Fix only that part:</strong> {trapFix[missedTrap]}</p>
+          <div className="retry-actions">
+            <button type="button" className="primary" onClick={startRetry}>Try this one again</button>
+            <button type="button" className="quiet" onClick={() => setRecorded(true)}>Save and move on</button>
+          </div>
+        </div>
+      )}
+
+      {recorded && !fixedTrap && <p className="recorded" role="status">Saved on this device.</p>}
+      {recorded && fixedTrap && <p className="recorded fixed" role="status">You fixed the exact trap that caused the miss. ✓</p>}
     </article>
   );
 }
