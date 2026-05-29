@@ -10,7 +10,12 @@ export const advancedLessons: Lesson[] = [
       id: 'system-xy', prompt: 'Solve the system: x + y = 11 and x - y = 3.', answer: 'x = 7, y = 4', procedure: 'Add the equations so +y and -y cancel.', learningNotation: 'n + m = 11\nn - m = 3', gedNotation: 'x + y = 11\nx - y = 3',
       steps: ['Add the left sides and right sides: (x + y) + (x - y) = 11 + 3.', '+y and -y cancel, leaving 2x = 14.', 'Divide by 2: x = 7.', 'Put 7 into x + y = 11: 7 + y = 11.', 'Subtract 7: y = 4.', 'Answer: x = 7 and y = 4.'],
     },
-    practice: [{ id: 'system-practice', prompt: 'Solve: x + y = 10 and x - y = 2.', answer: 'x = 6, y = 4', procedure: 'Add to remove y.', steps: ['Add the equations: 2x = 12.', 'Divide by 2: x = 6.', 'Plug in: 6 + y = 10.', 'Subtract 6: y = 4.'] }],
+    practice: [
+      { id: 'system-practice', prompt: 'Solve: x + y = 10 and x - y = 2.', answer: 'x = 6, y = 4', procedure: 'Add to remove y.', steps: ['Add the equations: 2x = 12.', 'Divide by 2: x = 6.', 'Plug in: 6 + y = 10.', 'Subtract 6: y = 4.'] },
+      { id: 'system-9-1', prompt: 'Solve: x + y = 9 and x - y = 1.', answer: 'x = 5, y = 4', procedure: 'Add the equations so y cancels.', steps: ['Add straight down: (x + y) + (x - y) = 9 + 1.', '+y and -y cancel: 2x = 10.', 'Divide by 2: x = 5.', 'Plug into x + y = 9: 5 + y = 9, so y = 4.'] },
+      { id: 'system-2y', prompt: 'Solve: x + 2y = 11 and x - 2y = 3.', answer: 'x = 7, y = 2', procedure: 'Add the equations so 2y cancels.', steps: ['Add straight down: 2x = 14.', 'Divide by 2: x = 7.', 'Plug into x + 2y = 11: 7 + 2y = 11.', 'Subtract 7: 2y = 4, so y = 2.'] },
+      { id: 'system-coeff', prompt: 'Solve: 2x + y = 13 and x - y = 2.', answer: 'x = 5, y = 3', procedure: 'Add the equations so +y and -y cancel, even with a 2x term.', steps: ['Add straight down: (2x + y) + (x - y) = 13 + 2.', '+y and -y cancel: 3x = 15.', 'Divide by 3: x = 5.', 'Plug into x - y = 2: 5 - y = 2, so y = 3.', 'Check: 2(5) + 3 = 13.'] },
+    ],
   },
   {
     id: 'slope-points', moduleId: 'slope', title: 'Slope from two points',
@@ -21,7 +26,13 @@ export const advancedLessons: Lesson[] = [
       id: 'slope', prompt: 'What is the slope of the line passing through (2, 5) and (6, 13)?', answer: '2', procedure: 'Subtract y values; subtract x values; divide.',
       steps: ['The y-values are 5 and 13. Change in y: 13 - 5 = 8.', 'The x-values are 2 and 6. Change in x: 6 - 2 = 4.', 'Slope = 8 ÷ 4 = 2.', 'Answer: slope = 2.'],
     },
-    practice: [{ id: 'slope-practice', prompt: 'Find the slope through (1, 3) and (5, 11).', answer: '2', procedure: 'Change in y ÷ change in x.', steps: ['11 - 3 = 8.', '5 - 1 = 4.', '8 ÷ 4 = 2.'] }],
+    practice: [
+      { id: 'slope-practice', prompt: 'Find the slope through (1, 3) and (5, 11).', answer: '2', procedure: 'Change in y ÷ change in x.', steps: ['11 - 3 = 8.', '5 - 1 = 4.', '8 ÷ 4 = 2.'] },
+      { id: 'slope-origin', prompt: 'Find the slope through (0, 1) and (3, 7).', answer: '2', procedure: 'Change in y ÷ change in x.', steps: ['Change in y: 7 - 1 = 6.', 'Change in x: 3 - 0 = 3.', 'Slope = 6 ÷ 3 = 2.'] },
+      { id: 'slope-negative', prompt: 'Find the slope through (2, 8) and (6, 0).', answer: '-2', procedure: 'Keep the same point order on top and bottom; the answer can be negative.', steps: ['Change in y: 0 - 8 = -8.', 'Change in x: 6 - 2 = 4.', 'Slope = -8 ÷ 4 = -2.', 'A downhill line has a negative slope.'] },
+      { id: 'slope-neg-coords', prompt: 'Find the slope through (-1, 2) and (3, 10).', answer: '2', procedure: 'Subtracting a negative adds. Use the same order both times.', steps: ['Change in y: 10 - 2 = 8.', 'Change in x: 3 - (-1) = 3 + 1 = 4.', 'Slope = 8 ÷ 4 = 2.'] },
+      { id: 'slope-fraction', prompt: 'Find the slope through (1, 2) and (5, 4).', answer: '1/2', procedure: 'Change in y ÷ change in x; leave it as a reduced fraction.', steps: ['Change in y: 4 - 2 = 2.', 'Change in x: 5 - 1 = 4.', 'Slope = 2 ÷ 4 = 1/2.'] },
+    ],
   },
   {
     id: 'probability-total', moduleId: 'probability', title: 'Probability as a fraction of a total',

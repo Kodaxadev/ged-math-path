@@ -23,7 +23,13 @@ export const coverageLessons: Lesson[] = [
     recognition: ['Symbols are <, >, ≤, or ≥ instead of =.', 'The arrow points toward the smaller side.'],
     procedureCard: ['Solve like an equation.', 'Only flip the sign when multiplying or dividing by a negative number.', 'n > 4 means open circle at 4, shade right.'],
     workedExample: { id: 'inequality-one', prompt: 'Solve: 3n + 2 > 14.', answer: 'n > 4', procedure: 'Undo +2, then undo ×3.', steps: ['Subtract 2: 3 × n > 12.', 'Divide by positive 3: n > 4.', 'No sign flip because division was positive.', 'Answer: n > 4.'] },
-    practice: [{ id: 'inequality-negative', prompt: 'Solve: -2n < 10.', answer: 'n > -5', procedure: 'Divide by -2 and flip the inequality sign.', steps: ['Divide both sides by -2.', 'When dividing by a negative, flip < to >.', 'n > -5.'] }],
+    practice: [
+      { id: 'inequality-basic-2', prompt: 'Solve: 2n - 3 < 7.', answer: 'n < 5', procedure: 'Undo -3, then undo ×2. No flip when dividing by a positive.', steps: ['Add 3 to both sides: 2 × n < 10.', 'Divide both sides by positive 2: n < 5.', 'No sign flip because 2 is positive.', 'Answer: n < 5.'] },
+      { id: 'inequality-geq', prompt: 'Solve: 5n + 1 ≥ 16.', answer: 'n ≥ 3', procedure: 'Undo +1, then undo ×5. The ≥ stays the same.', steps: ['Subtract 1 from both sides: 5 × n ≥ 15.', 'Divide both sides by positive 5: n ≥ 3.', 'Answer: n ≥ 3.'] },
+      { id: 'inequality-negative', prompt: 'Solve: -2n < 10.', answer: 'n > -5', procedure: 'Divide by -2 and flip the inequality sign.', steps: ['Divide both sides by -2.', 'When dividing by a negative, flip < to >.', 'n > -5.'] },
+      { id: 'inequality-neg-flip', prompt: 'Solve: -3n > 9.', answer: 'n < -3', procedure: 'Divide by -3 and flip the inequality sign.', steps: ['Divide both sides by -3.', 'Dividing by a negative flips > to <.', 'n < -3.'] },
+      { id: 'inequality-subtract-var', prompt: 'Solve: 4 - n ≤ 1.', answer: 'n ≥ 3', procedure: 'Get the -n alone, then divide by -1 and flip.', steps: ['Subtract 4 from both sides: -n ≤ -3.', 'Divide both sides by -1 and flip ≤ to ≥: n ≥ 3.', 'Answer: n ≥ 3.'] },
+    ],
   },
   {
     id: 'function-table-rule', moduleId: 'functions', title: 'Function tables: scan only x first',
@@ -37,13 +43,29 @@ export const coverageLessons: Lesson[] = [
       procedure: 'Look for an x that is assigned more than one different y answer.',
       steps: ['A: x = 5 goes to both 3 and 6. Not a function.', 'B: x = 0 goes to both 4 and -3. Not a function.', 'C: every x appears once. It passes the function check.', 'D: x = 2 goes to several different y values. Not a function.', 'Answer: Table C.'],
     },
-    practice: [{
-      id: 'function-table-repeat',
-      prompt: 'Does this table represent a function? x: 1, 4, 4, 7 and y: 2, 6, 9, 10.',
-      answer: 'No, it is not a function',
-      procedure: 'Find repeated x values, then compare their y answers.',
-      steps: ['Scan only x: 1, 4, 4, 7.', 'The input 4 repeats.', 'For x = 4, the y answers are 6 and 9.', 'Same x with different y means not a function.'],
-    }],
+    practice: [
+      {
+        id: 'function-table-repeat',
+        prompt: 'Does this table represent a function? x: 1, 4, 4, 7 and y: 2, 6, 9, 10.',
+        answer: 'No, it is not a function',
+        procedure: 'Find repeated x values, then compare their y answers.',
+        steps: ['Scan only x: 1, 4, 4, 7.', 'The input 4 repeats.', 'For x = 4, the y answers are 6 and 9.', 'Same x with different y means not a function.'],
+      },
+      {
+        id: 'function-yes',
+        prompt: 'Does this table represent a function? x: 0, 3, 5, 8 and y: 1, 1, 4, 9.',
+        answer: 'Yes, it is a function',
+        procedure: 'Scan only x for repeats. Repeated y values are allowed.',
+        steps: ['Scan only x: 0, 3, 5, 8.', 'No x value repeats.', 'The repeated y value (1 appears twice) does not matter.', 'Every input has one output, so it is a function.'],
+      },
+      {
+        id: 'function-pairs',
+        prompt: 'Do these ordered pairs make a function: (1, 2), (3, 4), (1, 6)?',
+        answer: 'No, it is not a function',
+        procedure: 'The first number in each pair is x. Look for a repeated x.',
+        steps: ['List the x values: 1, 3, 1.', 'The input 1 repeats.', 'For x = 1 the outputs are 2 and 6.', 'Same input with two outputs means not a function.'],
+      },
+    ],
   },
   {
     id: 'function-lines', moduleId: 'functions', title: 'Functions, tables and line equations',
@@ -51,7 +73,13 @@ export const coverageLessons: Lesson[] = [
     recognition: ['You see y = mn + b, f(n), a table, or a line graph.', 'Slope is the repeated change; intercept is the starting value.'],
     procedureCard: ['In y = m × n + b, m is slope and b is starting value.', 'To evaluate, replace n with the input.', 'In a table, slope = output change ÷ input change.'],
     workedExample: { id: 'line-evaluate', prompt: 'For y = 2n + 3, what is y when n = 4?', answer: '11', procedure: 'Replace n with 4, then calculate.', steps: ['Write: y = 2 × 4 + 3.', 'Multiply first: 2 × 4 = 8.', 'Add 3: y = 11.'] },
-    practice: [{ id: 'table-rate', prompt: 'A table shows n: 1, 2, 3 and y: 5, 8, 11. What is the slope?', answer: '3', procedure: 'Output change ÷ input change.', steps: ['As n increases by 1, y increases by 3.', 'Slope = 3 ÷ 1 = 3.', 'Answer: slope = 3.'] }],
+    practice: [
+      { id: 'table-rate', prompt: 'A table shows n: 1, 2, 3 and y: 5, 8, 11. What is the slope?', answer: '3', procedure: 'Output change ÷ input change.', steps: ['As n increases by 1, y increases by 3.', 'Slope = 3 ÷ 1 = 3.', 'Answer: slope = 3.'] },
+      { id: 'line-evaluate-2', prompt: 'For y = 3n - 5, what is y when n = 6?', answer: '13', procedure: 'Replace n with 6, multiply before subtracting.', steps: ['Write: y = 3 × 6 - 5.', 'Multiply first: 3 × 6 = 18.', 'Subtract 5: y = 13.'] },
+      { id: 'line-evaluate-neg', prompt: 'For y = 4n + 1, what is y when n = -2?', answer: '-7', procedure: 'Replace n with -2; a positive times a negative is negative.', steps: ['Write: y = 4 × (-2) + 1.', 'Multiply first: 4 × (-2) = -8.', 'Add 1: y = -7.'] },
+      { id: 'line-slope-table', prompt: 'A table shows n: 2, 4, 6 and y: 7, 13, 19. What is the slope?', answer: '3', procedure: 'Slope = output change ÷ input change.', steps: ['y goes up by 6 each time (7 to 13 to 19).', 'n goes up by 2 each time (2 to 4 to 6).', 'Slope = 6 ÷ 2 = 3.'] },
+      { id: 'line-intercept', prompt: 'In y = 5n + 2, what is the starting value (y-intercept)?', answer: '2', procedure: 'In y = m × n + b, b is the starting value, found when n = 0.', steps: ['The number added on its own is b.', 'Here b = 2.', 'Check: when n = 0, y = 5 × 0 + 2 = 2.', 'Answer: starting value = 2.'] },
+    ],
   },
   {
     id: 'quadratic-basics', moduleId: 'quadratics', title: 'Quadratics: squared unknowns',
@@ -59,6 +87,12 @@ export const coverageLessons: Lesson[] = [
     recognition: ['The unknown appears squared: n².', 'The graph of a quadratic is a curve rather than a straight line.'],
     procedureCard: ['Move everything to one side so it equals 0.', 'Factor simple forms when two numbers multiply and add correctly.', 'A product equals 0 when either factor equals 0.'],
     workedExample: { id: 'quadratic-factor', prompt: 'Solve: n² + 5n + 6 = 0.', answer: 'n = -2 or n = -3', procedure: 'Factor the trinomial into two parentheses.', steps: ['Find two numbers that multiply to 6 and add to 5: 2 and 3.', 'Factor: (n + 2)(n + 3) = 0.', 'Set each factor to zero: n + 2 = 0 or n + 3 = 0.', 'Answers: n = -2 or n = -3.'] },
-    practice: [{ id: 'quadratic-square', prompt: 'Solve: n² = 49.', answer: 'n = 7 or n = -7', procedure: 'A positive square has two roots.', steps: ['Ask which numbers square to 49.', '7 × 7 = 49 and -7 × -7 = 49.', 'Answer: n = 7 or n = -7.'] }],
+    practice: [
+      { id: 'quadratic-square', prompt: 'Solve: n² = 49.', answer: 'n = 7 or n = -7', procedure: 'A positive square has two roots.', steps: ['Ask which numbers square to 49.', '7 × 7 = 49 and -7 × -7 = 49.', 'Answer: n = 7 or n = -7.'] },
+      { id: 'quad-square-36', prompt: 'Solve: n² = 36.', answer: 'n = 6 or n = -6', procedure: 'Take the square root; keep both the positive and negative root.', steps: ['Which numbers square to 36?', '6 × 6 = 36 and -6 × -6 = 36.', 'Answer: n = 6 or n = -6.'] },
+      { id: 'quad-factor-12', prompt: 'Solve: n² + 7n + 12 = 0.', answer: 'n = -3 or n = -4', procedure: 'Find two numbers that multiply to 12 and add to 7.', steps: ['Two numbers multiply to 12 and add to 7: 3 and 4.', 'Factor: (n + 3)(n + 4) = 0.', 'Set each factor to 0: n + 3 = 0 or n + 4 = 0.', 'Answers: n = -3 or n = -4.'] },
+      { id: 'quad-factor-minus', prompt: 'Solve: n² - 5n + 6 = 0.', answer: 'n = 2 or n = 3', procedure: 'Find two numbers that multiply to 6 and add to -5.', steps: ['Two numbers multiply to 6 and add to -5: -2 and -3.', 'Factor: (n - 2)(n - 3) = 0.', 'Set each factor to 0: n - 2 = 0 or n - 3 = 0.', 'Answers: n = 2 or n = 3.'] },
+      { id: 'quad-mixed-sign', prompt: 'Solve: n² + 2n - 8 = 0.', answer: 'n = -4 or n = 2', procedure: 'Find two numbers that multiply to -8 and add to 2.', steps: ['Two numbers multiply to -8 and add to 2: 4 and -2.', 'Factor: (n + 4)(n - 2) = 0.', 'Set each factor to 0: n + 4 = 0 or n - 2 = 0.', 'Answers: n = -4 or n = 2.'] },
+    ],
   },
 ];
