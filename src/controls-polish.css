@@ -1,0 +1,50 @@
+/* ============================================================
+   STEP — Controls & navigation polish
+   Tokenizes the shared interactive primitives so every screen
+   feels responsive and of one family. The .primary / .start /
+   .preview hover states already moved things but had NO
+   transition, so they snapped; here they settle on --ease-out.
+   Imported LAST so it composes over the foundational layers.
+   ============================================================ */
+
+/* ---- Shared button + control feel ----------------------- */
+.primary, .secondary, .quiet, .text-button, select, .upcoming button {
+  transition: background var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out),
+    filter var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.primary:hover { transform: translateY(-1px); }
+.secondary:hover { border-color: var(--border-strong); }
+.text-button:hover { color: var(--accent-strong); }
+
+/* ---- Side nav: settle transitions, calm active state ---- */
+.nav-card { transition: background var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out); }
+
+/* ---- Module lesson list: rhythm + a tactile card -------- */
+.lesson-list { gap: var(--space-3); }
+.lesson-list-card {
+  transition: border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.lesson-list-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+.lesson-list-card p:not(.status) { color: var(--text-soft); }
+.lesson-number {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.lesson-list-card .status { font-variant-numeric: tabular-nums; }
+
+/* ---- Module header: readable measure -------------------- */
+.module-view .lesson-header > p:last-child { color: var(--text-soft); max-width: 64ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  .primary:hover, .lesson-list-card:hover { transform: none; }
+}
