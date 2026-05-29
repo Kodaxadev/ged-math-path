@@ -43,40 +43,49 @@
   --space-10: 64px;
 
   /* ---- Color: canvas & layered ink surfaces --------------- */
-  /* Elevation reads via lightness + soft shadow, not hard lines. */
-  --bg: #060d1a;
-  --bg-deep: #040915;
-  --surface: #0d182a;
-  --surface-2: #132239;
-  --surface-3: #172a43;
+  /* Values aligned to the north-star design boards (navy/midnight). */
+  --bg: #07111f;            /* page top */
+  --bg-deep: #050b16;       /* page bottom */
+  --surface: #0f1c30;       /* panel base */
+  --surface-2: #111f34;     /* elevated inner card */
+  --surface-3: #16304a;     /* active / teal-tint surface */
+  --card: #111f34;          /* alias for elevated card */
+  --panel-from: #102035;    /* card gradient start (board) */
+  --panel-to: #0a1526;      /* card gradient end (board) */
 
   /* ---- Color: lines --------------------------------------- */
-  --border: rgba(123, 160, 207, 0.17);
-  --border-strong: rgba(34, 214, 209, 0.32);
+  --border: #1b3049;            /* crisp navy edge (board shell/cards) */
+  --border-card: #1e3a54;       /* card stroke on the boards */
+  --border-strong: rgba(32, 213, 205, 0.32); /* teal focus/active edge */
 
   /* ---- Color: ink (text), high → low emphasis ------------- */
-  --text: #eef5ff;
-  --text-soft: #c4d2e6;
-  --muted: #9badc8;
-  --faint: #7f93b0;
+  --text: #f1f6ff;
+  --text-soft: #b4c6dc;
+  --muted: #9cafcb;
+  --faint: #8195b3;
 
   /* ---- Color: brand & semantic (each hue has ONE job) ----- */
   --accent: #20d5cd;        /* teal — primary action, progress, brand */
-  --accent-strong: #13bbb8;
-  --accent-2: #25a6ff;      /* blue — data, secondary labels */
-  --accent-3: #a968f5;      /* violet — rare tertiary accent */
+  --accent-strong: #11aca9; /* CTA gradient end */
+  --accent-2: #25a6ff;      /* blue — data, info, secondary labels */
+  --accent-3: #a968f5;      /* purple — confidence / secondary accent */
   --success: #46c98b;       /* green — correct (distinct from teal action) */
-  --warning: #f7c25a;       /* amber — attention, take a break */
+  --warning: #f7c25a;       /* gold — caution / encouragement */
   --danger: #f08a8a;        /* soft red — gentle, never alarming */
+
+  /* ---- Primary CTA gradient (board buttons) --------------- */
+  --cta-from: #25ddd4;
+  --cta-to: #239dd8;
 
   /* ---- Radius hierarchy ----------------------------------- */
   --radius-sm: 10px;
   --radius: 20px;
   --radius-lg: 26px;
 
-  /* ---- Elevation ------------------------------------------ */
-  --shadow-panel: 0 18px 50px rgba(0, 0, 0, 0.22);
+  /* ---- Elevation (board drop shadows) --------------------- */
+  --shadow-panel: 0 18px 46px rgba(0, 0, 0, 0.30);
   --shadow-float: 0 24px 64px rgba(0, 0, 0, 0.48);
+  --glow-teal: radial-gradient(circle at 50% -10%, rgba(25, 196, 178, 0.10), transparent 42%);
 
   /* ---- Motion: short, settling, never bouncy -------------- */
   --dur-fast: 120ms;
@@ -90,7 +99,8 @@
   color-scheme: dark;
 }
 
-/* ---- Base typography: display/body split ----------------- */
+/* ---- Page background: north-star navy + subtle teal glow - */
+/* Canonical here so the page no longer depends on brand.css's older gradient. */
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
@@ -98,6 +108,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  background:
+    var(--glow-teal),
+    linear-gradient(160deg, var(--bg) 0%, #060e1a 50%, var(--bg-deep) 100%);
+  background-attachment: fixed;
+}
+
+/* ---- Panels follow the token palette (board card gradient) */
+.panel {
+  background: linear-gradient(150deg, var(--panel-from), var(--panel-to));
+  border-color: var(--border-card);
 }
 
 h1, h2, h3 { font-family: var(--font-display); }
