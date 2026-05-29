@@ -8,6 +8,7 @@ import './accessibility.css';
 import './brand.css';
 import './focus-polish.css';
 import './ged-map.css';
+import './device-theme.css';
 import './calculator-lab.css';
 import './tokens.css';
 import './lesson-polish.css';

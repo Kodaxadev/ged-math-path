@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CalculatorDrill } from '../data/calculatorLab';
-import { keypadRows, navigationKeys, topControlKeys, type CalculatorKey, type CalcKeyId } from '../data/ti30xsLayout';
+import { decorativeKeyIds, keypadRows, navigationKeys, topControlKeys, type CalculatorKey, type CalcKeyId } from '../data/ti30xsLayout';
 import { emptyCalculator, pressCalculatorKey, type CalculatorState } from '../lib/calculatorEngine';
 
 type Props = {
@@ -67,6 +67,11 @@ export function Ti30xsEmulator({ drill, guided }: Props) {
     setFlashed(id);
     clearTimeout(flashTimer.current);
     flashTimer.current = setTimeout(() => setFlashed(null), 150);
+
+    if (decorativeKeyIds.has(id)) {
+      setFeedback({ type: 'info', message: 'That key is on the real calculator face but is not needed for STEP’s GED drills. Use the numbers, operators, x², √, π, ( ) and enter.' });
+      return;
+    }
 
     if (guided && drill && expected && id !== expected) {
       setFeedback({ type: 'wrong', message: `Not that one yet. Find the highlighted ${drill.keyLabels[step]} key.` });

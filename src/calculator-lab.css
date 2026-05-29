@@ -146,6 +146,7 @@
 .write-first small { color: var(--accent); font-size: .65rem; font-weight: 600; letter-spacing: .15em; }
 .write-first strong { font-size: 1.1rem; }
 .drill-guidance { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
+
 /* Three-column workstation: drill rail | device | guidance rail.
    .calc-workspace gives [drill | emulator-area]; emulator-area splits into
    [device | feedback] so the live guided feedback becomes the right rail. */
@@ -156,181 +157,11 @@
   gap: var(--space-4);
 }
 .emulator-area .ti-device { justify-self: center; }
-/* Faithful TI-30XS MultiView industrial design — teal faceplate, white
-   casing rim, dark top cap, rounded bottom. No manufacturer branding. */
-.ti-device {
-  position: relative;
-  width: min(392px, 100%);
-  margin-top: 12px;
-  padding: 26px 18px 30px;
-  border-radius: 20px 20px 48px 48px;
-  background: linear-gradient(165deg, #629ab3 0%, #44788f 52%, #345f76 100%);
-  border: 4px solid #eef1f3;
-  box-shadow:
-    0 28px 62px rgba(0, 0, 0, 0.48),
-    inset 0 2px 5px rgba(255, 255, 255, 0.22),
-    inset 0 -14px 26px rgba(0, 0, 0, 0.22);
-}
-/* Dark charcoal top cap. */
-.ti-device::before {
-  content: "";
-  position: absolute;
-  top: -14px;
-  left: 12%;
-  right: 12%;
-  height: 20px;
-  border-radius: 10px 10px 16px 16px;
-  background: linear-gradient(180deg, #3d4a53, #1d262c);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 5px rgba(0, 0, 0, 0.4);
-}
-/* Centered nameplate on the faceplate (no brand name or logo). */
-.ti-brandless-head {
-  display: block;
-  text-align: center;
-  margin: 0 0 12px;
-  padding: 0;
-  background: transparent;
-}
-.ti-brandless-head strong { display: block; font-size: 1.2rem; font-weight: 800; letter-spacing: 0.06em; color: #f3f9fb; }
-.ti-brandless-head small { display: block; margin-top: 1px; font-style: italic; font-size: 0.82rem; letter-spacing: 0.03em; color: #d2e2e8; }
-.ti-brandless-head > span { display: none; }
-/* Keys sit directly on the teal faceplate (no separate well). */
-.ti-keywell { margin-top: 12px; padding: 0; background: none; box-shadow: none; }
-.ti-screen {
-  display: grid;
-  gap: 4px;
-  min-height: 87px;
-  margin-bottom: 16px;
-  padding: 8px 12px 10px;
-  border-radius: 7px;
-  border: 4px solid #26333c;
-  color: #16211a;
-  background: linear-gradient(140deg, #bfd1ad, #a9bd96);
-  box-shadow: inset 0 2px 5px rgba(0,0,0,.3), 0 2px 0 rgba(255,255,255,.07);
-  font-family: "Consolas", "Courier New", monospace;
-}
-.screen-indicators { display: flex; justify-content: space-between; min-height: 11px; font-size: .62rem; font-weight: 700; }
-.screen-expression { display: flex; align-items: center; min-height: 23px; font-size: 1rem; overflow-x: auto; overflow-y: hidden; white-space: nowrap; text-align: left; scrollbar-width: none; }
-.screen-expression::-webkit-scrollbar { display: none; }
-.screen-expression > span:first-child,
-.screen-expression > span:last-child { white-space: pre; }
-.screen-caret {
-  flex: none;
-  width: 2px;
-  height: 1.05em;
-  margin: 0 1px;
-  background: #16211a;
-  animation: caretBlink 1.05s step-end infinite;
-}
-@keyframes caretBlink { 50% { opacity: 0; } }
-.screen-result { display: block; text-align: right; font-size: 1.34rem; font-weight: 700; }
-.screen-result.error { font-size: .76rem; }
-.ti-controls { position: relative; min-height: 94px; margin-bottom: 11px; }
-.em-top-row { display: flex; justify-content: flex-start; gap: 7px; padding-right: 100px; flex-wrap: wrap; }
-/* Round 4-way directional pad (left/right functional, up/down decorative). */
-.em-navigation {
-  position: absolute;
-  top: -2px;
-  right: 2px;
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 7px;
-  background: radial-gradient(circle at 50% 36%, #46555f, #1b242a 74%);
-  border: 2px solid #5c6e7a;
-  box-shadow: inset 0 2px 7px rgba(0, 0, 0, 0.5), 0 3px 6px rgba(0, 0, 0, 0.35);
-}
-.em-navigation::before,
-.em-navigation::after {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #aebfc9;
-  font-size: 0.62rem;
-  pointer-events: none;
-}
-.em-navigation::before { content: "▲"; top: 8px; }
-.em-navigation::after { content: "▼"; bottom: 8px; }
-.em-navigation .em-key {
-  min-height: 0;
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  box-shadow: none;
-  color: #d6e2ea;
-}
-.em-navigation .em-key:hover { filter: none; background: rgba(255, 255, 255, 0.08); }
-.em-navigation .em-key:active,
-.em-navigation .em-key.pressed { transform: none; background: rgba(255, 255, 255, 0.16); box-shadow: none; }
-.em-navigation .em-key strong { font-size: 0.82rem; font-weight: 700; }
-.em-keypad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-.em-key {
-  position: relative;
-  min-height: 43px;
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  padding: 6px 4px;
-  border-radius: 8px;
-  border: 1px solid #536477;
-  border-bottom: 3px solid #0b1119;
-  color: #eef5fb;
-  background: linear-gradient(180deg, #455f72, #2b3c4b);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.11);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform .06s ease, filter .12s ease, box-shadow .12s ease, border-bottom-width .06s ease;
-}
-.em-key:hover { filter: brightness(1.12); }
-.em-key:focus-visible {
-  outline: none;
-  border-color: #ffd267;
-  box-shadow: 0 0 0 3px rgba(247,194,90,.45);
-}
-.em-key:active,
-.em-key.pressed {
-  transform: translateY(2px);
-  border-bottom-width: 1px;
-  filter: brightness(1.18);
-  box-shadow: inset 0 2px 4px rgba(0,0,0,.35);
-}
-.em-key small {
-  position: absolute;
-  top: -9px;
-  left: 4px;
-  color: #41d5cc;
-  font-size: .56rem;
-  font-weight: 700;
-}
-.em-key strong { font-size: .94rem; font-weight: 600; }
-.em-key.calc-number {
-  background: linear-gradient(180deg, #f6f8f9, #dfe4e8);
-  border-color: #b7c0c8;
-  border-bottom-color: #9aa6b0;
-  color: #18232d;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-}
-/* Right column operators + enter: dark charcoal keys (faithful to device). */
-.em-key.calc-operator { background: linear-gradient(180deg, #33424c, #1f2b33); border-color: #46555f; }
-.em-key.calc-enter {
-  color: #eef5fb;
-  background: linear-gradient(180deg, #33424c, #1f2b33);
-  border-color: #46555f;
-}
-/* 2nd key: green (faithful to device). */
-.em-key.calc-shift { color: #062119; background: linear-gradient(180deg, #6fc04a, #3f9a2a); border-color: #7fd05a; }
-.em-key.expected-key {
-  border-color: #ffd267;
-  box-shadow: 0 0 0 3px rgba(247,194,90,.4), 0 0 20px rgba(247,194,90,.28);
-  animation: expectedPulse 1.3s ease-in-out infinite;
-}
-@keyframes expectedPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+
+/* The calculator device face (.ti-*, .em-key, screen, nav pad) lives in
+   device-theme.css, imported before this file so the responsive +
+   reduced-motion overrides below still win the cascade. */
+
 .em-feedback {
   width: auto;
   align-self: stretch;
