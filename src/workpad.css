@@ -1,0 +1,119 @@
+/* ============================================================
+   STEP — Math Work Pad (MathLive)
+   A floating, math-first scratch surface: each line is a real
+   math field (stacked fractions, exponents, a math keyboard),
+   and pure-arithmetic lines auto-compute via the Compute Engine.
+   The chrome is kept deliberately calm to offset the dense keyboard.
+   ============================================================ */
+
+.work-pad-launch {
+  position: fixed;
+  right: 22px;
+  bottom: 18px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 50px;
+  padding: 13px 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: #f2fffd;
+  font-weight: 600;
+  background: linear-gradient(120deg, #11b7b2, #138f9f);
+  box-shadow: var(--shadow-float), 0 0 22px rgba(32, 213, 205, 0.12);
+  transition: transform var(--dur-fast) var(--ease-out), filter var(--dur-base) var(--ease-out);
+}
+.work-pad-launch:hover { transform: translateY(-1px); filter: brightness(1.05); }
+
+.work-pad-panel {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 20;
+  width: min(480px, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: linear-gradient(150deg, #101d31, #081321);
+  box-shadow: var(--shadow-float);
+}
+.work-pad-loading {
+  display: grid;
+  place-items: center;
+  min-height: 120px;
+  padding: 24px;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+}
+.work-pad-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 15px;
+  border-bottom: 1px solid var(--border);
+}
+.work-pad-title { display: flex; align-items: center; gap: 10px; }
+.work-pad-title img { width: 31px; height: 31px; }
+.work-pad-head strong { font-size: 1.05rem; }
+.work-pad-body { display: grid; gap: var(--space-3); padding: 14px; }
+.work-pad-hint { margin: 0; color: var(--text-soft); font-size: 0.85rem; line-height: var(--leading-normal); }
+.work-pad-hint kbd {
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  color: var(--text);
+  font: 600 0.78rem/1.4 var(--font-mono);
+}
+.work-pad-tools { display: flex; gap: var(--space-2); }
+.work-pad-note { margin: 0; padding: 0 2px; color: var(--muted); font-size: 0.78rem; }
+.work-pad-warn { margin: 0; color: var(--warning); font-size: 0.82rem; }
+
+.wp-btn {
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-soft);
+  background: var(--surface-2);
+  transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.wp-btn:hover { border-color: var(--border-strong); color: var(--text); }
+
+/* ---- The work lines ------------------------------------- */
+.wp-list { display: grid; gap: var(--space-2); }
+.wp-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--space-3); }
+
+/* ---- MathLive field themed to the calm dark palette ------ */
+.wp-field {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 1.15rem;
+  --caret-color: var(--accent);
+  --selection-background-color: rgba(32, 213, 205, 0.25);
+  --contains-highlight-background-color: rgba(32, 213, 205, 0.12);
+  --placeholder-color: var(--faint);
+  --smart-fence-color: var(--muted);
+}
+.wp-field:focus-within { border-color: var(--border-strong); outline: none; }
+
+.wp-result {
+  min-width: 66px;
+  text-align: right;
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.wp-result-empty { color: transparent; }
+
+@media (max-width: 760px) {
+  .work-pad-launch { right: 12px; bottom: 12px; padding: 11px 15px; }
+}

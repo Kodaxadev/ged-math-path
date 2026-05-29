@@ -14,6 +14,7 @@ import './lesson-polish.css';
 import './home-polish.css';
 import './controls-polish.css';
 import './views-polish.css';
+import './workpad.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
