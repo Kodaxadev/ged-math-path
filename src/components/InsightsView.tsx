@@ -48,7 +48,7 @@ export function InsightsView({ modules, lessons, progress, sessionId }: Props) {
       <div className="insights-grid">
         <article className="panel mastery-panel">
           <p className="eyebrow">TOPIC MASTERY</p>
-          <h2>Accuracy by topic</h2>
+          <h2>What is getting easier?</h2>
           {mastery.length === 0 ? <p className="insights-empty">Finish a practice problem to start seeing topic accuracy.</p> : mastery.map((row) => (
             <div className="mastery-row" key={row.moduleId}>
               <div><strong>{row.title}</strong><small>{scoreText(row.percentage, row.total)}</small></div>
@@ -68,16 +68,16 @@ export function InsightsView({ modules, lessons, progress, sessionId }: Props) {
         </article>
 
         <article className="panel pattern-panel">
-          <p className="eyebrow">MISTAKE PATTERNS</p>
+          <p className="eyebrow gold">WHAT JAMMED ME UP</p>
           <h2>What gets in the way</h2>
           {mistakes.length === 0 ? <p className="insights-empty">No mistakes tagged yet. That is okay; the journal fills only when useful.</p> : mistakes.map((row) => (
-            <div className="pattern-row" key={row.type}><span>{row.label}</span><strong>{row.count}</strong></div>
+            <div className="pattern-row" key={row.type}><span className="pattern-dot" aria-hidden="true" /><span className="pattern-label">{row.label}</span><strong>{row.count}</strong></div>
           ))}
         </article>
       </div>
 
       <article className="panel accommodation-panel">
-        <p className="eyebrow">ACCOMMODATION COMPARISON</p>
+        <p className="eyebrow">WHAT HELPS</p>
         <h2>Accuracy while a setting was active</h2>
         <p className="analytics-caution">This is a pattern finder, not proof that a setting caused the result. It becomes more useful after repeated practice.</p>
         <div className="comparison-grid">

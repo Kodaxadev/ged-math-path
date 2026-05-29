@@ -39,6 +39,11 @@
 .fast-win-actions button:hover { transform: translateY(-1px); }
 .topic-row { transition: background var(--dur-fast) var(--ease-out); }
 
+/* Mistake patterns read as a calm category list with a gold marker. */
+.pattern-row { gap: var(--space-2); align-items: center; }
+.pattern-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--warning); }
+.pattern-label { flex: 1; }
+
 /* ---- FOCUS SETTINGS DRAWER ------------------------------ */
 /* Each toggle row becomes a calm, obviously-tappable target. */
 .setting-row {
