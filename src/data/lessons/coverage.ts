@@ -15,7 +15,12 @@ export const coverageLessons: Lesson[] = [
     recognition: ['Mean means average.', 'Median means middle after ordering.', 'Mode means most frequent; range means high minus low.'],
     procedureCard: ['Mean = total ÷ number of values.', 'Median = ordered middle value.', 'Range = greatest - least.'],
     workedExample: { id: 'mean-data', prompt: 'Find the mean of 6, 8, 8, 10, and 13.', answer: '9', procedure: 'Add values, then divide by how many values exist.', steps: ['Add: 6 + 8 + 8 + 10 + 13 = 45.', 'There are 5 numbers.', '45 ÷ 5 = 9.', 'Answer: mean = 9.'] },
-    practice: [{ id: 'median-mode', prompt: 'For 3, 5, 5, 9, 12, find the median, mode, and range.', answer: 'Median 5; mode 5; range 9', procedure: 'Values are already ordered; select middle, repeated, and difference.', steps: ['The middle value is 5, so median = 5.', 'The value appearing most often is 5, so mode = 5.', 'Range: 12 - 3 = 9.'] }],
+    practice: [
+      { id: 'median-mode', prompt: 'For 3, 5, 5, 9, 12, find the median, mode, and range.', answer: 'Median 5; mode 5; range 9', procedure: 'Values are already ordered; select middle, repeated, and difference.', steps: ['The middle value is 5, so median = 5.', 'The value appearing most often is 5, so mode = 5.', 'Range: 12 - 3 = 9.'] },
+      { id: 'mean-4values', prompt: 'Find the mean of 12, 15, 18, and 15.', answer: '15', procedure: 'Add the values, then divide by how many there are.', steps: ['Add: 12 + 15 + 18 + 15 = 60.', 'There are 4 numbers.', '60 ÷ 4 = 15.', 'Answer: mean = 15.'] },
+      { id: 'median-even', prompt: 'Find the median of 4, 8, 10, and 14.', answer: '9', procedure: 'With an even count, average the two middle values.', steps: ['The values are already in order: 4, 8, 10, 14.', 'There is no single middle, so take the two middle values: 8 and 10.', 'Average them: (8 + 10) ÷ 2 = 9.', 'Answer: median = 9.'] },
+      { id: 'mean-find-total', prompt: 'The mean of 5 test scores is 80. What is the total of all 5 scores?', answer: '400', procedure: 'Work backward: total = mean × number of values.', steps: ['Mean = total ÷ number of values.', 'So total = mean × number of values.', 'Total = 80 × 5 = 400.', 'Answer: 400.'] },
+    ],
   },
   {
     id: 'inequality-basics', moduleId: 'inequalities', title: 'Inequalities without guessing the arrow',

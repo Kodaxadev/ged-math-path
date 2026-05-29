@@ -43,6 +43,11 @@ export const advancedLessons: Lesson[] = [
       id: 'marbles', prompt: 'The probability of picking a red marble is 1/5. How many red marbles could be in a bag of 40 marbles?', answer: '8 red marbles', procedure: 'Find 1/5 of the total.',
       steps: ['You need 1/5 of 40.', 'Divide by the bottom number: 40 ÷ 5 = 8.', 'Multiply by the top number: 8 × 1 = 8.', 'Answer: 8 red marbles.'],
     },
-    practice: [{ id: 'blue-marbles', prompt: 'The probability of blue is 3/10 in a bag of 50. How many are blue?', answer: '15 blue marbles', procedure: 'Find 3/10 of 50.', steps: ['50 ÷ 10 = 5.', '5 × 3 = 15.', 'Answer: 15 blue marbles.'] }],
+    practice: [
+      { id: 'blue-marbles', prompt: 'The probability of blue is 3/10 in a bag of 50. How many are blue?', answer: '15 blue marbles', procedure: 'Find 3/10 of 50.', steps: ['50 ÷ 10 = 5.', '5 × 3 = 15.', 'Answer: 15 blue marbles.'] },
+      { id: 'prob-fraction-forward', prompt: 'A bag has 4 red marbles out of 20 total. What is the probability of picking red?', answer: '1/5', procedure: 'Probability = wanted ÷ total, then reduce the fraction.', steps: ['Probability = 4 ÷ 20 = 4/20.', 'Reduce: divide top and bottom by 4.', '4/20 = 1/5.', 'Answer: 1/5.'] },
+      { id: 'prob-green', prompt: 'The probability of green is 2/7 in a bag of 49. How many are green?', answer: '14 green', procedure: 'Find 2/7 of 49: divide by 7, multiply by 2.', steps: ['Divide by the bottom number: 49 ÷ 7 = 7.', 'Multiply by the top number: 7 × 2 = 14.', 'Answer: 14 green.'] },
+      { id: 'prob-defective', prompt: 'A factory finds 3/100 of parts are defective. In a batch of 500, how many are defective?', answer: '15 defective', procedure: 'Find 3/100 of 500: divide by 100, multiply by 3.', steps: ['Divide by 100: 500 ÷ 100 = 5.', 'Multiply by 3: 5 × 3 = 15.', 'Answer: 15 defective.'] },
+    ],
   },
 ];
