@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+<defs><linearGradient id="bg" x2="1600" y2="900"><stop stop-color="#07111F"/><stop offset="1" stop-color="#040912"/></linearGradient><linearGradient id="panel"><stop stop-color="#102034"/><stop offset="1" stop-color="#091322"/></linearGradient><linearGradient id="blue"><stop stop-color="#25A6FF"/><stop offset="1" stop-color="#20D5CD"/></linearGradient><filter id="shadow"><feDropShadow dy="20" stdDeviation="30" flood-opacity=".3"/></filter></defs>
+<rect width="1600" height="900" rx="32" fill="url(#bg)"/>
+<text x="76" y="77" fill="#20D5CD" font-family="Arial" font-size="15" font-weight="700" letter-spacing="4">VISUAL PRACTICE + INSIGHTS • DESIGN TARGET</text>
+<text x="76" y="137" fill="#F0F6FF" font-family="Arial" font-size="48" font-weight="700">See the pattern. Track the jam.</text>
+<text x="76" y="176" fill="#9EB2CD" font-family="Arial" font-size="18">GED-style visuals paired with feedback that identifies what actually blocked progress.</text>
+<g filter="url(#shadow)">
+<!-- practice panel -->
+<rect x="76" y="228" width="916" height="602" rx="23" fill="url(#panel)" stroke="#1B314A"/>
+<text x="106" y="268" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">VISUAL PRACTICE</text><text x="106" y="313" fill="#F1F6FF" font-family="Arial" font-size="27" font-weight="700">Distance from zero</text><text x="106" y="346" fill="#A4B7D0" font-family="Arial" font-size="15">Point Q is shown below. What is its distance from 0?</text>
+<!-- number line -->
+<rect x="106" y="380" width="856" height="170" rx="16" fill="#091524" stroke="#1B344D"/>
+<path d="M168 466H898" stroke="#D9E5F7" stroke-width="2"/><path d="M168 466L181 459V473L168 466Z" fill="#D9E5F7"/><path d="M898 466L885 459V473L898 466Z" fill="#D9E5F7"/>
+<g fill="#D6E2F3" font-family="Arial" font-size="14" text-anchor="middle"><text x="240" y="503">−4</text><text x="340" y="503">−3</text><text x="440" y="503">−2</text><text x="540" y="503">−1</text><text x="640" y="503">0</text><text x="740" y="503">1</text><text x="840" y="503">2</text></g>
+<g stroke="#D9E5F7" stroke-width="2"><path d="M240 451V481"/><path d="M340 451V481"/><path d="M440 451V481"/><path d="M540 451V481"/><path d="M640 451V481"/><path d="M740 451V481"/><path d="M840 451V481"/></g>
+<circle cx="490" cy="466" r="10" fill="#A968F5" stroke="#E9CEFF" stroke-width="3"/><text x="490" y="436" text-anchor="middle" fill="#C891FF" font-family="Arial" font-size="19" font-weight="700">Q</text>
+<!-- options -->
+<text x="106" y="593" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">CHOOSE AN ANSWER</text>
+<rect x="106" y="617" width="194" height="57" rx="12" fill="#102236" stroke="#1E3851"/><text x="133" y="652" fill="#DDE9F9" font-family="Arial" font-size="18">A. −2.5</text><rect x="317" y="617" width="194" height="57" rx="12" fill="#102236" stroke="#1E3851"/><text x="344" y="652" fill="#DDE9F9" font-family="Arial" font-size="18">B. −1.5</text><rect x="528" y="617" width="194" height="57" rx="12" fill="#143740" stroke="#20D5CD"/><text x="555" y="652" fill="#E6FFFB" font-family="Arial" font-size="18">C. 1.5</text><rect x="739" y="617" width="194" height="57" rx="12" fill="#102236" stroke="#1E3851"/><text x="766" y="652" fill="#DDE9F9" font-family="Arial" font-size="18">D. 2.5</text>
+<rect x="106" y="709" width="827" height="83" rx="13" fill="#112535" stroke="#25A6FF" stroke-opacity=".28"/><text x="130" y="740" fill="#25A6FF" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">WHY THIS MATTERS</text><text x="130" y="770" fill="#CEDCF0" font-family="Arial" font-size="15">Location is −1.5. Distance asks “how far,” so the answer is positive 1.5.</text>
+<!-- insights column -->
+<rect x="1012" y="228" width="512" height="602" rx="23" fill="url(#panel)" stroke="#1B314A"/>
+<text x="1042" y="268" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">INSIGHTS</text><text x="1042" y="309" fill="#F1F6FF" font-family="Arial" font-size="26" font-weight="700">What is getting easier?</text>
+<rect x="1042" y="341" width="452" height="93" rx="14" fill="#091524" stroke="#1A334C"/><text x="1062" y="372" fill="#9AB0CC" font-family="Arial" font-size="12">FUNCTION TABLES</text><text x="1062" y="406" fill="#EAF4FF" font-family="Arial" font-size="20" font-weight="700">3 / 4 correct</text><rect x="1264" y="391" width="202" height="9" rx="4" fill="#1B3048"/><rect x="1264" y="391" width="152" height="9" rx="4" fill="url(#blue)"/>
+<text x="1042" y="474" fill="#F7C25A" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">WHAT JAMMED ME UP</text>
+<rect x="1042" y="495" width="452" height="65" rx="13" fill="#0A1728" stroke="#1A334C"/><circle cx="1070" cy="528" r="8" fill="#F7C25A"/><text x="1091" y="525" fill="#EAF3FF" font-family="Arial" font-size="14" font-weight="700">Misread target word</text><text x="1091" y="544" fill="#91A7C3" font-family="Arial" font-size="11">distance • 2 recent misses</text>
+<rect x="1042" y="572" width="452" height="65" rx="13" fill="#0A1728" stroke="#1A334C"/><circle cx="1070" cy="605" r="8" fill="#A968F5"/><text x="1091" y="602" fill="#EAF3FF" font-family="Arial" font-size="14" font-weight="700">Symbol recognition</text><text x="1091" y="621" fill="#91A7C3" font-family="Arial" font-size="11">raised 2 • practice again</text>
+<text x="1042" y="687" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">WHAT HELPS</text>
+<rect x="1042" y="706" width="452" height="86" rx="13" fill="#12313B" stroke="#20D5CD" stroke-opacity=".3"/><text x="1064" y="738" fill="#CAFBF7" font-family="Arial" font-size="16" font-weight="700">Focus mode + step markers</text><text x="1064" y="764" fill="#A9C0D7" font-family="Arial" font-size="13">Higher accuracy in independent practice.</text>
+</g>
+<text x="76" y="869" fill="#667B98" font-family="Arial" font-size="12" letter-spacing="2">DESIGN NORTH STAR • VISUAL PRACTICE AND INSIGHTS TARGET • NOT A CURRENT SCREENSHOT</text>
+</svg>
