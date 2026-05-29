@@ -15,7 +15,7 @@
 
 ![STEP design north star: procedure-first GED Math learning experience](./docs/readme-assets/hero-design-goal.svg)
 
-> **Design direction, not a current screenshot.** The concept boards in this README define the product experience STEP is moving toward. The live application already implements the core learning method, Calculator Lab foundations, structured Work Pad, GED coverage mapping, progress tracking, and visual-practice infrastructure; the final dashboard/layout polish is an active development target.
+> **Design direction, not a current screenshot.** The concept boards in this README define the product experience STEP is moving toward. The live application already implements the core learning method, Calculator Lab foundations, MathLive Work Pad with deliberate checking, GED coverage mapping, progress tracking, and visual-practice infrastructure; final dashboard/layout convergence remains an active design target.
 
 ---
 
@@ -52,16 +52,24 @@ STEP is a live, static web application deployed at **[step.kodaxa.dev](https://s
 | Learning notation | Uses `n` and `×` while learning, with GED notation available when useful |
 | Calculator Lab | Interactive scientific-calculator practice surface with guided key paths and free practice |
 | Calculator engine | Supports arithmetic, decimals, parentheses, squares, roots, powers, π, reciprocal, percent-style operations, answer recall, delete, clear, and enter |
-| Structured Work Pad | MathLive-based typed math workspace with locally saved working lines |
+| Structured Work Pad | MathLive-based typed math workspace with local saving, autofocus on open, and learner-triggered line checking |
+| Reveal discipline | Work Pad results appear only after **Check** is pressed and clear immediately when the line is edited |
+| Controlled answer choices | Immediate choice feedback is structurally restricted to lessons that intentionally teach answer-checking strategy |
 | GED Map | Visible coverage map of ready, partial, and planned GED skill families |
 | Practice-derived lessons | Dedicated instruction for number-line distance, raised-number/square recognition, and function-table rules |
 | Visual practice foundation | Native number-line, coordinate-grid, and bar-chart rendering infrastructure |
 | Insights foundation | Confidence and mistake-pattern tracking intended to show what helps and what jams |
-| Accessibility and focus tools | Keyboard support, focus states, mobile navigation, reduced-motion handling, and focus settings |
+| Accessibility and focus tools | Keyboard support, Work Pad autofocus, mobile navigation, reduced-motion handling, and focus settings |
 
-### Important product rule in progress
+### The reveal rule is enforced
 
-MathLive makes the Work Pad dramatically better for writing real math. The intended final behavior is that **results are never revealed automatically**: the learner should choose when to check a line or move into calculator mode.
+Nothing in STEP should reveal a result before the learner deliberately requests it.
+
+- The MathLive Work Pad stays quiet while a line is being written.
+- Pressing **Check** evaluates only that line.
+- Editing a checked line immediately removes the displayed result.
+- Ordinary practice problems do not receive instant multiple-choice correctness feedback.
+- Immediate answer-choice feedback exists only where checking answer choices is the procedure being taught.
 
 ---
 
@@ -102,7 +110,7 @@ The emulator is being developed for GED-relevant TI-30XS MultiView-style practic
 
 ![STEP MathLive Work Pad design target with typed working lines and deliberate check controls](./docs/readme-assets/workpad-design-goal.svg)
 
-The Work Pad is not a drawing surface. It is a typed, structured math notebook for writing one move per line:
+The Work Pad is not a drawing surface. It is now a typed, structured MathLive notebook for writing one move per line:
 
 ```text
 48 - 36 = 12
@@ -110,13 +118,16 @@ The Work Pad is not a drawing surface. It is a typed, structured math notebook f
 0.25 = 25%
 ```
 
-Target behavior:
+Already implemented:
 
 - visual fractions, powers, roots, and equations through MathLive;
 - one working line at a time;
 - local-only saving;
-- optional line checking only when requested;
-- direct compatibility with Calculator Lab workflows.
+- autofocus into the first math line when the pad opens;
+- explicit **Check** action per line;
+- checked results cleared the moment the line is edited.
+
+The remaining work is visual convergence toward the full notebook-style board and tighter workflow connection with Calculator Lab.
 
 ### Visual practice and Insights target
 
@@ -155,7 +166,7 @@ While learning, unfamiliar notation is rewritten into clearer working language.
 
 ### 2. Show one usable move at a time
 
-A STEP problem should not dump a completed solution before the learner has time to try. The flow is intended to be:
+A STEP problem should not dump a completed solution before the learner has time to try. The flow is:
 
 1. see the question;
 2. identify or attempt the first move;
@@ -209,6 +220,7 @@ Examples already translated into course work:
 | `Q = −1.5` selected instead of distance `1.5` | Location was read correctly; target word was missed | Added **Number lines: where it is versus how far** lesson |
 | Function table selected correctly without knowing why | Recognition existed without a usable verbal rule | Added **Function tables: scan only x first** lesson |
 | Calculator use limited to simple arithmetic | Tool operation blocks otherwise solvable questions | Elevated **Calculator Lab** into a first-class learning route |
+| Solved results appeared before work was attempted | The interface could repeat the same shutdown trigger as ordinary resources | Shipped deliberate Work Pad checking and gated choice feedback |
 
 ---
 
@@ -241,6 +253,7 @@ Examples already translated into course work:
 | Calculator Lab | Learn calculator operation from zero through guided button sequences |
 | GED Tools | Connect calculator use and formula-sheet procedures to problem families |
 | GED Map | See which skill families are ready, partly built, or still planned |
+| Work Pad | Enter structured math and check only the line you intentionally choose |
 | Quick Help | Find compact “what to write” anchors |
 | Insights | Review mastery and friction patterns |
 | Readiness Check | Mixed, untimed GED-style procedure identification |
@@ -264,9 +277,9 @@ Coverage is organized around real test-use pathways:
 
 ## AuDHD-friendly interface principles
 
-STEP is being designed for focus regulation, working-memory friction, and task paralysis rather than assuming every learner benefits from the same study interface.
+STEP is designed for focus regulation, working-memory friction, and task paralysis rather than assuming every learner benefits from the same study interface.
 
-Current and planned principles include:
+Current principles include:
 
 - one dominant action per screen;
 - no timer pressure by default;
@@ -277,7 +290,7 @@ Current and planned principles include:
 - structured Work Pad available alongside problem work;
 - Calculator Lab as a separate skill path;
 - local-only progress data;
-- accessible keyboard and mobile navigation;
+- keyboard and mobile navigation support;
 - reduced-motion support.
 
 ---
@@ -290,7 +303,8 @@ STEP is intentionally lightweight: it is a private-learning-friendly frontend ap
 | --- | --- |
 | Frontend | React + TypeScript + Vite |
 | Styling | Component-focused CSS design system and dark STEP brand tokens |
-| Math input | MathLive structured entry in Work Pad |
+| Math input | MathLive structured entry in Work Pad with deliberate line checking |
+| Calculation support | CortexJS Compute Engine, invoked only by learner-triggered Work Pad checks |
 | Calculator practice | Custom interactive calculator emulator and expression engine |
 | Visual problems | Native SVG/React-rendered number-line, chart, and coordinate-grid primitives |
 | Progress storage | Browser `localStorage` only |
@@ -318,16 +332,16 @@ npm run build
 
 ### Current product hardening
 
-- Ensure MathLive Work Pad checks are always learner-triggered rather than automatic.
-- Restrict immediate multiple-choice correctness feedback to lessons where checking choices is the taught method.
 - Complete TI-30XS MultiView key-position and secondary-function calibration against an authoritative device reference.
 - Continue mobile, keyboard, and screen-reader review of Calculator Lab and Work Pad interaction.
+- Use additional real practice-test sessions to find the next exact procedure or wording blocks.
+- Verify that all future interactive problem types preserve the learner-requested reveal rule.
 
 ### Design convergence
 
 - Rebuild the live dashboard to match the dashboard north-star board.
 - Convert Calculator Lab into the full three-panel workstation target.
-- Polish Work Pad into the structured notebook view with explicit per-line checking.
+- Polish the Work Pad presentation toward the notebook board while preserving shipped opt-in checking behavior.
 - Refactor lesson screens around a stronger one-active-step visual hierarchy.
 - Expand Visual Practice and Insights toward the target board using real logged data only.
 
