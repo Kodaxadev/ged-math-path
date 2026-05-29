@@ -28,6 +28,22 @@ export const coverageLessons: Lesson[] = [
     ],
   },
   {
+    id: 'weighted-average', moduleId: 'data', title: 'Weighted average: count each value its number of times',
+    objective: 'Average values when some appear more often or carry more weight.',
+    recognition: ['Some values repeat or are worth more, like grades by credit hours.', 'A plain average would ignore how many times each value counts.'],
+    procedureCard: ['Multiply each value by its weight (how many times it counts).', 'Add all those products together.', 'Divide by the total of the weights, not the number of different values.'],
+    workedExample: {
+      id: 'weighted-grades', prompt: 'A student scores 90 on 2 tests and 80 on 3 tests. What is the average score across all 5 tests?', answer: '84', procedure: 'Multiply each score by how many times it occurs, add, then divide by the total count.',
+      steps: ['90 happened 2 times: 90 × 2 = 180.', '80 happened 3 times: 80 × 3 = 240.', 'Add the products: 180 + 240 = 420.', 'Total number of tests: 2 + 3 = 5.', 'Divide: 420 ÷ 5 = 84.', 'Answer: 84.'],
+    },
+    practice: [
+      { id: 'weighted-prices', prompt: 'A store sells 4 items at $3 and 6 items at $8. What is the average price per item?', answer: '$6', procedure: 'Multiply each price by its count, add, divide by total count.', steps: ['$3 × 4 = 12.', '$8 × 6 = 48.', 'Add: 12 + 48 = 60.', 'Total items: 4 + 6 = 10.', '60 ÷ 10 = 6.', 'Answer: $6.'] },
+      { id: 'weighted-ages', prompt: 'In a group, 3 people are age 20 and 2 people are age 30. What is the average age?', answer: '24', procedure: 'Multiply each age by how many people, add, divide by total people.', steps: ['20 × 3 = 60.', '30 × 2 = 60.', 'Add: 60 + 60 = 120.', 'Total people: 3 + 2 = 5.', '120 ÷ 5 = 24.', 'Answer: 24.'] },
+      { id: 'weighted-quiz', prompt: 'A class of 10 students has 6 scores of 70 and 4 scores of 95. What is the class average?', answer: '80', procedure: 'Weight each score by how many students earned it.', steps: ['70 × 6 = 420.', '95 × 4 = 380.', 'Add: 420 + 380 = 800.', 'Total students: 6 + 4 = 10.', '800 ÷ 10 = 80.', 'Answer: 80.'] },
+      { id: 'weighted-hours', prompt: 'A worker earns $12/hour for 30 hours and $18/hour for 10 hours. What is the average hourly pay?', answer: '$13.50', procedure: 'Multiply each rate by its hours, add, divide by total hours.', steps: ['$12 × 30 = 360.', '$18 × 10 = 180.', 'Add: 360 + 180 = 540.', 'Total hours: 30 + 10 = 40.', '540 ÷ 40 = 13.50.', 'Answer: $13.50.'] },
+    ],
+  },
+  {
     id: 'inequality-basics', moduleId: 'inequalities', title: 'Inequalities without guessing the arrow',
     objective: 'Solve comparison statements with the same undo steps as equations.',
     recognition: ['Symbols are <, >, ≤, or ≥ instead of =.', 'The arrow points toward the smaller side.'],

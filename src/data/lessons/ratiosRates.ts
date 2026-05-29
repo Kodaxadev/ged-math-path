@@ -34,4 +34,20 @@ export const ratioRateLessons: Lesson[] = [
       { id: 'reading-rate', prompt: 'A reader finishes 90 pages in 3 hours. What is the reading rate?', answer: '30 pages per hour', procedure: 'Total pages ÷ hours = pages per hour.', steps: ['Write: pages ÷ hours.', '90 ÷ 3 = 30.', 'Answer: 30 pages per hour.'] },
     ],
   },
+  {
+    id: 'unit-conversions', moduleId: 'ratios', title: 'Unit conversions: multiply or divide by the conversion',
+    objective: 'Switch between units by using the given conversion factor in the right direction.',
+    recognition: ['Two units for the same kind of measure: feet and inches, pounds and ounces, hours and minutes.', 'A conversion fact is given or known, such as 1 foot = 12 inches.'],
+    procedureCard: ['Going to a smaller unit: multiply (you get more of them).', 'Going to a larger unit: divide (you get fewer of them).', 'Write the conversion fact first, then decide multiply or divide.'],
+    workedExample: {
+      id: 'feet-to-inches', prompt: 'A board is 4 feet long. How many inches is that? (1 foot = 12 inches)', answer: '48 inches', procedure: 'Inches are smaller than feet, so multiply.',
+      steps: ['Write the conversion fact: 1 foot = 12 inches.', 'Inches are smaller, so there are more of them — multiply.', '4 × 12 = 48.', 'Answer: 48 inches.'],
+    },
+    practice: [
+      { id: 'pounds-to-ounces', prompt: 'A bag weighs 5 pounds. How many ounces is that? (1 pound = 16 ounces)', answer: '80 ounces', procedure: 'Ounces are smaller, so multiply.', steps: ['Conversion fact: 1 pound = 16 ounces.', 'Ounces are smaller — multiply.', '5 × 16 = 80.', 'Answer: 80 ounces.'] },
+      { id: 'inches-to-feet', prompt: 'A rope is 36 inches long. How many feet is that? (12 inches = 1 foot)', answer: '3 feet', procedure: 'Feet are larger, so divide.', steps: ['Conversion fact: 12 inches = 1 foot.', 'Feet are larger — divide.', '36 ÷ 12 = 3.', 'Answer: 3 feet.'] },
+      { id: 'hours-to-minutes', prompt: 'A movie lasts 3 hours. How many minutes is that? (1 hour = 60 minutes)', answer: '180 minutes', procedure: 'Minutes are smaller, so multiply.', steps: ['Conversion fact: 1 hour = 60 minutes.', 'Minutes are smaller — multiply.', '3 × 60 = 180.', 'Answer: 180 minutes.'] },
+      { id: 'feet-to-yards', prompt: 'A hallway is 24 feet long. How many yards is that? (3 feet = 1 yard)', answer: '8 yards', procedure: 'Yards are larger, so divide.', steps: ['Conversion fact: 3 feet = 1 yard.', 'Yards are larger — divide.', '24 ÷ 3 = 8.', 'Answer: 8 yards.'] },
+    ],
+  },
 ];

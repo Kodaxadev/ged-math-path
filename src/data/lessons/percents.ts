@@ -85,4 +85,20 @@ export const percentLessons: Lesson[] = [
       },
     ],
   },
+  {
+    id: 'simple-interest', moduleId: 'percent', title: 'Simple interest: principal, rate, time',
+    objective: 'Use I = P × r × t to find interest earned or owed.',
+    recognition: ['You see a starting amount, a percent rate per year, and a number of years.', 'Words like interest, loan, savings, invested, or per year.'],
+    procedureCard: ['Interest = Principal × rate × time.', 'Change the percent rate to a decimal first.', 'Time is in years.', 'For the total owed: add the interest back to the principal.'],
+    workedExample: {
+      id: 'interest-savings', prompt: 'You put $500 in savings at 4% simple interest per year for 3 years. How much interest do you earn?', answer: '$60', procedure: 'I = P × r × t, with the rate as a decimal.',
+      steps: ['Write the formula: I = P × r × t.', 'Change 4% to a decimal: 0.04.', 'Insert the numbers: I = 500 × 0.04 × 3.', '500 × 0.04 = 20.', '20 × 3 = 60.', 'Answer: $60 in interest.'],
+    },
+    practice: [
+      { id: 'interest-loan', prompt: 'A $2,000 loan charges 5% simple interest per year for 2 years. How much interest is owed?', answer: '$200', procedure: 'I = P × r × t.', steps: ['Change 5% to a decimal: 0.05.', 'I = 2,000 × 0.05 × 2.', '2,000 × 0.05 = 100.', '100 × 2 = 200.', 'Answer: $200.'] },
+      { id: 'interest-1year', prompt: 'You invest $800 at 6% simple interest for 1 year. How much interest do you earn?', answer: '$48', procedure: 'I = P × r × t.', steps: ['Change 6% to a decimal: 0.06.', 'I = 800 × 0.06 × 1.', '800 × 0.06 = 48.', '48 × 1 = 48.', 'Answer: $48.'] },
+      { id: 'interest-total', prompt: 'A $1,000 deposit earns 3% simple interest per year for 4 years. What is the total amount in the account?', answer: '$1,120', procedure: 'Find the interest, then add it to the principal.', steps: ['Change 3% to a decimal: 0.03.', 'Interest: I = 1,000 × 0.03 × 4 = 120.', 'Add interest to the principal: 1,000 + 120 = 1,120.', 'Answer: $1,120.'] },
+      { id: 'interest-half-year', prompt: 'A $1,200 loan charges 10% simple interest per year. How much interest is owed after 2 years?', answer: '$240', procedure: 'I = P × r × t.', steps: ['Change 10% to a decimal: 0.10.', 'I = 1,200 × 0.10 × 2.', '1,200 × 0.10 = 120.', '120 × 2 = 240.', 'Answer: $240.'] },
+    ],
+  },
 ];

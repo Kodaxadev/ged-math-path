@@ -32,4 +32,20 @@ export const geometryLessons: Lesson[] = [
       { id: 'cylinder-314', prompt: 'A cylinder has radius 4 and height 3. Using 3.14 for π, what is its volume?', answer: '150.72 cubic units', procedure: 'V = π × r² × h, with 3.14 in place of π.', steps: ['V = 3.14 × 4² × 3.', '4² = 16.', '3.14 × 16 = 50.24.', '50.24 × 3 = 150.72.', 'Answer: 150.72 cubic units.'] },
     ],
   },
+  {
+    id: 'surface-area', moduleId: 'geometry', title: 'Surface area of a box',
+    objective: 'Add up the areas of all six faces of a rectangular box.',
+    recognition: ['A rectangular box (prism) gives length, width, and height.', 'The question asks for surface area, how much wrapping, or how much paint.'],
+    procedureCard: ['A box has 3 pairs of matching faces.', 'Surface area = 2(l×w) + 2(l×h) + 2(w×h).', 'Find each face area, then add the pairs.'],
+    workedExample: {
+      id: 'box-surface', prompt: 'A box is 5 by 3 by 2. What is its surface area?', answer: '62 square units', procedure: 'Add twice each of the three different face areas.',
+      steps: ['Bottom/top face: 5 × 3 = 15. Two of them: 2 × 15 = 30.', 'Front/back face: 5 × 2 = 10. Two of them: 2 × 10 = 20.', 'Side faces: 3 × 2 = 6. Two of them: 2 × 6 = 12.', 'Add them all: 30 + 20 + 12 = 62.', 'Answer: 62 square units.'],
+    },
+    practice: [
+      { id: 'cube-surface', prompt: 'A cube has edges of 4. What is its surface area?', answer: '96 square units', procedure: 'A cube has 6 equal square faces.', steps: ['One face: 4 × 4 = 16.', 'A cube has 6 faces: 6 × 16 = 96.', 'Answer: 96 square units.'] },
+      { id: 'box-surface-2', prompt: 'A box is 6 by 4 by 3. What is its surface area?', answer: '108 square units', procedure: 'Surface area = 2(l×w) + 2(l×h) + 2(w×h).', steps: ['6 × 4 = 24, doubled = 48.', '6 × 3 = 18, doubled = 36.', '4 × 3 = 12, doubled = 24.', 'Add: 48 + 36 + 24 = 108.', 'Answer: 108 square units.'] },
+      { id: 'box-surface-3', prompt: 'A box is 10 by 2 by 2. What is its surface area?', answer: '88 square units', procedure: 'Surface area = 2(l×w) + 2(l×h) + 2(w×h).', steps: ['10 × 2 = 20, doubled = 40.', '10 × 2 = 20, doubled = 40.', '2 × 2 = 4, doubled = 8.', 'Add: 40 + 40 + 8 = 88.', 'Answer: 88 square units.'] },
+      { id: 'cube-surface-2', prompt: 'A cube has edges of 5. What is its surface area?', answer: '150 square units', procedure: 'A cube has 6 equal square faces.', steps: ['One face: 5 × 5 = 25.', '6 faces: 6 × 25 = 150.', 'Answer: 150 square units.'] },
+    ],
+  },
 ];

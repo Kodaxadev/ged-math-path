@@ -70,4 +70,20 @@ export const foundationLessons: Lesson[] = [
       { id: 'square-diff', prompt: 'Simplify: 5² - 2².', answer: '21', procedure: 'Expand each square, then subtract.', steps: ['5² = 5 × 5 = 25.', '2² = 2 × 2 = 4.', '25 - 4 = 21.', 'Answer: 21.'] },
     ],
   },
+  {
+    id: 'scientific-notation', moduleId: 'number-sense', title: 'Scientific notation: move the decimal point',
+    objective: 'Read and write big or small numbers using a power of 10.',
+    recognition: ['A number is written as something × 10 with a raised number.', 'A very large or very small number needs a shorter form.'],
+    procedureCard: ['The raised number tells how many places to move the decimal.', 'Positive power: move right (the number gets bigger).', 'Negative power: move left (the number gets smaller).', 'Fill empty spots with zeros.'],
+    workedExample: {
+      id: 'sci-to-standard', prompt: 'Write 3.5 × 10⁴ as a normal number.', answer: '35,000', procedure: 'Move the decimal point right by the power.',
+      steps: ['The power is 4, and it is positive, so move the decimal right 4 places.', 'Start at 3.5 and move: 3.5 → 35 → 350 → 3,500 → 35,000.', 'Fill empty spots with zeros.', 'Answer: 35,000.'],
+    },
+    practice: [
+      { id: 'sci-large', prompt: 'Write 6 × 10³ as a normal number.', answer: '6,000', procedure: 'Positive power 3: move the decimal right 3 places.', steps: ['Move right 3 places from 6.', '6 → 60 → 600 → 6,000.', 'Answer: 6,000.'] },
+      { id: 'sci-small', prompt: 'Write 2 × 10⁻³ as a normal number.', answer: '0.002', procedure: 'Negative power 3: move the decimal left 3 places.', steps: ['Move left 3 places from 2.', '2 → 0.2 → 0.02 → 0.002.', 'Answer: 0.002.'] },
+      { id: 'sci-from-standard', prompt: 'Write 48,000 in scientific notation.', answer: '4.8 × 10⁴', procedure: 'Put one digit before the decimal, then count places moved.', steps: ['Place the decimal after the first digit: 4.8.', 'Count how many places the decimal moved from 48,000: 4 places left.', 'Moving left makes a positive power.', 'Answer: 4.8 × 10⁴.'] },
+      { id: 'sci-which-bigger', prompt: 'Which is larger: 5 × 10³ or 8 × 10²?', answer: '5 × 10³', procedure: 'Compare the powers of 10 first; a bigger power means a bigger number.', steps: ['5 × 10³ = 5,000.', '8 × 10² = 800.', '5,000 is larger than 800.', 'Answer: 5 × 10³.'] },
+    ],
+  },
 ];

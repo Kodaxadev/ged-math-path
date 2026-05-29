@@ -34,14 +34,14 @@ export const gedTopics: GedTopic[] = [
   { title: 'Equations of lines', path: 'calculator', state: 'partial', lessonIds: ['slope-points', 'function-lines'] },
   { title: 'Solve equations by checking choices', path: 'calculator', state: 'planned' },
   { title: 'Quadratics with answer choices', path: 'calculator', state: 'partial', lessonIds: ['quadratic-basics'] },
-  { title: 'Simple interest', path: 'calculator', state: 'planned' },
-  { title: 'Weighted average', path: 'calculator', state: 'planned' },
+  { title: 'Simple interest', path: 'calculator', state: 'ready', lessonIds: ['simple-interest'] },
+  { title: 'Weighted average', path: 'calculator', state: 'ready', lessonIds: ['weighted-average'] },
   { title: 'Calculator word problems', path: 'calculator', state: 'partial', lessonIds: ['calculator-entries', 'mixed-check'] },
 
   { title: 'Area', path: 'formula-sheet', state: 'ready', lessonIds: ['area-formulas', 'formula-sheet-route'] },
   { title: 'Perimeter / circumference', path: 'formula-sheet', state: 'partial', lessonIds: ['circles-right-triangles', 'formula-sheet-route'] },
   { title: 'Volume', path: 'formula-sheet', state: 'ready', lessonIds: ['cylinder-volume', 'formula-sheet-route'] },
-  { title: 'Surface area', path: 'formula-sheet', state: 'planned' },
+  { title: 'Surface area', path: 'formula-sheet', state: 'ready', lessonIds: ['surface-area', 'formula-sheet-route'] },
   { title: 'Pythagorean theorem', path: 'formula-sheet', state: 'ready', lessonIds: ['circles-right-triangles', 'formula-sheet-route'] },
 
   { title: 'Fractions', path: 'no-calculator', state: 'ready', lessonIds: ['fraction-of-total', 'fraction-equations', 'no-calculator-route'] },
@@ -61,9 +61,9 @@ export const gedTopics: GedTopic[] = [
   { title: 'Inequalities', path: 'mixed', state: 'ready', lessonIds: ['inequality-basics'] },
   { title: 'Systems of equations', path: 'mixed', state: 'ready', lessonIds: ['system-addition'] },
   { title: 'Graph lines', path: 'mixed', state: 'partial', lessonIds: ['function-lines'] },
-  { title: 'Scientific notation', path: 'mixed', state: 'planned' },
+  { title: 'Scientific notation', path: 'mixed', state: 'ready', lessonIds: ['scientific-notation'] },
   { title: 'FOIL', path: 'mixed', state: 'planned' },
-  { title: 'Unit conversions', path: 'mixed', state: 'planned' },
+  { title: 'Unit conversions', path: 'mixed', state: 'ready', lessonIds: ['unit-conversions'] },
   { title: 'Quadratic formula', path: 'later', state: 'planned', note: 'Add after higher-frequency procedures are stable.' },
 ];
 
