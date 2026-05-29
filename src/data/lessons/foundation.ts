@@ -24,6 +24,7 @@ export const foundationLessons: Lesson[] = [
       prompt: 'Point Q is halfway between -2 and -1. What is the distance from 0 to Q?',
       answer: '1.5 units',
       procedure: 'Find the location first, then answer the distance question without the negative sign.',
+      visual: { kind: 'number-line', min: -3, max: 3, step: 1, points: [{ value: -1.5, label: 'Q' }, { value: 0, label: '0' }], caption: 'Q sits at -1.5, but its distance from 0 is 1.5.' },
       steps: ['Location: halfway between -2 and -1 is -1.5.', 'Stop and read the target word: distance.', 'Distance asks how far Q is from 0, not which side it is on.', 'Q is 1.5 units from 0. Answer: 1.5.'],
     },
     practice: [

@@ -1,5 +1,7 @@
 import { useId, useState } from 'react';
 import type { Attempt, ConfidenceScore, MistakeType, Problem, Progress } from '../types';
+import { ProblemVisual } from './ProblemVisual';
+import { ChoiceChecker } from './ChoiceChecker';
 
 type Props = {
   problem: Problem;
@@ -69,6 +71,8 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false }: 
       <p className="problem-label">{practice ? 'TRY IT' : 'WORK ALONG WITH ME'}</p>
       <h3 id={headingId}>{problem.prompt}</h3>
       {notation && <pre className="notation" aria-label="Translated math notation">{notation}</pre>}
+      {problem.visual && <ProblemVisual visual={problem.visual} />}
+      {problem.choices && <ChoiceChecker choices={problem.choices} />}
       {!started && (
         <div className="before-start">
           <p className="pause-note">{practice ? 'Work this on your scratch pad first. Uncover one step only when you need it.' : 'Try the first move yourself. Then uncover one step to compare.'}</p>

@@ -24,6 +24,7 @@ export const advancedLessons: Lesson[] = [
     procedureCard: ['Slope = change in y ÷ change in x.', 'Use the same point order top and bottom.', '(y₂ - y₁) ÷ (x₂ - x₁).'],
     workedExample: {
       id: 'slope', prompt: 'What is the slope of the line passing through (2, 5) and (6, 13)?', answer: '2', procedure: 'Subtract y values; subtract x values; divide.',
+      visual: { kind: 'coordinate-grid', points: [{ x: 2, y: 5, label: '(2, 5)' }, { x: 6, y: 13, label: '(6, 13)' }], connectLine: true, min: 0, max: 14, caption: 'The line climbs 8 up while moving 4 across.' },
       steps: ['The y-values are 5 and 13. Change in y: 13 - 5 = 8.', 'The x-values are 2 and 6. Change in x: 6 - 2 = 4.', 'Slope = 8 ÷ 4 = 2.', 'Answer: slope = 2.'],
     },
     practice: [

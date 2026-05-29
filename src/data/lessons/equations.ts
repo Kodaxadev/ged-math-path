@@ -57,4 +57,52 @@ export const equationLessons: Lesson[] = [
       },
     ],
   },
+  {
+    id: 'check-answer-choices', moduleId: 'equations', title: 'Solve by testing the answer choices',
+    objective: 'When solving feels stuck, plug each multiple-choice answer back in and keep the one that works.',
+    recognition: ['The problem is multiple choice with number answers.', 'Solving directly feels slow or confusing.'],
+    procedureCard: ['Pick one answer choice.', 'Put it in place of the letter.', 'Do the arithmetic on both sides.', 'Keep the choice that makes both sides equal; rule out the rest.'],
+    workedExample: {
+      id: 'check-3x-7', prompt: 'Which value makes 3x + 7 = 22 true? Tap each choice to test it.', answer: 'x = 5', procedure: 'Substitute each choice and check which makes both sides equal.', gedNotation: '3x + 7 = 22', learningNotation: '3 × n + 7 = 22',
+      choices: [
+        { label: 'x = 3', correct: false, reason: '3 × 3 + 7 = 16, not 22.' },
+        { label: 'x = 5', correct: true, reason: '3 × 5 + 7 = 22. Both sides match.' },
+        { label: 'x = 7', correct: false, reason: '3 × 7 + 7 = 28, too big.' },
+        { label: 'x = 8', correct: false, reason: '3 × 8 + 7 = 31, far too big.' },
+      ],
+      steps: ['Try x = 3: 3 × 3 + 7 = 16. Not 22.', 'Try x = 5: 3 × 5 + 7 = 22. This matches.', 'No need to test more once one works.', 'Answer: x = 5.'],
+    },
+    practice: [
+      {
+        id: 'check-2x-4', prompt: 'Which value makes 2x + 4 = 14 true? Test each choice.', answer: 'x = 5', procedure: 'Substitute each choice and keep the one that works.', gedNotation: '2x + 4 = 14', learningNotation: '2 × n + 4 = 14',
+        choices: [
+          { label: 'x = 4', correct: false, reason: '2 × 4 + 4 = 12, not 14.' },
+          { label: 'x = 5', correct: true, reason: '2 × 5 + 4 = 14. Both sides match.' },
+          { label: 'x = 6', correct: false, reason: '2 × 6 + 4 = 16, too big.' },
+          { label: 'x = 7', correct: false, reason: '2 × 7 + 4 = 18, too big.' },
+        ],
+        steps: ['Try x = 5: 2 × 5 + 4 = 14. It matches.', 'Answer: x = 5.'],
+      },
+      {
+        id: 'check-5x-minus', prompt: 'Which value makes 5x - 3 = 17 true? Test each choice.', answer: 'x = 4', procedure: 'Substitute each choice and keep the one that works.', gedNotation: '5x - 3 = 17', learningNotation: '5 × n - 3 = 17',
+        choices: [
+          { label: 'x = 2', correct: false, reason: '5 × 2 - 3 = 7, not 17.' },
+          { label: 'x = 3', correct: false, reason: '5 × 3 - 3 = 12, not 17.' },
+          { label: 'x = 4', correct: true, reason: '5 × 4 - 3 = 17. Both sides match.' },
+          { label: 'x = 5', correct: false, reason: '5 × 5 - 3 = 22, too big.' },
+        ],
+        steps: ['Try x = 4: 5 × 4 - 3 = 17. It matches.', 'Answer: x = 4.'],
+      },
+      {
+        id: 'check-quadratic', prompt: 'Which value is a solution of x² = 36? Test each choice.', answer: 'x = 6', procedure: 'Square each choice and keep the one that gives 36.', gedNotation: 'x² = 36', learningNotation: 'n² = 36',
+        choices: [
+          { label: 'x = 4', correct: false, reason: '4 × 4 = 16, not 36.' },
+          { label: 'x = 5', correct: false, reason: '5 × 5 = 25, not 36.' },
+          { label: 'x = 6', correct: true, reason: '6 × 6 = 36. This works.' },
+          { label: 'x = 9', correct: false, reason: '9 × 9 = 81, too big.' },
+        ],
+        steps: ['Try x = 6: 6 × 6 = 36. It works.', 'Answer: x = 6. (Note: -6 also works, but 6 is the listed choice.)'],
+      },
+    ],
+  },
 ];

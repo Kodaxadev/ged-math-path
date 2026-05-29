@@ -83,3 +83,37 @@
   .insights-summary, .insights-grid, .comparison-grid { grid-template-columns: 1fr; }
   .mastery-row { grid-template-columns: 1fr; gap: 8px; }
 }
+
+/* Problem visuals: coordinate grid, number line, bar chart */
+.problem-visual { margin: 16px 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.problem-visual figcaption { color: var(--muted); font-size: 0.92rem; text-align: center; max-width: 34ch; }
+.pv-svg { width: 100%; max-width: 300px; height: auto; background: #090f18; border: 1px solid var(--border); border-radius: 12px; padding: 8px; }
+.pv-numberline { max-width: 340px; }
+.pv-barchart { max-width: 340px; }
+.pv-gridline line, line.pv-gridline { stroke: var(--border); stroke-width: 1; }
+.pv-axis line, line.pv-axis { stroke: var(--border-strong); stroke-width: 2; }
+.pv-tick-label text { fill: var(--muted); font-size: 11px; }
+.pv-point circle { fill: var(--accent); stroke: var(--bg-deep); stroke-width: 1.5; }
+.pv-point text { fill: var(--text); font-size: 12px; font-weight: 600; }
+.pv-line { fill: none; stroke: var(--accent-strong); stroke-width: 2.5; stroke-linecap: round; }
+.pv-bar rect { fill: var(--accent); }
+.pv-bar-value { fill: var(--text); font-size: 12px; font-weight: 700; }
+.pv-bar-label { fill: var(--muted); font-size: 11px; }
+
+/* Answer-choice checker */
+.choice-checker { margin: 16px 0; padding: 14px; background: #090f18; border: 1px solid var(--border); border-radius: 12px; }
+.choice-prompt { margin: 0 0 10px; color: var(--muted); font-size: 0.95rem; }
+.choice-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.choice-button { flex: 1 1 auto; min-width: 64px; padding: 12px 16px; font-size: 1.05rem; font-weight: 600; color: var(--text); background: var(--surface); border: 2px solid var(--border-strong); border-radius: 10px; cursor: pointer; transition: transform 0.08s ease, border-color 0.12s ease; }
+.choice-button:hover { border-color: var(--accent); }
+.choice-button:active { transform: translateY(1px); }
+.choice-button[aria-pressed="true"] { border-color: var(--accent); }
+.choice-button.choice-correct { border-color: #46c98b; background: rgba(70, 201, 139, 0.16); }
+.choice-button.choice-wrong { border-color: var(--warning); background: rgba(217, 141, 255, 0.12); }
+.choice-feedback { margin: 12px 0 0; padding: 10px 12px; border-radius: 10px; font-size: 0.98rem; }
+.choice-feedback.correct { background: rgba(70, 201, 139, 0.14); color: var(--text); }
+.choice-feedback.wrong { background: rgba(255, 196, 87, 0.12); color: var(--text); }
+
+@media (prefers-reduced-motion: reduce) {
+  .choice-button { transition: none; }
+}

@@ -19,12 +19,14 @@ export const coverageLessons: Lesson[] = [
     objective: 'Read a data set or chart by applying one operation at a time.',
     recognition: ['Mean means average.', 'Median means middle after ordering.', 'Mode means most frequent; range means high minus low.'],
     procedureCard: ['Mean = total ÷ number of values.', 'Median = ordered middle value.', 'Range = greatest - least.'],
-    workedExample: { id: 'mean-data', prompt: 'Find the mean of 6, 8, 8, 10, and 13.', answer: '9', procedure: 'Add values, then divide by how many values exist.', steps: ['Add: 6 + 8 + 8 + 10 + 13 = 45.', 'There are 5 numbers.', '45 ÷ 5 = 9.', 'Answer: mean = 9.'] },
+    workedExample: { id: 'mean-data', prompt: 'Find the mean of 6, 8, 8, 10, and 13.', answer: '9', procedure: 'Add values, then divide by how many values exist.', visual: { kind: 'bar-chart', bars: [{ label: 'A', value: 6 }, { label: 'B', value: 8 }, { label: 'C', value: 8 }, { label: 'D', value: 10 }, { label: 'E', value: 13 }], caption: 'Five values shown as bars. The mean, 9, is their balance point.' }, steps: ['Add: 6 + 8 + 8 + 10 + 13 = 45.', 'There are 5 numbers.', '45 ÷ 5 = 9.', 'Answer: mean = 9.'] },
     practice: [
       { id: 'median-mode', prompt: 'For 3, 5, 5, 9, 12, find the median, mode, and range.', answer: 'Median 5; mode 5; range 9', procedure: 'Values are already ordered; select middle, repeated, and difference.', steps: ['The middle value is 5, so median = 5.', 'The value appearing most often is 5, so mode = 5.', 'Range: 12 - 3 = 9.'] },
       { id: 'mean-4values', prompt: 'Find the mean of 12, 15, 18, and 15.', answer: '15', procedure: 'Add the values, then divide by how many there are.', steps: ['Add: 12 + 15 + 18 + 15 = 60.', 'There are 4 numbers.', '60 ÷ 4 = 15.', 'Answer: mean = 15.'] },
       { id: 'median-even', prompt: 'Find the median of 4, 8, 10, and 14.', answer: '9', procedure: 'With an even count, average the two middle values.', steps: ['The values are already in order: 4, 8, 10, 14.', 'There is no single middle, so take the two middle values: 8 and 10.', 'Average them: (8 + 10) ÷ 2 = 9.', 'Answer: median = 9.'] },
       { id: 'mean-find-total', prompt: 'The mean of 5 test scores is 80. What is the total of all 5 scores?', answer: '400', procedure: 'Work backward: total = mean × number of values.', steps: ['Mean = total ÷ number of values.', 'So total = mean × number of values.', 'Total = 80 × 5 = 400.', 'Answer: 400.'] },
+      { id: 'read-bar-chart', prompt: 'The bar chart shows pets sold each day. What is the total sold over the four days?', answer: '30 pets', procedure: 'Read each bar height, then add them.', visual: { kind: 'bar-chart', bars: [{ label: 'Mon', value: 5 }, { label: 'Tue', value: 8 }, { label: 'Wed', value: 10 }, { label: 'Thu', value: 7 }], unit: 'pets', caption: 'Read the height of each bar, then add.' }, steps: ['Read each bar: Mon 5, Tue 8, Wed 10, Thu 7.', 'Add them: 5 + 8 + 10 + 7 = 30.', 'Answer: 30 pets.'] },
+      { id: 'read-bar-range', prompt: 'Using the same chart (Mon 5, Tue 8, Wed 10, Thu 7), what is the range?', answer: '5', procedure: 'Range = tallest bar - shortest bar.', visual: { kind: 'bar-chart', bars: [{ label: 'Mon', value: 5 }, { label: 'Tue', value: 8 }, { label: 'Wed', value: 10 }, { label: 'Thu', value: 7 }], unit: 'pets', caption: 'Range is the tallest bar minus the shortest bar.' }, steps: ['Tallest bar: Wed at 10.', 'Shortest bar: Mon at 5.', 'Range: 10 - 5 = 5.', 'Answer: 5.'] },
     ],
   },
   {
@@ -91,6 +93,23 @@ export const coverageLessons: Lesson[] = [
         procedure: 'The first number in each pair is x. Look for a repeated x.',
         steps: ['List the x values: 1, 3, 1.', 'The input 1 repeats.', 'For x = 1 the outputs are 2 and 6.', 'Same input with two outputs means not a function.'],
       },
+    ],
+  },
+  {
+    id: 'plotting-points', moduleId: 'functions', title: 'Plotting points on a grid',
+    objective: 'Read an ordered pair and find its spot: across first, then up or down.',
+    recognition: ['A point is written as two numbers in parentheses, like (3, 2).', 'A coordinate grid with an x-axis and a y-axis is shown.'],
+    procedureCard: ['The first number is x: move across (right is positive, left is negative).', 'The second number is y: move up or down (up is positive, down is negative).', 'Always do across first, then up or down.', 'The point (0, 0) is the center, called the origin.'],
+    workedExample: {
+      id: 'plot-3-2', prompt: 'Where is the point (3, 2) on the grid?', answer: '3 right and 2 up from the center', procedure: 'First number across, second number up.',
+      visual: { kind: 'coordinate-grid', points: [{ x: 3, y: 2, label: '(3, 2)' }], min: 0, max: 6, caption: 'Start at the center, move 3 right, then 2 up.' },
+      steps: ['The first number is 3: move 3 spaces right.', 'The second number is 2: move 2 spaces up.', 'Mark the point where you land.', 'Answer: 3 right and 2 up from the center.'],
+    },
+    practice: [
+      { id: 'plot-5-1', prompt: 'Plot the point (5, 1). How far across and up is it?', answer: '5 right and 1 up', procedure: 'First number across, second number up.', visual: { kind: 'coordinate-grid', points: [{ x: 5, y: 1, label: '(5, 1)' }], min: 0, max: 6 }, steps: ['First number 5: move 5 right.', 'Second number 1: move 1 up.', 'Answer: 5 right and 1 up.'] },
+      { id: 'plot-negative', prompt: 'Plot the point (-2, 3). Which way do you move?', answer: '2 left and 3 up', procedure: 'A negative first number means move left.', visual: { kind: 'coordinate-grid', points: [{ x: -2, y: 3, label: '(-2, 3)' }], min: -4, max: 4 }, steps: ['First number -2: move 2 left (negative is left).', 'Second number 3: move 3 up.', 'Answer: 2 left and 3 up.'] },
+      { id: 'plot-read', prompt: 'A point sits 4 right and 2 down from the center. Write it as an ordered pair.', answer: '(4, -2)', procedure: 'Across is x; down means a negative y.', visual: { kind: 'coordinate-grid', points: [{ x: 4, y: -2, label: '(4, -2)' }], min: -4, max: 6 }, steps: ['Across 4 right means x = 4.', '2 down means y = -2 (down is negative).', 'Write across first: (4, -2).'] },
+      { id: 'plot-origin', prompt: 'Where is the point (0, 0)?', answer: 'At the center (origin)', procedure: 'Zero across and zero up stays at the center.', visual: { kind: 'coordinate-grid', points: [{ x: 0, y: 0, label: 'origin' }], min: -3, max: 3 }, steps: ['First number 0: do not move across.', 'Second number 0: do not move up or down.', 'You stay at the center, called the origin.'] },
     ],
   },
   {
