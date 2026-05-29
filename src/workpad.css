@@ -31,7 +31,7 @@
   right: 12px;
   bottom: 12px;
   z-index: 20;
-  width: min(480px, calc(100vw - 24px));
+  width: min(640px, calc(100vw - 24px));
   max-height: calc(100dvh - 24px);
   overflow-y: auto;
   border: 1px solid var(--border-strong);
@@ -83,27 +83,52 @@
   transition: border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
 .wp-btn:hover { border-color: var(--border-strong); color: var(--text); }
+.wp-add { background: linear-gradient(120deg, var(--cta-from), var(--cta-to)); border: 0; color: #061721; }
+.wp-add:hover { filter: brightness(1.05); color: #061721; }
 
-/* ---- The work lines ------------------------------------- */
+/* ---- Notebook: numbered rows, active-row highlight ------- */
 .wp-list { display: grid; gap: var(--space-2); }
-.wp-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--space-3); }
-
-/* ---- MathLive field themed to the calm dark palette ------ */
-.wp-field {
-  width: 100%;
-  padding: 10px 12px;
+.wp-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 8px 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  background: var(--surface-2);
+  background: #101f33;
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.wp-row:focus-within { border-color: var(--accent); }
+.wp-line-num {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #183447;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+.wp-row:focus-within .wp-line-num { background: var(--accent); color: #071721; }
+
+/* ---- MathLive field — transparent inside the row card ---- */
+.wp-field {
+  width: 100%;
+  padding: 4px 0;
+  border: 0;
+  background: transparent;
   color: var(--text);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   --caret-color: var(--accent);
   --selection-background-color: rgba(32, 213, 205, 0.25);
   --contains-highlight-background-color: rgba(32, 213, 205, 0.12);
   --placeholder-color: var(--faint);
   --smart-fence-color: var(--muted);
 }
-.wp-field:focus-within { border-color: var(--border-strong); outline: none; }
+.wp-field:focus-within { outline: none; }
 
 .wp-row-actions { display: flex; align-items: center; gap: var(--space-2); justify-content: flex-end; }
 .wp-result {

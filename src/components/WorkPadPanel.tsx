@@ -54,6 +54,7 @@ function evalLatex(latex: string): string {
 
 type RowProps = {
   line: Line;
+  index: number;
   autoFocus?: boolean;
   onInput: (id: string, latex: string) => void;
   onEnter: (id: string) => void;
@@ -61,7 +62,7 @@ type RowProps = {
   registerRef: (id: string, el: MathfieldElement | null) => void;
 };
 
-function MathRow({ line, autoFocus, onInput, onEnter, onBackspaceEmpty, registerRef }: RowProps) {
+function MathRow({ line, index, autoFocus, onInput, onEnter, onBackspaceEmpty, registerRef }: RowProps) {
   const ref = useRef<MathfieldElement | null>(null);
   // Empty until the learner deliberately asks. Editing clears it again, so a
   // result is never shown before they have worked the move themselves.
@@ -107,10 +108,11 @@ function MathRow({ line, autoFocus, onInput, onEnter, onBackspaceEmpty, register
 
   return (
     <div className="wp-row">
+      <span className="wp-line-num" aria-hidden="true">{index}</span>
       <math-field ref={ref} className="wp-field" />
       <div className="wp-row-actions">
         {checked !== null && <span className="wp-result" aria-live="polite">{checked}</span>}
-        <button type="button" className="wp-check" onClick={check} aria-label="Check this line">Check</button>
+        <button type="button" className="wp-check" onClick={check} aria-label={`Check line ${index}`}>Check</button>
       </div>
     </div>
   );
@@ -171,6 +173,14 @@ export default function WorkPadPanel({ titleId, onMinimize }: Props) {
     setFocusId(fresh.id);
   }
 
+  function addLine() {
+    setLines((cur) => {
+      const fresh = { id: uid(), latex: '' };
+      setFocusId(fresh.id);
+      return [...cur, fresh];
+    });
+  }
+
   return (
     <aside className="work-pad-panel" role="dialog" aria-labelledby={titleId}>
       <header className="work-pad-head">
@@ -183,10 +193,11 @@ export default function WorkPadPanel({ titleId, onMinimize }: Props) {
       <div className="work-pad-body">
         <p className="work-pad-hint">Type math as it looks. Press <kbd>Enter</kbd> for a new line. Work it yourself first — tap <strong>Check</strong> only when you want to confirm a line.</p>
         <div className="wp-list" role="group" aria-label="Math work lines">
-          {lines.map((line) => (
+          {lines.map((line, i) => (
             <MathRow
               key={line.id}
               line={line}
+              index={i + 1}
               autoFocus={line.id === initialFocusId.current}
               onInput={handleInput}
               onEnter={handleEnter}
@@ -196,6 +207,7 @@ export default function WorkPadPanel({ titleId, onMinimize }: Props) {
           ))}
         </div>
         <div className="work-pad-tools">
+          <button type="button" className="wp-btn wp-add" onClick={addLine}>Add a new line <span aria-hidden="true">+</span></button>
           <button type="button" className="wp-btn" onClick={clearAll}>Clear all</button>
         </div>
         {storageWarning && <p className="work-pad-warn" role="status">Storage is unavailable. Copy your work before clearing.</p>}
