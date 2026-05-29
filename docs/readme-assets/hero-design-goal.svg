@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" fill="none">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="820" gradientUnits="userSpaceOnUse"><stop stop-color="#07101D"/><stop offset="1" stop-color="#040912"/></linearGradient>
+  <linearGradient id="teal" x1="246" y1="150" x2="656" y2="495" gradientUnits="userSpaceOnUse"><stop stop-color="#2DE7DC"/><stop offset="1" stop-color="#11ACA9"/></linearGradient>
+  <linearGradient id="cta" x1="211" y1="572" x2="515" y2="641" gradientUnits="userSpaceOnUse"><stop stop-color="#2EDDD2"/><stop offset="1" stop-color="#24B5DD"/></linearGradient>
+  <linearGradient id="panel" x1="800" y1="118" x2="1458" y2="698" gradientUnits="userSpaceOnUse"><stop stop-color="#0F1C30"/><stop offset="1" stop-color="#091321"/></linearGradient>
+  <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1076 354) rotate(90) scale(435 585)" gradientUnits="userSpaceOnUse"><stop stop-color="#19C4BC" stop-opacity=".12"/><stop offset="1" stop-color="#19C4BC" stop-opacity="0"/></radialGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="22" stdDeviation="30" flood-color="#000" flood-opacity=".36"/></filter>
+</defs>
+<rect width="1600" height="820" rx="32" fill="url(#bg)"/>
+<rect width="1600" height="820" rx="32" fill="url(#glow)"/>
+<g opacity=".65"><path d="M0 745H1600" stroke="#1D314B"/><path d="M0 746H1600" stroke="#1A9C9A" stroke-opacity=".18"/></g>
+<!-- brand -->
+<g transform="translate(92 70)"><path d="M0 58H17C22 58 26 54 26 49V36H40C45 36 49 32 49 27V14H64C69 14 73 10 73 5" stroke="url(#teal)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="36" r="5" fill="#20D4CB"/><circle cx="34" cy="13" r="5" fill="#25A6FF"/><circle cx="58" cy="-9" r="5" fill="#A968F5"/><circle cx="78" cy="-27" r="5" fill="#F7C25A"/><text x="94" y="32" fill="#20D5CD" font-family="Arial, sans-serif" font-size="38" font-weight="700" letter-spacing="5">STEP</text><text x="96" y="55" fill="#9BADCB" font-family="Arial, sans-serif" font-size="13" letter-spacing="1">MATH THAT MEETS YOUR BRAIN</text></g>
+<!-- left hero -->
+<text x="94" y="266" fill="#20D5CD" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="4">PROCEDURE-FIRST GED MATH</text>
+<text x="90" y="342" fill="#F1F6FF" font-family="Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="-3">One move.</text>
+<text x="90" y="414" fill="#F1F6FF" font-family="Arial, sans-serif" font-size="68" font-weight="700" letter-spacing="-3">Then the next.</text>
+<text x="95" y="466" fill="#AABBD6" font-family="Arial, sans-serif" font-size="20">A focused GED Math path designed for symbol overload,</text>
+<text x="95" y="497" fill="#AABBD6" font-family="Arial, sans-serif" font-size="20">working-memory friction, and calculator anxiety.</text>
+<rect x="94" y="554" width="294" height="61" rx="14" fill="url(#cta)"/><text x="126" y="592" fill="#061622" font-family="Arial, sans-serif" font-size="17" font-weight="700">Start learning step by step  →</text>
+<text x="94" y="671" fill="#6F85A5" font-family="Arial, sans-serif" font-size="14" letter-spacing=".5">LOCAL-ONLY PROGRESS  •  CALCULATOR LAB  •  MATHLIVE WORK PAD</text>
+<!-- app preview -->
+<g filter="url(#shadow)"><rect x="774" y="88" width="744" height="650" rx="25" fill="url(#panel)" stroke="#1D304A"/>
+<rect x="774" y="88" width="744" height="64" rx="25" fill="#0B1526"/><path d="M774 152H1518" stroke="#1D304A"/>
+<circle cx="809" cy="119" r="8" fill="#20D5CD"/><text x="828" y="125" fill="#DCE7F8" font-family="Arial" font-size="16" font-weight="700">STEP Dashboard</text><rect x="1295" y="105" width="93" height="30" rx="9" fill="#12243A" stroke="#233B57"/><text x="1316" y="125" fill="#A9BBD5" font-family="Arial" font-size="12">Symbols</text><rect x="1398" y="105" width="99" height="30" rx="9" fill="#12243A" stroke="#233B57"/><text x="1416" y="125" fill="#A9BBD5" font-family="Arial" font-size="12">Focus mode</text>
+<!-- side nav -->
+<rect x="794" y="174" width="158" height="535" rx="14" fill="#081322" stroke="#15283F"/><text x="814" y="207" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">LEARN</text>
+<rect x="807" y="226" width="132" height="48" rx="10" fill="#10253A" stroke="#20D5CD" stroke-opacity=".35"/><rect x="807" y="226" width="3" height="48" rx="2" fill="#20D5CD"/><text x="822" y="248" fill="#EDF5FF" font-family="Arial" font-size="13" font-weight="700">Home</text><text x="822" y="263" fill="#7F94B1" font-family="Arial" font-size="10">Continue here</text>
+<text x="821" y="307" fill="#B1C1D8" font-family="Arial" font-size="12">Number Sense</text><text x="821" y="343" fill="#B1C1D8" font-family="Arial" font-size="12">Percents &amp; Money</text><text x="821" y="379" fill="#B1C1D8" font-family="Arial" font-size="12">Equations</text><text x="821" y="415" fill="#B1C1D8" font-family="Arial" font-size="12">Functions</text>
+<text x="814" y="474" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">TOOLS</text><text x="821" y="511" fill="#B1C1D8" font-family="Arial" font-size="12">Calculator Lab</text><text x="821" y="547" fill="#B1C1D8" font-family="Arial" font-size="12">GED Map</text><text x="821" y="583" fill="#B1C1D8" font-family="Arial" font-size="12">Insights</text>
+<!-- main content -->
+<text x="980" y="201" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">CONTINUE HERE</text><text x="980" y="239" fill="#F1F6FF" font-family="Arial" font-size="31" font-weight="700">Math that explains itself.</text><text x="980" y="268" fill="#A1B5D1" font-family="Arial" font-size="14">See one move. Try one move. Reveal help only when ready.</text>
+<rect x="980" y="294" width="342" height="174" rx="15" fill="#111F34" stroke="#20405A"/><text x="1001" y="322" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">NEXT LESSON</text><text x="1001" y="359" fill="#EEF5FF" font-family="Arial" font-size="21" font-weight="700">Number-line distance</text><text x="1001" y="386" fill="#A1B5D1" font-family="Arial" font-size="12">Where it is vs. how far from zero.</text><rect x="1001" y="413" width="199" height="37" rx="10" fill="#20D5CD"/><text x="1023" y="437" fill="#071721" font-family="Arial" font-size="12" font-weight="700">Start lesson  →</text>
+<rect x="1335" y="294" width="157" height="174" rx="15" fill="#111F34" stroke="#20405A"/><text x="1354" y="322" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">PROGRESS</text><circle cx="1414" cy="377" r="40" stroke="#20384C" stroke-width="9"/><path d="M1414 337A40 40 0 0 1 1452 390" stroke="#20D5CD" stroke-width="9" stroke-linecap="round"/><text x="1396" y="383" fill="#EFF7FF" font-family="Arial" font-size="18" font-weight="700">34%</text><text x="1371" y="439" fill="#9BADCB" font-family="Arial" font-size="11">8 lessons complete</text>
+<rect x="980" y="485" width="512" height="195" rx="15" fill="#111F34" stroke="#20405A"/><text x="1002" y="514" fill="#20D5CD" font-family="Arial" font-size="10" font-weight="700" letter-spacing="2">TRY ONE MOVE</text><text x="1002" y="555" fill="#EFF7FF" font-family="Arial" font-size="18">Point Q is at −1.5. Distance from 0?</text><rect x="1002" y="578" width="467" height="48" rx="10" fill="#091523"/><text x="1019" y="607" fill="#BACBDD" font-family="Arial" font-size="13">Write the first line in your Work Pad before revealing help.</text><rect x="1002" y="638" width="467" height="29" rx="8" fill="#12313B" stroke="#20D5CD" stroke-opacity=".32"/><text x="1173" y="658" fill="#CAFBF7" font-family="Arial" font-size="12" font-weight="700">Reveal one step</text>
+</g>
+<text x="1220" y="774" fill="#596E8E" font-family="Arial" font-size="12" letter-spacing="2">DESIGN NORTH STAR • NOT A CURRENT SCREENSHOT</text>
+</svg>
