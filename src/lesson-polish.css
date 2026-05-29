@@ -46,7 +46,18 @@
 .solution ol { margin: var(--space-3) 0 var(--space-5); }
 .solution ol li { margin-bottom: var(--space-2); padding-left: var(--space-1); }
 .solution ol li:last-child { margin-bottom: 0; }
-.step-counter { margin: var(--space-3) 0; }
+.step-counter { margin: var(--space-3) 0 var(--space-2); }
+/* Staged progress: shows future steps exist without exposing them. */
+.step-dots { display: flex; gap: 7px; margin: 0 0 var(--space-3); }
+.step-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--surface-3);
+  box-shadow: inset 0 0 0 1px var(--border-card);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.step-dots span.filled { background: var(--accent); box-shadow: none; }
 
 /* ---- Answer: the gentle landing ------------------------- */
 .answer {

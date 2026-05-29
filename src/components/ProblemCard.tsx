@@ -129,6 +129,9 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false, in
         <div className="solution">
           <p className="procedure"><strong>The move:</strong> {problem.procedure}</p>
           <div className="step-counter" aria-live="polite">Showing {shownSteps} of {problem.steps.length} steps</div>
+          <div className="step-dots" aria-hidden="true">
+            {problem.steps.map((_, i) => <span key={i} className={i < shownSteps ? 'filled' : ''} />)}
+          </div>
           <ol id={stepsId} className={progress.settings.colorCodedSteps ? 'color-steps' : ''}>{problem.steps.slice(0, shownSteps).map((step) => <li key={step}>{step}</li>)}</ol>
           {finished && <p className="answer" aria-live="polite">Answer: {problem.answer}</p>}
         </div>
