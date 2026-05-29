@@ -59,6 +59,7 @@ export const equationLessons: Lesson[] = [
   },
   {
     id: 'check-answer-choices', moduleId: 'equations', title: 'Solve by testing the answer choices',
+    interactiveChoices: true,
     objective: 'When solving feels stuck, plug each multiple-choice answer back in and keep the one that works.',
     recognition: ['The problem is multiple choice with number answers.', 'Solving directly feels slow or confusing.'],
     procedureCard: ['Pick one answer choice.', 'Put it in place of the letter.', 'Do the arithmetic on both sides.', 'Keep the choice that makes both sides equal; rule out the rest.'],

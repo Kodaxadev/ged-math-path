@@ -50,6 +50,12 @@ export type Lesson = {
   procedureCard: string[];
   workedExample: Problem;
   practice: Problem[];
+  /**
+   * Opt-in: allow immediate answer-choice feedback (ChoiceChecker) in this
+   * lesson. Only true where "test the answer choices" IS the taught method.
+   * Everywhere else the reveal/attempt/reflection flow stays in control.
+   */
+  interactiveChoices?: boolean;
 };
 
 export type CourseModule = {

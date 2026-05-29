@@ -8,6 +8,8 @@ type Props = {
   progress: Progress;
   onAttempt: (problemId: string, attempt: Omit<Attempt, 'attemptedAt'>) => void;
   practice?: boolean;
+  /** Only lessons that teach answer-checking may show immediate choice feedback. */
+  interactiveChoices?: boolean;
 };
 
 const mistakeOptions: { value: MistakeType; label: string }[] = [
@@ -40,7 +42,7 @@ function ConfidenceButtons({ label, value, onChange }: { label: string; value?: 
   );
 }
 
-export function ProblemCard({ problem, progress, onAttempt, practice = false }: Props) {
+export function ProblemCard({ problem, progress, onAttempt, practice = false, interactiveChoices = false }: Props) {
   const headingId = useId();
   const stepsId = useId();
   const [shownSteps, setShownSteps] = useState(0);
@@ -72,7 +74,7 @@ export function ProblemCard({ problem, progress, onAttempt, practice = false }: 
       <h3 id={headingId}>{problem.prompt}</h3>
       {notation && <pre className="notation" aria-label="Translated math notation">{notation}</pre>}
       {problem.visual && <ProblemVisual visual={problem.visual} />}
-      {problem.choices && <ChoiceChecker choices={problem.choices} />}
+      {problem.choices && interactiveChoices && <ChoiceChecker choices={problem.choices} />}
       {!started && (
         <div className="before-start">
           <p className="pause-note">{practice ? 'Work this on your scratch pad first. Uncover one step only when you need it.' : 'Try the first move yourself. Then uncover one step to compare.'}</p>

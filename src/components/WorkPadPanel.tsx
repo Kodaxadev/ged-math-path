@@ -9,8 +9,6 @@ MathfieldElement.fontsDirectory = 'https://cdn.jsdelivr.net/npm/mathlive@0.109.2
 
 const ce = new ComputeEngine();
 const STORE_KEY = 'step-workpad-latex-v1';
-// Only try to compute a line that actually contains an operation.
-const HAS_OP = /[+\-/^]|\\frac|\\sqrt|\\cdot|\\times|\\div|\\pi|%/;
 
 type Line = { id: string; latex: string };
 
@@ -40,30 +38,34 @@ function saveLines(lines: Line[]): boolean {
   }
 }
 
+// Only ever called when the learner explicitly asks to check a line.
 function evalLatex(latex: string): string {
-  if (!latex.trim() || !HAS_OP.test(latex)) return '';
+  if (!latex.trim()) return '';
   try {
     const value = ce.parse(latex).N().valueOf();
     if (typeof value === 'number' && Number.isFinite(value)) {
       return Number(value.toPrecision(12)).toLocaleString('en-US', { maximumFractionDigits: 10, useGrouping: false });
     }
   } catch {
-    /* incomplete expression — show nothing */
+    /* incomplete expression */
   }
   return '';
 }
 
 type RowProps = {
   line: Line;
+  autoFocus?: boolean;
   onInput: (id: string, latex: string) => void;
   onEnter: (id: string) => void;
   onBackspaceEmpty: (id: string) => void;
   registerRef: (id: string, el: MathfieldElement | null) => void;
 };
 
-function MathRow({ line, onInput, onEnter, onBackspaceEmpty, registerRef }: RowProps) {
+function MathRow({ line, autoFocus, onInput, onEnter, onBackspaceEmpty, registerRef }: RowProps) {
   const ref = useRef<MathfieldElement | null>(null);
-  const [result, setResult] = useState(() => evalLatex(line.latex));
+  // Empty until the learner deliberately asks. Editing clears it again, so a
+  // result is never shown before they have worked the move themselves.
+  const [checked, setChecked] = useState<string | null>(null);
 
   useEffect(() => {
     const mf = ref.current;
@@ -74,9 +76,8 @@ function MathRow({ line, onInput, onEnter, onBackspaceEmpty, registerRef }: RowP
     registerRef(line.id, mf);
 
     const handleInput = () => {
-      const value = mf.value;
-      setResult(evalLatex(value));
-      onInput(line.id, value);
+      setChecked(null);
+      onInput(line.id, mf.value);
     };
     const handleKey = (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
@@ -89,6 +90,7 @@ function MathRow({ line, onInput, onEnter, onBackspaceEmpty, registerRef }: RowP
     };
     mf.addEventListener('input', handleInput);
     mf.addEventListener('keydown', handleKey, { capture: true });
+    if (autoFocus) requestAnimationFrame(() => mf.focus());
     return () => {
       mf.removeEventListener('input', handleInput);
       mf.removeEventListener('keydown', handleKey, { capture: true } as EventListenerOptions);
@@ -97,12 +99,19 @@ function MathRow({ line, onInput, onEnter, onBackspaceEmpty, registerRef }: RowP
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [line.id]);
 
+  function check() {
+    const value = ref.current?.value ?? '';
+    const result = evalLatex(value);
+    setChecked(result ? `= ${result}` : 'no single value');
+  }
+
   return (
     <div className="wp-row">
       <math-field ref={ref} className="wp-field" />
-      <span className={result ? 'wp-result' : 'wp-result wp-result-empty'} aria-live="polite">
-        {result ? `= ${result}` : ''}
-      </span>
+      <div className="wp-row-actions">
+        {checked !== null && <span className="wp-result" aria-live="polite">{checked}</span>}
+        <button type="button" className="wp-check" onClick={check} aria-label="Check this line">Check</button>
+      </div>
     </div>
   );
 }
@@ -114,6 +123,8 @@ export default function WorkPadPanel({ titleId, onMinimize }: Props) {
   const [focusId, setFocusId] = useState<string | null>(null);
   const [storageWarning, setStorageWarning] = useState(false);
   const fields = useRef(new Map<string, MathfieldElement>());
+  // The first line on open auto-focuses itself (no extra tap, matters on phones).
+  const initialFocusId = useRef(lines[0]?.id);
 
   useEffect(() => {
     if (!saveLines(lines)) setStorageWarning(true);
@@ -170,12 +181,13 @@ export default function WorkPadPanel({ titleId, onMinimize }: Props) {
         <button type="button" className="wp-btn" onClick={onMinimize}>Minimize</button>
       </header>
       <div className="work-pad-body">
-        <p className="work-pad-hint">Type math as it looks. Press <kbd>Enter</kbd> for a new line. Pure-number lines show their result.</p>
+        <p className="work-pad-hint">Type math as it looks. Press <kbd>Enter</kbd> for a new line. Work it yourself first — tap <strong>Check</strong> only when you want to confirm a line.</p>
         <div className="wp-list" role="group" aria-label="Math work lines">
           {lines.map((line) => (
             <MathRow
               key={line.id}
               line={line}
+              autoFocus={line.id === initialFocusId.current}
               onInput={handleInput}
               onEnter={handleEnter}
               onBackspaceEmpty={handleBackspaceEmpty}

@@ -38,9 +38,9 @@ export function LessonView({ lesson, progress, onAttempt, onComplete, onConfiden
         </div>
       </details>
 
-      <ProblemCard problem={lesson.workedExample} progress={progress} onAttempt={onAttempt} />
+      <ProblemCard problem={lesson.workedExample} progress={progress} onAttempt={onAttempt} interactiveChoices={lesson.interactiveChoices} />
       <div className="practice-stack">
-        {lesson.practice.map((problem) => <ProblemCard key={problem.id} problem={problem} progress={progress} onAttempt={onAttempt} practice />)}
+        {lesson.practice.map((problem) => <ProblemCard key={problem.id} problem={problem} progress={progress} onAttempt={onAttempt} practice interactiveChoices={lesson.interactiveChoices} />)}
       </div>
 
       <footer className="panel lesson-complete">
