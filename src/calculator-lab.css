@@ -156,38 +156,46 @@
   gap: var(--space-4);
 }
 .emulator-area .ti-device { justify-self: center; }
-/* Light silver device body (north-star), dark header strip + sage screen. */
+/* Faithful TI-30XS MultiView industrial design — teal faceplate, white
+   casing rim, dark top cap, rounded bottom. No manufacturer branding. */
 .ti-device {
-  width: min(398px, 100%);
-  padding: 18px 16px 20px;
-  border-radius: 26px 26px 18px 18px;
-  background: linear-gradient(155deg, #f5f7f8 0%, #d8dee4 55%, #eef2f4 100%);
-  border: 1px solid #c2cad2;
-  box-shadow: 0 26px 60px rgba(0,0,0,.43), inset 0 1px 0 rgba(255,255,255,.85);
+  position: relative;
+  width: min(392px, 100%);
+  margin-top: 12px;
+  padding: 26px 18px 30px;
+  border-radius: 20px 20px 48px 48px;
+  background: linear-gradient(165deg, #629ab3 0%, #44788f 52%, #345f76 100%);
+  border: 4px solid #eef1f3;
+  box-shadow:
+    0 28px 62px rgba(0, 0, 0, 0.48),
+    inset 0 2px 5px rgba(255, 255, 255, 0.22),
+    inset 0 -14px 26px rgba(0, 0, 0, 0.22);
 }
+/* Dark charcoal top cap. */
+.ti-device::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 12%;
+  right: 12%;
+  height: 20px;
+  border-radius: 10px 10px 16px 16px;
+  background: linear-gradient(180deg, #3d4a53, #1d262c);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+/* Centered nameplate on the faceplate (no brand name or logo). */
 .ti-brandless-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  display: block;
+  text-align: center;
   margin: 0 0 12px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: #173345;
-  color: #eef5ff;
+  padding: 0;
+  background: transparent;
 }
-.ti-brandless-head div { display: grid; gap: 1px; }
-.ti-brandless-head strong { font-size: .91rem; letter-spacing: .03em; }
-.ti-brandless-head small,
-.ti-brandless-head > span { color: #b8c6cf; font-size: .64rem; text-transform: uppercase; letter-spacing: .13em; }
-/* Dark keypad well sitting on the light body. */
-.ti-keywell {
-  margin-top: 14px;
-  padding: 13px;
-  border-radius: 18px;
-  background: linear-gradient(160deg, #25475e, #162e41);
-  box-shadow: inset 0 2px 6px rgba(0,0,0,.35);
-}
+.ti-brandless-head strong { display: block; font-size: 1.2rem; font-weight: 800; letter-spacing: 0.06em; color: #f3f9fb; }
+.ti-brandless-head small { display: block; margin-top: 1px; font-style: italic; font-size: 0.82rem; letter-spacing: 0.03em; color: #d2e2e8; }
+.ti-brandless-head > span { display: none; }
+/* Keys sit directly on the teal faceplate (no separate well). */
+.ti-keywell { margin-top: 12px; padding: 0; background: none; box-shadow: none; }
 .ti-screen {
   display: grid;
   gap: 4px;
@@ -217,17 +225,50 @@
 @keyframes caretBlink { 50% { opacity: 0; } }
 .screen-result { display: block; text-align: right; font-size: 1.34rem; font-weight: 700; }
 .screen-result.error { font-size: .76rem; }
-.ti-controls { position: relative; min-height: 76px; margin-bottom: 11px; }
-.em-top-row { display: flex; justify-content: space-between; gap: 7px; padding-right: 93px; }
+.ti-controls { position: relative; min-height: 94px; margin-bottom: 11px; }
+.em-top-row { display: flex; justify-content: flex-start; gap: 7px; padding-right: 100px; flex-wrap: wrap; }
+/* Round 4-way directional pad (left/right functional, up/down decorative). */
 .em-navigation {
   position: absolute;
-  top: 0;
-  right: 4px;
-  width: 84px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px;
+  top: -2px;
+  right: 2px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7px;
+  background: radial-gradient(circle at 50% 36%, #46555f, #1b242a 74%);
+  border: 2px solid #5c6e7a;
+  box-shadow: inset 0 2px 7px rgba(0, 0, 0, 0.5), 0 3px 6px rgba(0, 0, 0, 0.35);
 }
+.em-navigation::before,
+.em-navigation::after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #aebfc9;
+  font-size: 0.62rem;
+  pointer-events: none;
+}
+.em-navigation::before { content: "▲"; top: 8px; }
+.em-navigation::after { content: "▼"; bottom: 8px; }
+.em-navigation .em-key {
+  min-height: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  color: #d6e2ea;
+}
+.em-navigation .em-key:hover { filter: none; background: rgba(255, 255, 255, 0.08); }
+.em-navigation .em-key:active,
+.em-navigation .em-key.pressed { transform: none; background: rgba(255, 255, 255, 0.16); box-shadow: none; }
+.em-navigation .em-key strong { font-size: 0.82rem; font-weight: 700; }
 .em-keypad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .em-key {
   position: relative;
@@ -275,13 +316,15 @@
   color: #18232d;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
-.em-key.calc-operator { background: linear-gradient(180deg, #3a566b, #243b4d); }
+/* Right column operators + enter: dark charcoal keys (faithful to device). */
+.em-key.calc-operator { background: linear-gradient(180deg, #33424c, #1f2b33); border-color: #46555f; }
 .em-key.calc-enter {
-  color: #061821;
-  background: linear-gradient(180deg, #27ded5, #12aaa8);
-  border-color: #31e5dc;
+  color: #eef5fb;
+  background: linear-gradient(180deg, #33424c, #1f2b33);
+  border-color: #46555f;
 }
-.em-key.calc-shift { color: #062119; background: linear-gradient(180deg, #34cd92, #1f9f72); }
+/* 2nd key: green (faithful to device). */
+.em-key.calc-shift { color: #062119; background: linear-gradient(180deg, #6fc04a, #3f9a2a); border-color: #7fd05a; }
 .em-key.expected-key {
   border-color: #ffd267;
   box-shadow: 0 0 0 3px rgba(247,194,90,.4), 0 0 20px rgba(247,194,90,.28);

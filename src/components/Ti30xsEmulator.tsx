@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { CalculatorDrill } from '../data/calculatorLab';
 import { keypadRows, navigationKeys, topControlKeys, type CalculatorKey, type CalcKeyId } from '../data/ti30xsLayout';
 import { emptyCalculator, pressCalculatorKey, type CalculatorState } from '../lib/calculatorEngine';
-import '../device-theme.css';
 
 type Props = {
   drill?: CalculatorDrill;
@@ -119,11 +118,11 @@ export function Ti30xsEmulator({ drill, guided }: Props) {
     <section className="emulator-area" aria-label="Scientific calculator practice emulator">
       <div className="ti-device">
         <header className="ti-brandless-head">
-          <div><strong>Scientific Multi-Line</strong><small>training calculator</small></div>
-          <span>STEP practice face</span>
+          <strong>Scientific</strong>
+          <small>MultiView</small>
         </header>
         <div className="ti-screen" role="status" aria-label="Calculator display">
-          <div className="screen-indicators"><span>{state.second ? '2nd' : ''}</span><span>Math</span></div>
+          <div className="screen-indicators"><span>{state.second ? '2nd ↑' : ''}</span><span>DEG</span></div>
           <div className="screen-expression">
             <span>{before}</span>
             <span className="screen-caret" ref={caretRef} aria-hidden="true" />
