@@ -10,6 +10,7 @@ import './focus-polish.css';
 import './ged-map.css';
 import './calculator-lab.css';
 import './tokens.css';
+import './lesson-polish.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

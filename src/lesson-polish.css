@@ -1,0 +1,103 @@
+/* ============================================================
+   STEP — Lesson view polish
+   "Spends" the design tokens on the screen where study happens.
+   Goal: one calm guided workspace — centered reading column,
+   clear vertical rhythm, the worked example as a quiet anchor,
+   practice that recedes, steps that breathe, answer as a landing.
+   Imported LAST so it composes over the foundational layers.
+   ============================================================ */
+
+/* ---- Study column: centered, editorial measure ----------- */
+.lesson { max-width: 940px; margin-inline: auto; }
+.lesson-header { margin-bottom: var(--space-6); }
+.lesson-header > p:last-child { color: var(--text-soft); max-width: 64ch; }
+
+/* ---- Vertical rhythm for the practice run ---------------- */
+.practice-stack { display: flex; flex-direction: column; gap: var(--space-5); }
+.practice-stack .problem-card { margin-bottom: 0; }
+
+/* ---- Problem card: hierarchy through elevation ----------- */
+.problem-card {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+}
+/* The worked example is the anchor: a faint accent edge + lift. */
+.problem-card:not(.practice) {
+  border-top: 2px solid var(--border-strong);
+  box-shadow: var(--shadow-panel);
+}
+/* Practice recedes: quieter surface, no lift — it's your turn. */
+.problem-card.practice { box-shadow: none; }
+
+/* ---- Labels: small, calm, consistent -------------------- */
+.problem-label { display: block; margin-bottom: var(--space-2); font-size: var(--text-xs); }
+
+/* ---- Prompt: the question gets presence + a readable measure */
+.problem-card h3 {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  max-width: 60ch;
+  color: var(--text);
+}
+
+/* ---- Steps: separated and easy to track ----------------- */
+.solution { margin-top: var(--space-5); padding-top: var(--space-5); }
+.solution ol { margin: var(--space-3) 0 var(--space-5); }
+.solution ol li { margin-bottom: var(--space-2); padding-left: var(--space-1); }
+.solution ol li:last-child { margin-bottom: 0; }
+.step-counter { margin: var(--space-3) 0; }
+
+/* ---- Answer: the gentle landing ------------------------- */
+.answer {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent);
+}
+
+/* ---- The next move: clearly the one thing to do --------- */
+.next-step-button {
+  transition: background var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.next-step-button:not(:disabled):hover { transform: translateY(-1px); }
+
+/* ---- Guidance line ("The move:") ------------------------ */
+.procedure { color: var(--text-soft); }
+
+/* ---- Before-start cue + pause note ---------------------- */
+.before-start { margin-top: var(--space-4); }
+.pause-note { color: var(--text-soft); line-height: var(--leading-normal); }
+
+/* ---- Reflection / grade / mistake: consistent, tappable - */
+.reflection { margin-top: var(--space-5); }
+.grade-row { gap: var(--space-3); padding-top: var(--space-4); }
+.grade-row button,
+.mistake-prompt button,
+.confidence-scale button,
+.confidence-row button {
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+.grade-row button:hover,
+.mistake-prompt button:hover { border-color: var(--border-strong); }
+
+/* ---- Lesson "your job" anchor: calm breathing room ------ */
+.lesson-anchor { margin-top: var(--space-5); }
+
+/* ---- Save-your-place footer: a settled close ------------ */
+.lesson-complete { margin-top: var(--space-5); }
+.lesson-complete .confidence-row { margin: var(--space-4) 0; gap: var(--space-2); }
+
+/* ---- Recognition + procedure help columns: readable ----- */
+.lesson-help-grid h2 { letter-spacing: -0.01em; }
+.recognition { color: var(--text-soft); }
+
+@media (max-width: 760px) {
+  .problem-card { padding: var(--space-5); }
+  .problem-card h3 { font-size: var(--text-lg); }
+  .practice-stack { gap: var(--space-4); }
+}
