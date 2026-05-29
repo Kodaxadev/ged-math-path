@@ -13,6 +13,7 @@ import './tokens.css';
 import './lesson-polish.css';
 import './home-polish.css';
 import './controls-polish.css';
+import './views-polish.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

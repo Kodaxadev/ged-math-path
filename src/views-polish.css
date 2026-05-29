@@ -1,0 +1,52 @@
+/* ============================================================
+   STEP — Secondary views polish (GED Map · Insights · Settings)
+   These already inherit the token foundation; this gives them the
+   bespoke pass: dashboard-grade tabular figures, a legend-matched
+   coverage summary, and tappable controls — kept calm.
+   Imported LAST so it composes over the foundational layers.
+   ============================================================ */
+
+/* ---- Numbers behave like a dashboard: aligned figures ---- */
+.insight-stat strong, .map-stats strong,
+.mastery-row small, .pattern-row strong,
+.comparison-card b, .coverage-pill {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- INSIGHTS ------------------------------------------- */
+.insights { gap: var(--space-4); }
+.insights-summary, .insights-grid, .comparison-grid { gap: var(--space-3); }
+/* The headline stats read as confident display numerals. */
+.insight-stat strong { font-family: var(--font-display); letter-spacing: -0.02em; }
+.insights-empty, .analytics-caution { color: var(--text-soft); }
+/* Mastery bars: a touch taller so the data is legible. */
+.mastery-bar { height: 10px; }
+
+/* ---- GED MAP -------------------------------------------- */
+.ged-map { gap: var(--space-4); }
+.map-groups { gap: var(--space-3); }
+.map-header > p:not(.eyebrow) { color: var(--text-soft); max-width: 64ch; }
+/* Summary stats mirror the pill legend: teal / blue / amber. */
+.map-stats div:nth-child(2) strong { color: var(--accent-2); }
+.map-stats div:nth-child(3) strong { color: var(--warning); }
+.map-group header > p:not(.eyebrow) { color: var(--text-soft); }
+/* Tappable feel on the map's buttons. */
+.fast-win-actions button, .topic-row button {
+  transition: background var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+.fast-win-actions button:hover { transform: translateY(-1px); }
+.topic-row { transition: background var(--dur-fast) var(--ease-out); }
+
+/* ---- FOCUS SETTINGS DRAWER ------------------------------ */
+/* Each toggle row becomes a calm, obviously-tappable target. */
+.setting-row {
+  padding-inline: var(--space-2);
+  margin-inline: calc(var(--space-2) * -1);
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.setting-row:hover { background: var(--surface-2); }
+.setting-row small { color: var(--text-soft); }
+.settings-note { color: var(--muted); }
