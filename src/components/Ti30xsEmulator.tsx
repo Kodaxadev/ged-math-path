@@ -131,16 +131,18 @@ export function Ti30xsEmulator({ drill, guided }: Props) {
           </div>
           <output className={state.error ? 'screen-result error' : 'screen-result'}>{state.error ? state.error : state.result}</output>
         </div>
-        <div className="ti-controls">
-          <div className="em-top-row">
-            {topControlKeys.map((item) => <KeyButton key={item.id} item={item} expected={expected === item.id} pressed={flashed === item.id} onPress={press} />)}
+        <div className="ti-keywell">
+          <div className="ti-controls">
+            <div className="em-top-row">
+              {topControlKeys.map((item) => <KeyButton key={item.id} item={item} expected={expected === item.id} pressed={flashed === item.id} onPress={press} />)}
+            </div>
+            <div className="em-navigation" aria-label="Navigation pad">
+              {navigationKeys.map((item) => <KeyButton key={item.id} item={item} expected={expected === item.id} pressed={flashed === item.id} onPress={press} />)}
+            </div>
           </div>
-          <div className="em-navigation" aria-label="Navigation pad">
-            {navigationKeys.map((item) => <KeyButton key={item.id} item={item} expected={expected === item.id} pressed={flashed === item.id} onPress={press} />)}
+          <div className="em-keypad">
+            {keypadRows.flat().map((item, index) => <KeyButton key={`${item.id}-${index}`} item={item} expected={expected === item.id} pressed={flashed === item.id} onPress={press} />)}
           </div>
-        </div>
-        <div className="em-keypad">
-          {keypadRows.flat().map((item, index) => <KeyButton key={`${item.id}-${index}`} item={item} expected={expected === item.id} pressed={flashed === item.id} onPress={press} />)}
         </div>
       </div>
       <div className={`em-feedback ${feedback.type}`} role="status">

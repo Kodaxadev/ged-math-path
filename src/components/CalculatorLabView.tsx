@@ -20,22 +20,6 @@ export function CalculatorLabView() {
         </div>
       </header>
 
-      <article className="panel calc-key-families">
-        <p className="eyebrow">BUTTONS TO LEARN IN ORDER</p>
-        <div className="calc-family-grid">
-          {calculatorButtonFamilies.map((family) => (
-            <div key={family.title}>
-              <h2>{family.title}</h2>
-              <div className="calc-key-strip" aria-label={family.keys.join(', ')}>
-                {family.keys.map((key) => <kbd key={key}>{key}</kbd>)}
-              </div>
-              <p>{family.note}</p>
-            </div>
-          ))}
-        </div>
-        <p className="calc-device-note">This is an interactive STEP training face for the GED calculator workflow. Final physical key-position calibration will be completed against a clear front-facing TI-30XS MultiView reference or your actual calculator.</p>
-      </article>
-
       <div className="calc-workspace">
         <aside className="panel calc-drill-menu" aria-label="Calculator drills">
           <div className="calc-mode-row" role="group" aria-label="Calculator practice mode">
@@ -59,10 +43,27 @@ export function CalculatorLabView() {
             {guided && <p className="drill-guidance">Now press the highlighted key on the calculator. One key at a time.</p>}
             {!guided && <p className="drill-guidance">No highlighted keys. Try entering the full setup yourself, then press enter.</p>}
           </article>
+          <p className="calc-workpad-note">Tip: open the <strong>Work Pad</strong> (bottom-right) to write the setup before you press keys.</p>
         </aside>
 
         <Ti30xsEmulator drill={selected} guided={guided} />
       </div>
+
+      <article className="panel calc-key-families">
+        <p className="eyebrow">BUTTONS TO LEARN IN ORDER</p>
+        <div className="calc-family-grid">
+          {calculatorButtonFamilies.map((family) => (
+            <div key={family.title}>
+              <h2>{family.title}</h2>
+              <div className="calc-key-strip" aria-label={family.keys.join(', ')}>
+                {family.keys.map((key) => <kbd key={key}>{key}</kbd>)}
+              </div>
+              <p>{family.note}</p>
+            </div>
+          ))}
+        </div>
+        <p className="calc-device-note">This is an interactive STEP training face for the GED calculator workflow. Exact physical key positions remain subject to final TI-30XS MultiView reference validation, and STEP is not affiliated with TI.</p>
+      </article>
       <ScratchPad />
     </section>
   );

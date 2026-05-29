@@ -146,27 +146,48 @@
 .write-first small { color: var(--accent); font-size: .65rem; font-weight: 600; letter-spacing: .15em; }
 .write-first strong { font-size: 1.1rem; }
 .drill-guidance { margin: 0; color: var(--muted); font-size: .85rem; line-height: 1.45; }
-.emulator-area { display: grid; justify-items: center; gap: 14px; }
+/* Three-column workstation: drill rail | device | guidance rail.
+   .calc-workspace gives [drill | emulator-area]; emulator-area splits into
+   [device | feedback] so the live guided feedback becomes the right rail. */
+.emulator-area {
+  display: grid;
+  grid-template-columns: minmax(300px, 398px) minmax(220px, 1fr);
+  align-items: start;
+  gap: var(--space-4);
+}
+.emulator-area .ti-device { justify-self: center; }
+/* Light silver device body (north-star), dark header strip + sage screen. */
 .ti-device {
   width: min(398px, 100%);
-  padding: 19px 18px 22px;
-  border-radius: 32px 32px 22px 22px;
-  background: linear-gradient(150deg, #1e2b3a 0%, #0d1520 44%, #192432 100%);
-  border: 1px solid rgba(138, 157, 183, .32);
-  box-shadow: 0 26px 60px rgba(0,0,0,.43), inset 1px 1px 1px rgba(255,255,255,.1), inset -2px -2px 3px rgba(0,0,0,.28);
+  padding: 18px 16px 20px;
+  border-radius: 26px 26px 18px 18px;
+  background: linear-gradient(155deg, #f5f7f8 0%, #d8dee4 55%, #eef2f4 100%);
+  border: 1px solid #c2cad2;
+  box-shadow: 0 26px 60px rgba(0,0,0,.43), inset 0 1px 0 rgba(255,255,255,.85);
 }
 .ti-brandless-head {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin: 0 8px 13px;
-  color: #ebf3ff;
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #173345;
+  color: #eef5ff;
 }
 .ti-brandless-head div { display: grid; gap: 1px; }
 .ti-brandless-head strong { font-size: .91rem; letter-spacing: .03em; }
 .ti-brandless-head small,
-.ti-brandless-head > span { color: #7f96ac; font-size: .64rem; text-transform: uppercase; letter-spacing: .13em; }
+.ti-brandless-head > span { color: #b8c6cf; font-size: .64rem; text-transform: uppercase; letter-spacing: .13em; }
+/* Dark keypad well sitting on the light body. */
+.ti-keywell {
+  margin-top: 14px;
+  padding: 13px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, #25475e, #162e41);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,.35);
+}
 .ti-screen {
   display: grid;
   gap: 4px;
@@ -218,8 +239,8 @@
   border-radius: 8px;
   border: 1px solid #536477;
   border-bottom: 3px solid #0b1119;
-  color: #e6eef9;
-  background: linear-gradient(180deg, #374556, #202c39);
+  color: #eef5fb;
+  background: linear-gradient(180deg, #455f72, #2b3c4b);
   box-shadow: inset 0 1px 0 rgba(255,255,255,.11);
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -248,16 +269,17 @@
 }
 .em-key strong { font-size: .94rem; font-weight: 600; }
 .em-key.calc-number {
-  background: linear-gradient(180deg, #586779, #33404e);
-  color: #fff;
+  background: linear-gradient(180deg, #f4f6f7, #e2e7ea);
+  border-color: #b7c0c8;
+  color: #18232d;
 }
-.em-key.calc-operator { background: linear-gradient(180deg, #253f57, #172a3d); }
+.em-key.calc-operator { background: linear-gradient(180deg, #3a566b, #243b4d); }
 .em-key.calc-enter {
   color: #061821;
   background: linear-gradient(180deg, #27ded5, #12aaa8);
   border-color: #31e5dc;
 }
-.em-key.calc-shift { color: #08222a; background: linear-gradient(180deg, #40d8ce, #1eaaa6); }
+.em-key.calc-shift { color: #062119; background: linear-gradient(180deg, #34cd92, #1f9f72); }
 .em-key.expected-key {
   border-color: #ffd267;
   box-shadow: 0 0 0 3px rgba(247,194,90,.4), 0 0 20px rgba(247,194,90,.28);
@@ -265,31 +287,43 @@
 }
 @keyframes expectedPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
 .em-feedback {
-  width: min(430px, 100%);
+  width: auto;
+  align-self: stretch;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 12px 14px;
-  border-radius: 13px;
-  border: 1px solid rgba(123,160,207,.16);
-  background: rgba(13,24,42,.82);
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-card);
+  background: linear-gradient(150deg, var(--panel-from), var(--panel-to));
 }
-.em-feedback p { flex: 1 1 100%; margin: 0; color: #d4e0ef; }
+.em-feedback p { margin: 0; color: var(--text); font-size: var(--text-lg); font-weight: 600; line-height: var(--leading-snug); }
+.em-feedback .quiet { margin-top: auto; align-self: flex-start; }
 .em-feedback.wrong { border-color: rgba(247,194,90,.34); }
 .em-feedback.complete { border-color: rgba(32,213,205,.33); background: rgba(32,213,205,.07); }
 .em-feedback.info { border-color: rgba(37,166,255,.3); background: rgba(37,166,255,.06); }
 .em-sequence { color: var(--muted); font-size: .82rem; }
 .em-sequence strong { color: var(--accent); }
 .em-keyboard-hint {
-  width: min(430px, 100%);
+  grid-column: 1 / -1;
+  width: auto;
   margin: 0;
   color: #9eafc9;
   font-size: .8rem;
   line-height: 1.55;
   text-align: center;
 }
+.calc-workpad-note {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-soft);
+  font-size: .85rem;
+  line-height: 1.5;
+}
+.calc-workpad-note strong { color: var(--accent); }
 .em-keyboard-hint kbd {
   padding: 1px 6px;
   border: 1px solid rgba(123,160,207,.28);
@@ -308,6 +342,8 @@
   .calculator-lab-cta { width: 100%; }
   .calc-family-grid, .calc-workspace { grid-template-columns: 1fr; }
   .calc-drill-menu { position: static; }
+  .emulator-area { grid-template-columns: 1fr; justify-items: center; }
+  .em-feedback, .em-keyboard-hint { width: min(430px, 100%); }
 }
 @media (max-width: 760px) {
   .calculator-blocker { padding: 17px; }
