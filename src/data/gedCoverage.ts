@@ -50,9 +50,9 @@ export const gedTopics: GedTopic[] = [
   { title: 'Exponents and roots', path: 'no-calculator', state: 'ready', lessonIds: ['powers-roots'] },
   { title: 'Solve equations with steps', path: 'no-calculator', state: 'ready', lessonIds: ['two-step-equations', 'variables-both-sides'] },
   { title: 'Number line distance', path: 'no-calculator', state: 'ready', lessonIds: ['number-line-distance'] },
-  { title: 'Undefined expressions', path: 'no-calculator', state: 'planned' },
-  { title: 'Rational exponents', path: 'no-calculator', state: 'planned' },
-  { title: 'Polynomials', path: 'no-calculator', state: 'planned' },
+  { title: 'Undefined expressions', path: 'no-calculator', state: 'ready', lessonIds: ['undefined-expressions'] },
+  { title: 'Rational exponents', path: 'no-calculator', state: 'ready', lessonIds: ['rational-exponents'] },
+  { title: 'Polynomials', path: 'no-calculator', state: 'ready', lessonIds: ['polynomials'] },
 
   { title: 'Algebraic statements', path: 'mixed', state: 'partial', lessonIds: ['two-step-equations'] },
   { title: 'Ratios', path: 'mixed', state: 'ready', lessonIds: ['unit-ratios'] },
@@ -62,7 +62,7 @@ export const gedTopics: GedTopic[] = [
   { title: 'Systems of equations', path: 'mixed', state: 'ready', lessonIds: ['system-addition'] },
   { title: 'Graph lines', path: 'mixed', state: 'partial', lessonIds: ['function-lines'] },
   { title: 'Scientific notation', path: 'mixed', state: 'ready', lessonIds: ['scientific-notation'] },
-  { title: 'FOIL', path: 'mixed', state: 'planned' },
+  { title: 'FOIL', path: 'mixed', state: 'ready', lessonIds: ['foil'] },
   { title: 'Unit conversions', path: 'mixed', state: 'ready', lessonIds: ['unit-conversions'] },
   { title: 'Quadratic formula', path: 'later', state: 'planned', note: 'Add after higher-frequency procedures are stable.' },
 ];

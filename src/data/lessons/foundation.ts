@@ -86,4 +86,36 @@ export const foundationLessons: Lesson[] = [
       { id: 'sci-which-bigger', prompt: 'Which is larger: 5 × 10³ or 8 × 10²?', answer: '5 × 10³', procedure: 'Compare the powers of 10 first; a bigger power means a bigger number.', steps: ['5 × 10³ = 5,000.', '8 × 10² = 800.', '5,000 is larger than 800.', 'Answer: 5 × 10³.'] },
     ],
   },
+  {
+    id: 'rational-exponents', moduleId: 'number-sense', title: 'Fraction exponents are roots',
+    objective: 'Read a fraction exponent as a root and find its value.',
+    recognition: ['The little raised number is a fraction, like 1/2 or 1/3.', 'The question asks you to evaluate it.'],
+    procedureCard: ['A power of 1/2 means the square root.', 'A power of 1/3 means the cube root.', 'The bottom number of the fraction is which root to take.', 'Ask: what number, used that many times, makes the base?'],
+    workedExample: {
+      id: 'half-power', prompt: 'What is 9^(1/2)?', answer: '3', procedure: 'A 1/2 power means take the square root.',
+      steps: ['The exponent 1/2 means square root.', 'So 9^(1/2) = √9.', 'Ask: what number times itself is 9? 3 × 3 = 9.', 'Answer: 3.'],
+    },
+    practice: [
+      { id: 'rat-25', prompt: 'What is 25^(1/2)?', answer: '5', procedure: 'A 1/2 power means square root.', steps: ['25^(1/2) = √25.', '5 × 5 = 25.', 'Answer: 5.'] },
+      { id: 'rat-16', prompt: 'What is 16^(1/2)?', answer: '4', procedure: 'A 1/2 power means square root.', steps: ['16^(1/2) = √16.', '4 × 4 = 16.', 'Answer: 4.'] },
+      { id: 'rat-cube-8', prompt: 'What is 8^(1/3)?', answer: '2', procedure: 'A 1/3 power means cube root: which number used three times makes 8?', steps: ['The exponent 1/3 means cube root.', 'Ask: what number × itself × itself is 8?', '2 × 2 × 2 = 8.', 'Answer: 2.'] },
+      { id: 'rat-cube-27', prompt: 'What is 27^(1/3)?', answer: '3', procedure: 'A 1/3 power means cube root.', steps: ['The exponent 1/3 means cube root.', 'Ask: what number used three times makes 27?', '3 × 3 × 3 = 27.', 'Answer: 3.'] },
+    ],
+  },
+  {
+    id: 'undefined-expressions', moduleId: 'number-sense', title: 'Undefined: when the bottom is zero',
+    objective: 'Find the value that makes a fraction have no answer.',
+    recognition: ['A fraction has a letter in the bottom (denominator).', 'The question asks when it is undefined or has no value.'],
+    procedureCard: ['You can never divide by zero.', 'A fraction is undefined when its bottom equals zero.', 'Set the bottom equal to 0.', 'Solve for the value that breaks it.'],
+    workedExample: {
+      id: 'undefined-basic', prompt: 'For what value of x is 5/(x - 3) undefined?', answer: 'x = 3', procedure: 'Set the bottom equal to zero and solve.', gedNotation: '5/(x - 3)', learningNotation: '5/(n - 3)',
+      steps: ['A fraction is undefined when the bottom is zero.', 'Set the bottom to zero: x - 3 = 0.', 'Add 3 to both sides: x = 3.', 'Answer: x = 3.'],
+    },
+    practice: [
+      { id: 'undefined-x', prompt: 'For what value of x is 1/x undefined?', answer: 'x = 0', procedure: 'The bottom is x; set it to zero.', steps: ['Undefined when the bottom is zero.', 'The bottom is x, so x = 0.', 'Answer: x = 0.'] },
+      { id: 'undefined-plus2', prompt: 'For what value of x is 7/(x + 2) undefined?', answer: 'x = -2', procedure: 'Set the bottom equal to zero and solve.', steps: ['Set the bottom to zero: x + 2 = 0.', 'Subtract 2: x = -2.', 'Answer: x = -2.'] },
+      { id: 'undefined-minus5', prompt: 'For what value of x is 10/(x - 5) undefined?', answer: 'x = 5', procedure: 'Set the bottom equal to zero and solve.', steps: ['Set the bottom to zero: x - 5 = 0.', 'Add 5: x = 5.', 'Answer: x = 5.'] },
+      { id: 'undefined-2x', prompt: 'For what value of x is 3/(2x) undefined?', answer: 'x = 0', procedure: 'Set the bottom equal to zero and solve.', steps: ['Set the bottom to zero: 2x = 0.', 'Divide by 2: x = 0.', 'Answer: x = 0.'] },
+    ],
+  },
 ];

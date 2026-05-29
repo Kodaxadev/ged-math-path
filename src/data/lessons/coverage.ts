@@ -108,6 +108,38 @@ export const coverageLessons: Lesson[] = [
     ],
   },
   {
+    id: 'polynomials', moduleId: 'quadratics', title: 'Polynomials: combine like terms',
+    objective: 'Add and subtract expressions by combining terms that match.',
+    recognition: ['Several terms use the same letter, like 3x and 2x.', 'Plain numbers sit alongside letter terms.'],
+    procedureCard: ['Like terms share the exact same letter and power.', 'Add or subtract only the numbers in front; keep the letter part the same.', 'Plain numbers combine with plain numbers.', 'Subtracting a group flips the sign of every term inside it.'],
+    workedExample: {
+      id: 'combine-like', prompt: 'Simplify: 3x + 5 + 2x + 4.', answer: '5x + 9', procedure: 'Group the x-terms, group the numbers, then add each group.', gedNotation: '3x + 5 + 2x + 4', learningNotation: '3 × n + 5 + 2 × n + 4',
+      steps: ['Group the letter terms: 3x and 2x.', 'Add their front numbers: 3 + 2 = 5, giving 5x.', 'Group the plain numbers: 5 and 4.', 'Add them: 5 + 4 = 9.', 'Answer: 5x + 9.'],
+    },
+    practice: [
+      { id: 'combine-basic', prompt: 'Simplify: 4x + 2x.', answer: '6x', procedure: 'Add the front numbers; keep the x.', steps: ['Both terms have x, so they are like terms.', 'Add the front numbers: 4 + 2 = 6.', 'Answer: 6x.'] },
+      { id: 'combine-mixed', prompt: 'Simplify: 7n + 3 - 2n + 5.', answer: '5n + 8', procedure: 'Combine the n-terms and the numbers separately.', steps: ['Letter terms: 7n - 2n = 5n.', 'Plain numbers: 3 + 5 = 8.', 'Answer: 5n + 8.'] },
+      { id: 'add-polynomials', prompt: 'Add: (2x + 3) + (5x + 1).', answer: '7x + 4', procedure: 'Drop the parentheses, then combine like terms.', gedNotation: '(2x + 3) + (5x + 1)', learningNotation: '(2 × n + 3) + (5 × n + 1)', steps: ['Remove the parentheses: 2x + 3 + 5x + 1.', 'Letter terms: 2x + 5x = 7x.', 'Numbers: 3 + 1 = 4.', 'Answer: 7x + 4.'] },
+      { id: 'subtract-polynomials', prompt: 'Subtract: (6x + 8) - (2x + 3).', answer: '4x + 5', procedure: 'Subtracting flips the sign of each term in the second group.', gedNotation: '(6x + 8) - (2x + 3)', learningNotation: '(6 × n + 8) - (2 × n + 3)', steps: ['Flip the signs inside the second group: 6x + 8 - 2x - 3.', 'Letter terms: 6x - 2x = 4x.', 'Numbers: 8 - 3 = 5.', 'Answer: 4x + 5.'] },
+    ],
+  },
+  {
+    id: 'foil', moduleId: 'quadratics', title: 'FOIL: multiply two binomials',
+    objective: 'Multiply two two-term groups using First, Outer, Inner, Last.',
+    recognition: ['Two sets of parentheses, each with two terms, written next to each other.', 'You are asked to multiply or expand them.'],
+    procedureCard: ['F: multiply the First terms.', 'O: multiply the Outer terms.', 'I: multiply the Inner terms.', 'L: multiply the Last terms.', 'Then combine the two middle like terms.'],
+    workedExample: {
+      id: 'foil-basic', prompt: 'Multiply: (x + 2)(x + 3).', answer: 'x² + 5x + 6', procedure: 'Multiply all four pairs, then combine the middle terms.', gedNotation: '(x + 2)(x + 3)', learningNotation: '(n + 2)(n + 3)',
+      steps: ['First: x × x = x².', 'Outer: x × 3 = 3x.', 'Inner: 2 × x = 2x.', 'Last: 2 × 3 = 6.', 'Combine the middle terms: 3x + 2x = 5x.', 'Answer: x² + 5x + 6.'],
+    },
+    practice: [
+      { id: 'foil-1-4', prompt: 'Multiply: (x + 1)(x + 4).', answer: 'x² + 5x + 4', procedure: 'FOIL, then combine the middle terms.', gedNotation: '(x + 1)(x + 4)', learningNotation: '(n + 1)(n + 4)', steps: ['First: x × x = x².', 'Outer: x × 4 = 4x.', 'Inner: 1 × x = x.', 'Last: 1 × 4 = 4.', 'Combine: 4x + x = 5x.', 'Answer: x² + 5x + 4.'] },
+      { id: 'foil-5-2', prompt: 'Multiply: (x + 5)(x + 2).', answer: 'x² + 7x + 10', procedure: 'FOIL, then combine the middle terms.', gedNotation: '(x + 5)(x + 2)', learningNotation: '(n + 5)(n + 2)', steps: ['First: x × x = x².', 'Outer: x × 2 = 2x.', 'Inner: 5 × x = 5x.', 'Last: 5 × 2 = 10.', 'Combine: 2x + 5x = 7x.', 'Answer: x² + 7x + 10.'] },
+      { id: 'foil-negative', prompt: 'Multiply: (x - 3)(x + 2).', answer: 'x² - x - 6', procedure: 'Keep the signs with each term while multiplying.', gedNotation: '(x - 3)(x + 2)', learningNotation: '(n - 3)(n + 2)', steps: ['First: x × x = x².', 'Outer: x × 2 = 2x.', 'Inner: -3 × x = -3x.', 'Last: -3 × 2 = -6.', 'Combine: 2x - 3x = -x.', 'Answer: x² - x - 6.'] },
+      { id: 'foil-difference', prompt: 'Multiply: (x + 4)(x - 4).', answer: 'x² - 16', procedure: 'The middle terms cancel when the only difference is the sign.', gedNotation: '(x + 4)(x - 4)', learningNotation: '(n + 4)(n - 4)', steps: ['First: x × x = x².', 'Outer: x × -4 = -4x.', 'Inner: 4 × x = 4x.', 'Last: 4 × -4 = -16.', 'Combine: -4x + 4x = 0, so no middle term.', 'Answer: x² - 16.'] },
+    ],
+  },
+  {
     id: 'quadratic-basics', moduleId: 'quadratics', title: 'Quadratics: squared unknowns',
     objective: 'Recognize the squared-variable problem and solve simple factorable cases.',
     recognition: ['The unknown appears squared: n².', 'The graph of a quadratic is a curve rather than a straight line.'],
