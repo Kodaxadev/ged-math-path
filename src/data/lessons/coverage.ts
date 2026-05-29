@@ -172,4 +172,20 @@ export const coverageLessons: Lesson[] = [
       { id: 'quad-mixed-sign', prompt: 'Solve: n² + 2n - 8 = 0.', answer: 'n = -4 or n = 2', procedure: 'Find two numbers that multiply to -8 and add to 2.', steps: ['Two numbers multiply to -8 and add to 2: 4 and -2.', 'Factor: (n + 4)(n - 2) = 0.', 'Set each factor to 0: n + 4 = 0 or n - 2 = 0.', 'Answers: n = -4 or n = 2.'] },
     ],
   },
+  {
+    id: 'quadratic-formula', moduleId: 'quadratics', title: 'Quadratic formula: when factoring is hard',
+    objective: 'Solve any ax² + bx + c = 0 by filling numbers into the formula from your sheet.',
+    recognition: ['The equation has a squared term and does not factor easily.', 'The quadratic formula is printed on the GED formula sheet.'],
+    procedureCard: ['Match the equation to ax² + bx + c = 0.', 'Find a, b, and c with their signs.', 'Formula: x = (-b ± √(b² - 4ac)) ÷ 2a.', 'Do the part under the root first, then take its square root.', 'Use + once and - once to get the two answers.'],
+    workedExample: {
+      id: 'qf-worked', prompt: 'Solve x² + 7x + 10 = 0 with the quadratic formula.', answer: 'x = -2 or x = -5', procedure: 'Identify a, b, c; substitute; simplify under the root; then split with ±.', gedNotation: 'x² + 7x + 10 = 0', learningNotation: 'n² + 7 × n + 10 = 0',
+      steps: ['Match ax² + bx + c = 0: a = 1, b = 7, c = 10.', 'Write the formula: x = (-b ± √(b² - 4ac)) ÷ 2a.', 'Substitute: x = (-7 ± √(7² - 4·1·10)) ÷ (2·1).', 'Under the root: 7² = 49 and 4·1·10 = 40, so 49 - 40 = 9.', '√9 = 3, so x = (-7 ± 3) ÷ 2.', 'Plus: (-7 + 3) ÷ 2 = -2. Minus: (-7 - 3) ÷ 2 = -5.', 'Answer: x = -2 or x = -5.'],
+    },
+    practice: [
+      { id: 'qf-5-6', prompt: 'Solve x² + 5x + 6 = 0 with the quadratic formula.', answer: 'x = -2 or x = -3', procedure: 'a = 1, b = 5, c = 6; substitute and simplify.', gedNotation: 'x² + 5x + 6 = 0', learningNotation: 'n² + 5 × n + 6 = 0', steps: ['a = 1, b = 5, c = 6.', 'Under the root: 5² - 4·1·6 = 25 - 24 = 1.', '√1 = 1, so x = (-5 ± 1) ÷ 2.', 'Plus: (-5 + 1) ÷ 2 = -2. Minus: (-5 - 1) ÷ 2 = -3.', 'Answer: x = -2 or x = -3.'] },
+      { id: 'qf-minus5-6', prompt: 'Solve x² - 5x + 6 = 0 with the quadratic formula.', answer: 'x = 3 or x = 2', procedure: 'a = 1, b = -5, c = 6; watch the negative b.', gedNotation: 'x² - 5x + 6 = 0', learningNotation: 'n² - 5 × n + 6 = 0', steps: ['a = 1, b = -5, c = 6.', '-b = 5. Under the root: (-5)² - 4·1·6 = 25 - 24 = 1.', '√1 = 1, so x = (5 ± 1) ÷ 2.', 'Plus: (5 + 1) ÷ 2 = 3. Minus: (5 - 1) ÷ 2 = 2.', 'Answer: x = 3 or x = 2.'] },
+      { id: 'qf-2-minus3', prompt: 'Solve x² + 2x - 3 = 0 with the quadratic formula.', answer: 'x = 1 or x = -3', procedure: 'a = 1, b = 2, c = -3; the c is negative.', gedNotation: 'x² + 2x - 3 = 0', learningNotation: 'n² + 2 × n - 3 = 0', steps: ['a = 1, b = 2, c = -3.', 'Under the root: 2² - 4·1·(-3) = 4 + 12 = 16.', '√16 = 4, so x = (-2 ± 4) ÷ 2.', 'Plus: (-2 + 4) ÷ 2 = 1. Minus: (-2 - 4) ÷ 2 = -3.', 'Answer: x = 1 or x = -3.'] },
+      { id: 'qf-a2', prompt: 'Solve 2x² - 6x + 4 = 0 with the quadratic formula.', answer: 'x = 2 or x = 1', procedure: 'a = 2, so the bottom is 2a = 4.', gedNotation: '2x² - 6x + 4 = 0', learningNotation: '2 × n² - 6 × n + 4 = 0', steps: ['a = 2, b = -6, c = 4.', '-b = 6. Under the root: (-6)² - 4·2·4 = 36 - 32 = 4.', '√4 = 2. The bottom is 2a = 4, so x = (6 ± 2) ÷ 4.', 'Plus: (6 + 2) ÷ 4 = 2. Minus: (6 - 2) ÷ 4 = 1.', 'Answer: x = 2 or x = 1.'] },
+    ],
+  },
 ];

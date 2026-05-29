@@ -33,7 +33,7 @@ export const gedTopics: GedTopic[] = [
   { title: 'Functions / substitutions', path: 'calculator', state: 'partial', lessonIds: ['function-lines', 'calculator-entries'], note: 'Evaluation covered; add more authentic GED tables.' },
   { title: 'Equations of lines', path: 'calculator', state: 'partial', lessonIds: ['slope-points', 'function-lines'] },
   { title: 'Solve equations by checking choices', path: 'calculator', state: 'ready', lessonIds: ['check-answer-choices'] },
-  { title: 'Quadratics with answer choices', path: 'calculator', state: 'partial', lessonIds: ['quadratic-basics'] },
+  { title: 'Quadratics with answer choices', path: 'calculator', state: 'ready', lessonIds: ['quadratic-basics', 'check-answer-choices'] },
   { title: 'Simple interest', path: 'calculator', state: 'ready', lessonIds: ['simple-interest'] },
   { title: 'Weighted average', path: 'calculator', state: 'ready', lessonIds: ['weighted-average'] },
   { title: 'Calculator word problems', path: 'calculator', state: 'partial', lessonIds: ['calculator-entries', 'mixed-check'] },
@@ -60,11 +60,11 @@ export const gedTopics: GedTopic[] = [
   { title: 'Slope', path: 'mixed', state: 'ready', lessonIds: ['slope-points'] },
   { title: 'Inequalities', path: 'mixed', state: 'ready', lessonIds: ['inequality-basics'] },
   { title: 'Systems of equations', path: 'mixed', state: 'ready', lessonIds: ['system-addition'] },
-  { title: 'Graph lines', path: 'mixed', state: 'partial', lessonIds: ['function-lines'] },
+  { title: 'Graph lines', path: 'mixed', state: 'ready', lessonIds: ['function-lines', 'plotting-points'] },
   { title: 'Scientific notation', path: 'mixed', state: 'ready', lessonIds: ['scientific-notation'] },
   { title: 'FOIL', path: 'mixed', state: 'ready', lessonIds: ['foil'] },
   { title: 'Unit conversions', path: 'mixed', state: 'ready', lessonIds: ['unit-conversions'] },
-  { title: 'Quadratic formula', path: 'later', state: 'planned', note: 'Add after higher-frequency procedures are stable.' },
+  { title: 'Quadratic formula', path: 'later', state: 'ready', lessonIds: ['quadratic-formula'], note: 'Clean perfect-square cases; the formula is on the GED sheet.' },
 ];
 
 export function lessonForTopic(topic: GedTopic, lessons: Lesson[]): Lesson | undefined {

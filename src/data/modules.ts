@@ -15,7 +15,7 @@ export const modules: CourseModule[] = [
   { id: 'probability', title: 'Probability', subtitle: 'Fractions of a bag or group', purpose: 'Translate probability into part of a known total.', lessonIds: ['probability-total'], phase: 'Core' },
   { id: 'inequalities', title: 'Inequalities', subtitle: 'More than, less than, number lines', purpose: 'Solve inequality statements while handling direction correctly.', lessonIds: ['inequality-basics'], phase: 'Core' },
   { id: 'functions', title: 'Functions & Lines', subtitle: 'Tables first, then equations and graphs', purpose: 'Recognize a function table before moving to line calculations.', lessonIds: ['function-table-rule', 'plotting-points', 'function-lines'], phase: 'Core' },
-  { id: 'quadratics', title: 'Quadratics', subtitle: 'Factoring and formula recognition', purpose: 'Cover GED squared-variable question types without overloading the path.', lessonIds: ['polynomials', 'foil', 'quadratic-basics'], phase: 'Core' },
+  { id: 'quadratics', title: 'Quadratics', subtitle: 'Factoring and formula recognition', purpose: 'Cover GED squared-variable question types without overloading the path.', lessonIds: ['polynomials', 'foil', 'quadratic-basics', 'quadratic-formula'], phase: 'Core' },
   { id: 'calculator', title: 'GED Tools', subtitle: 'Calculator, formula sheet and scratch-board workflow', purpose: 'Practice the actual tools and first moves used during the test.', lessonIds: ['calculator-entries', 'formula-sheet-route', 'no-calculator-route', 'test-tools'], phase: 'GED Tools' },
   { id: 'readiness', title: 'Readiness Check', subtitle: 'Mixed practice from your hard list', purpose: 'Find the last weak procedure families before GED Ready.', lessonIds: ['mixed-check'], phase: 'Final Gate' },
 ];
