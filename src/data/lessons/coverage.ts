@@ -7,7 +7,12 @@ export const coverageLessons: Lesson[] = [
     recognition: ['Circle problems give radius or diameter.', 'Right-triangle problems name legs and a longest side, or show a square corner.'],
     procedureCard: ['Circle area: A = π × r².', 'Circumference: C = 2 × π × r or π × diameter.', 'Right triangle: a² + b² = c².'],
     workedExample: { id: 'pythagorean', prompt: 'A right triangle has legs 6 and 8. What is the longest side?', answer: '10', procedure: 'Use a² + b² = c².', steps: ['Insert values: 6² + 8² = c².', '36 + 64 = 100, so c² = 100.', 'Take the square root: c = √100 = 10.', 'Answer: 10.'] },
-    practice: [{ id: 'circle-area', prompt: 'A circle has radius 4. What is its area in terms of π?', answer: '16π square units', procedure: 'A = π × r².', steps: ['Insert radius: A = π × 4².', '4² = 16.', 'Answer: 16π square units.'] }],
+    practice: [
+      { id: 'circle-area', prompt: 'A circle has radius 4. What is its area in terms of π?', answer: '16π square units', procedure: 'A = π × r².', steps: ['Insert radius: A = π × 4².', '4² = 16.', 'Answer: 16π square units.'] },
+      { id: 'circle-circumference', prompt: 'A circle has radius 5. What is its circumference in terms of π?', answer: '10π units', procedure: 'C = 2 × π × r.', steps: ['Insert radius: C = 2 × π × 5.', '2 × 5 = 10.', 'Answer: 10π units.'] },
+      { id: 'circle-diameter-circ', prompt: 'A circle has a diameter of 10. What is its circumference in terms of π?', answer: '10π units', procedure: 'C = π × diameter.', steps: ['Insert the diameter: C = π × 10.', 'Answer: 10π units.'] },
+      { id: 'pythagorean-2', prompt: 'A right triangle has legs 9 and 12. What is the longest side?', answer: '15', procedure: 'Use a² + b² = c².', steps: ['Insert values: 9² + 12² = c².', '81 + 144 = 225, so c² = 225.', 'Take the square root: c = √225 = 15.', 'Answer: 15.'] },
+    ],
   },
   {
     id: 'data-averages', moduleId: 'data', title: 'Mean, median, mode and graph reading',
