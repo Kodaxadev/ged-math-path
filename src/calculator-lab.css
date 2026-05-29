@@ -269,9 +269,11 @@
 }
 .em-key strong { font-size: .94rem; font-weight: 600; }
 .em-key.calc-number {
-  background: linear-gradient(180deg, #f4f6f7, #e2e7ea);
+  background: linear-gradient(180deg, #f6f8f9, #dfe4e8);
   border-color: #b7c0c8;
+  border-bottom-color: #9aa6b0;
   color: #18232d;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 .em-key.calc-operator { background: linear-gradient(180deg, #3a566b, #243b4d); }
 .em-key.calc-enter {

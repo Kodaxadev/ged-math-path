@@ -23,6 +23,12 @@
 .nav-card { transition: background var(--dur-base) var(--ease-out),
     border-color var(--dur-base) var(--ease-out),
     box-shadow var(--dur-base) var(--ease-out); }
+/* Active item: keep the inset rail, add a soft teal halo. */
+.nav-card.active, .nav-card[aria-current="page"] {
+  box-shadow: inset 3px 0 0 var(--accent), var(--shadow-glow-teal);
+}
+/* Softer mobile drawer backdrop. */
+.nav-backdrop { backdrop-filter: blur(3px); background: rgba(4, 9, 18, 0.58); }
 
 /* ---- Module lesson list: rhythm + a tactile card -------- */
 .lesson-list { gap: var(--space-3); }

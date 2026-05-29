@@ -53,10 +53,10 @@
   --panel-from: #102035;    /* card gradient start (board) */
   --panel-to: #0a1526;      /* card gradient end (board) */
 
-  /* ---- Color: lines --------------------------------------- */
-  --border: #1b3049;            /* crisp navy edge (board shell/cards) */
-  --border-card: #1e3a54;       /* card stroke on the boards */
-  --border-strong: rgba(32, 213, 205, 0.32); /* teal focus/active edge */
+  /* ---- Color: lines (soft, low-opacity blue-gray) --------- */
+  --border: rgba(122, 158, 208, 0.14);       /* subtle divider */
+  --border-card: rgba(128, 166, 214, 0.20);  /* gentle card edge */
+  --border-strong: rgba(32, 213, 205, 0.34); /* teal focus/active edge */
 
   /* ---- Color: ink (text), high → low emphasis ------------- */
   --text: #f1f6ff;
@@ -77,15 +77,28 @@
   --cta-from: #25ddd4;
   --cta-to: #239dd8;
 
-  /* ---- Radius hierarchy ----------------------------------- */
-  --radius-sm: 10px;
-  --radius: 20px;
-  --radius-lg: 26px;
+  /* ---- Radius hierarchy (standardized) -------------------- */
+  --radius-sm: 10px;      /* small controls, chips, pills-of-content */
+  --radius: 20px;         /* cards */
+  --radius-lg: 26px;      /* large / focal panels */
+  --radius-device: 26px;  /* calculator body, work-pad panel */
+  --radius-pill: 999px;
 
-  /* ---- Elevation (board drop shadows) --------------------- */
-  --shadow-panel: 0 18px 46px rgba(0, 0, 0, 0.30);
-  --shadow-float: 0 24px 64px rgba(0, 0, 0, 0.48);
+  /* ---- Elevation: one shared scale ------------------------ */
+  --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.20);      /* hover / small controls */
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.26);     /* utility panels */
+  --shadow-elevated: 0 22px 54px rgba(0, 0, 0, 0.42); /* primary / focal panels */
+  --shadow-glow-teal: 0 0 0 1px rgba(32, 213, 205, 0.16), 0 10px 34px rgba(25, 196, 178, 0.14);
+  --shadow-panel: var(--shadow-card);      /* legacy alias */
+  --shadow-float: var(--shadow-elevated);  /* legacy alias */
   --glow-teal: radial-gradient(circle at 50% -10%, rgba(25, 196, 178, 0.10), transparent 42%);
+
+  /* ---- Layered page background (depth + soft vignette) ---- */
+  --page-bg:
+    radial-gradient(120% 78% at 50% -12%, rgba(25, 196, 178, 0.10), transparent 46%),
+    radial-gradient(90% 70% at 100% 0%, rgba(37, 102, 191, 0.06), transparent 42%),
+    radial-gradient(150% 120% at 50% 118%, rgba(0, 0, 0, 0.42), transparent 56%),
+    linear-gradient(160deg, var(--bg) 0%, #060e1a 52%, var(--bg-deep) 100%);
 
   /* ---- Motion: short, settling, never bouncy -------------- */
   --dur-fast: 120ms;
@@ -108,17 +121,31 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background:
-    var(--glow-teal),
-    linear-gradient(160deg, var(--bg) 0%, #060e1a 50%, var(--bg-deep) 100%);
+  background: var(--page-bg);
   background-attachment: fixed;
 }
 
-/* ---- Panels follow the token palette (board card gradient) */
+/* ---- Panels: glassy elevated surfaces (board card feel) -- */
 .panel {
   background: linear-gradient(150deg, var(--panel-from), var(--panel-to));
-  border-color: var(--border-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
+/* Focal panels: deeper lift + soft teal edge light. */
+.panel--primary {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-elevated), var(--shadow-glow-teal), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ---- Primary buttons: smooth CTA gradient + soft lift ---- */
+.primary {
+  background: linear-gradient(120deg, var(--cta-from), var(--cta-to));
+  color: #061721;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-soft);
+}
+.primary:hover { filter: brightness(1.05); box-shadow: var(--shadow-card); }
 
 h1, h2, h3 { font-family: var(--font-display); }
 h1 {

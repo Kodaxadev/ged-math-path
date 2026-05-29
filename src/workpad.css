@@ -35,9 +35,9 @@
   max-height: calc(100dvh - 24px);
   overflow-y: auto;
   border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
+  border-radius: var(--radius-device);
   background: linear-gradient(150deg, #101d31, #081321);
-  box-shadow: var(--shadow-float);
+  box-shadow: var(--shadow-elevated), var(--shadow-glow-teal);
 }
 .work-pad-loading {
   display: grid;

@@ -22,13 +22,14 @@
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-5);
 }
-/* The worked example is the anchor: a faint accent edge + lift. */
+/* The worked example is the anchor: accent edge + elevated lift. */
 .problem-card:not(.practice) {
-  border-top: 2px solid var(--border-strong);
-  box-shadow: var(--shadow-panel);
+  border-color: var(--border-strong);
+  border-top: 2px solid var(--accent);
+  box-shadow: var(--shadow-elevated), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
-/* Practice recedes: quieter surface, no lift — it's your turn. */
-.problem-card.practice { box-shadow: none; }
+/* Practice recedes: quieter surface, soft card shadow — it's your turn. */
+.problem-card.practice { box-shadow: var(--shadow-soft); }
 
 /* ---- Labels: small, calm, consistent -------------------- */
 .problem-label { display: block; margin-bottom: var(--space-2); font-size: var(--text-xs); }

@@ -33,8 +33,12 @@
 .dash-jam { grid-column: span 4; }
 .dash-take5, .dash-reassure { grid-column: span 4; }
 
-/* Continue Lesson is the focal action: accent edge + lift + larger title. */
-.dash-continue { border-top: 2px solid var(--accent); box-shadow: var(--shadow-panel); }
+/* Continue Lesson is the focal action: accent edge + elevated lift + glow. */
+.dash-continue {
+  border-color: var(--border-strong);
+  border-top: 2px solid var(--accent);
+  box-shadow: var(--shadow-elevated), var(--shadow-glow-teal), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
 .dash-continue .dash-card-title { font-size: var(--text-2xl); }
 .dash-cta {
   margin-top: auto;
